@@ -29,21 +29,9 @@ final class LoginView: UIView {
         return label
     }()
     
-    lazy var phoneTextField: UITextField = {
-        let textField = UITextField()
-        let placeholder = "Номер телефона"
-        textField.keyboardType = .phonePad
-        textField.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).cgColor
-        textField.layer.borderWidth = 1
-        textField.layer.cornerRadius = textFieldCornerRadius
-        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderColor])
-        textField.backgroundColor = .white
-        textField.leftView = UIView(frame: CGRect(x: 0,
-                                                  y: 0,
-                                                  width: 15,
-                                                  height: textField.frame.height))
-        textField.leftViewMode = .always
-        textField.textColor = .labelColor
+    lazy var phoneTextField: AppTextField = {
+        let textField = AppTextField(title: "Номер телефона", error: "Проверьте номер телефона")
+        textField.textField.keyboardType = .phonePad
         return textField
     }()
     
@@ -69,7 +57,7 @@ final class LoginView: UIView {
     
     lazy var guestButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .clear
+        button.layer.cornerRadius = buttonCornerRadius
         button.setTitle("ВОЙТИ КАК ГОСТЬ", for: UIControl.State())
         button.setTitleColor(.enabledButtonTextColor, for: UIControl.State())
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
@@ -88,7 +76,7 @@ final class LoginView: UIView {
     }
     
     private func addSubviews() {
-        [titleLabel, welcomeLabel, phoneTextField, loginButton, policyLabel, guestButton]
+        [titleLabel, welcomeLabel, phoneTextField, /*phoneLabel,*/ loginButton, policyLabel, guestButton]
             .forEach {
                 addSubview($0)
                 $0.translatesAutoresizingMaskIntoConstraints = false
@@ -114,9 +102,9 @@ final class LoginView: UIView {
             phoneTextField.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 49),
             phoneTextField.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             phoneTextField.widthAnchor.constraint(equalToConstant: Session.width - 17),
-            phoneTextField.heightAnchor.constraint(equalToConstant: textFieldHeight)
+            phoneTextField.heightAnchor.constraint(equalToConstant: 82)
         ]
-        
+
         let loginButtonConstraints = [
             loginButton.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 29),
             loginButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -141,9 +129,9 @@ final class LoginView: UIView {
         [titleLabelConstraints,
          welcomeLabelConstraints,
          phoneTextFieldConstraints,
-            loginButtonConstraints,
-            policyLabelConstraints,
-            guestButtonConstraints]
+         loginButtonConstraints,
+         policyLabelConstraints,
+         guestButtonConstraints]
             .forEach(NSLayoutConstraint.activate(_:))
     }
     

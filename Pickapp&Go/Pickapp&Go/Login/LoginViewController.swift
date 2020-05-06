@@ -42,7 +42,8 @@ class LoginViewController: UIViewController {
     }
     
     private func setUpTargets() {
-        contentView.loginButton.addTarget(self, action: #selector(onClick), for: .touchUpInside)
+        contentView.loginButton.addTarget(self, action: #selector(onClickLogin), for: .touchUpInside)
+        contentView.guestButton.addTarget(self, action: #selector(onClickGuest), for: .touchUpInside)
     }
     
     private func setUpBindings() {
@@ -54,9 +55,14 @@ class LoginViewController: UIViewController {
         }
         
         func bindViewModelToView() {
-            viewModel.validatedPassword
+            viewModel.validatedPhone
                 .receive(on: RunLoop.main)
                 .assign(to: \.isValid, on: contentView.loginButton)
+                .store(in: &bindings)
+            
+            viewModel.statusTextField
+                .receive(on: RunLoop.main)
+                .assign(to: \.status, on: contentView.phoneTextField)
                 .store(in: &bindings)
         }
         
@@ -64,9 +70,13 @@ class LoginViewController: UIViewController {
         bindViewModelToView()
     }
     
-    @objc private func onClick() {
+    @objc private func onClickLogin() {
         print("tap")
 //        let listViewController = ListViewController()
 //        navigationController?.pushViewController(listViewController, animated: true)
     }
+    
+    @objc private func onClickGuest() {
+            print("Guest")
+        }
 }

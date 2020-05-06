@@ -15,4 +15,7 @@ extension UIColor {
     static let enabledButtonTextColor = UIColor(named: "EnabledButtonTextColor")!
     static let disabledButtonBackgroundColor = UIColor(named: "DisabledButtonBackgroundColor")!
     static let enabledButtonBackgroundColor = UIColor(named: "EnabledButtonBackgroundColor")!
+    static let inactiveTextFieldBorderColor = UIColor(named: "InactiveTextFieldBorderColor")!
+    static let textFieldBorderColor = UIColor(named: "TextFieldBorderColor")!
+    static let errorTextFieldBorderColor = UIColor(named: "ErrorTextFieldBorderColor")!
 }

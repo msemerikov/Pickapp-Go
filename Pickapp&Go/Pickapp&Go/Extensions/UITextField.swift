@@ -11,6 +11,40 @@ import UIKit
 
 extension UITextField {
     
+//    var status: StatusTextField {
+//        get {
+//            return .inactive
+//        }
+//        set {
+//            switch newValue {
+//            case .active:
+//                layer.borderColor = UIColor.textFieldBorderColor.cgColor
+//            case .inactive:
+//                layer.borderColor = UIColor.inactiveTextFieldBorderColor.cgColor
+//            case .error:
+//                layer.borderColor = UIColor.errorTextFieldBorderColor.cgColor
+//            }
+//        }
+//    }
+    
+    var isInactive: Bool {
+        get {
+            return false
+        }
+        set {
+            layer.borderColor = newValue ? UIColor.textFieldBorderColor.cgColor : UIColor.inactiveTextFieldBorderColor.cgColor
+        }
+    }
+    
+    var isError: Bool {
+        get {
+            return false
+        }
+        set {
+            layer.borderColor = newValue ? UIColor.errorTextFieldBorderColor.cgColor : UIColor.textFieldBorderColor.cgColor
+        }
+    }
+    
     var textPublisher: AnyPublisher<String, Never> {
         NotificationCenter.default
             .publisher(for: UITextField.textDidChangeNotification, object: self)

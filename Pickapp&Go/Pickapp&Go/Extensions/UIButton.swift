@@ -16,7 +16,6 @@ extension UIButton {
         }
         set {
             backgroundColor = newValue ? .enabledButtonBackgroundColor : .disabledButtonBackgroundColor
-//            titleLabel?.textColor = newValue ? .white : .disableButtonTextColor
             isEnabled = newValue
         }
     }
