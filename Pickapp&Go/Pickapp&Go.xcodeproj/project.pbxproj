@@ -23,6 +23,10 @@
 		469DD6BF2461B18A006DBD30 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6BE2461B18A006DBD30 /* UIView.swift */; };
 		469DD6C124627218006DBD30 /* AppTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6C024627218006DBD30 /* AppTextField.swift */; };
 		469DD6C3246276DE006DBD30 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6C2246276DE006DBD30 /* String.swift */; };
+		469DD6C624628574006DBD30 /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6C524628574006DBD30 /* ConfirmationView.swift */; };
+		469DD6C824628782006DBD30 /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6C724628782006DBD30 /* ConfirmationViewController.swift */; };
+		469DD6CA246287D8006DBD30 /* ConfirmationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6C9246287D8006DBD30 /* ConfirmationViewModel.swift */; };
+		469DD6CC2462BB3C006DBD30 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6CB2462BB3C006DBD30 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +48,10 @@
 		469DD6BE2461B18A006DBD30 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		469DD6C024627218006DBD30 /* AppTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextField.swift; sourceTree = "<group>"; };
 		469DD6C2246276DE006DBD30 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		469DD6C524628574006DBD30 /* ConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
+		469DD6C724628782006DBD30 /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
+		469DD6C9246287D8006DBD30 /* ConfirmationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewModel.swift; sourceTree = "<group>"; };
+		469DD6CB2462BB3C006DBD30 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,7 @@
 			children = (
 				469DD6A92461892E006DBD30 /* Extensions */,
 				469DD6A624618863006DBD30 /* Login */,
+				469DD6C42462854D006DBD30 /* Confirmation */,
 				469DD69224618463006DBD30 /* AppDelegate.swift */,
 				469DD6B62461A117006DBD30 /* SceneDelegate.swift */,
 				469DD69624618463006DBD30 /* ViewController.swift */,
@@ -87,6 +96,7 @@
 				469DD6A024618465006DBD30 /* Info.plist */,
 				469DD6B424619D90006DBD30 /* Constants.swift */,
 				469DD6C024627218006DBD30 /* AppTextField.swift */,
+				469DD6CB2462BB3C006DBD30 /* TabBarController.swift */,
 			);
 			path = "Pickapp&Go";
 			sourceTree = "<group>";
@@ -111,6 +121,16 @@
 				469DD6BE2461B18A006DBD30 /* UIView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		469DD6C42462854D006DBD30 /* Confirmation */ = {
+			isa = PBXGroup;
+			children = (
+				469DD6C524628574006DBD30 /* ConfirmationView.swift */,
+				469DD6C724628782006DBD30 /* ConfirmationViewController.swift */,
+				469DD6C9246287D8006DBD30 /* ConfirmationViewModel.swift */,
+			);
+			path = Confirmation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,9 +210,13 @@
 				469DD6BF2461B18A006DBD30 /* UIView.swift in Sources */,
 				469DD6B92461A76D006DBD30 /* UITextField.swift in Sources */,
 				469DD6B324619A44006DBD30 /* LoginViewModel.swift in Sources */,
+				469DD6CC2462BB3C006DBD30 /* TabBarController.swift in Sources */,
 				469DD69724618463006DBD30 /* ViewController.swift in Sources */,
 				469DD6BB2461A8E7006DBD30 /* UIButton.swift in Sources */,
 				469DD6B524619D90006DBD30 /* Constants.swift in Sources */,
+				469DD6C824628782006DBD30 /* ConfirmationViewController.swift in Sources */,
+				469DD6C624628574006DBD30 /* ConfirmationView.swift in Sources */,
+				469DD6CA246287D8006DBD30 /* ConfirmationViewModel.swift in Sources */,
 				469DD6B124619A22006DBD30 /* LoginViewController.swift in Sources */,
 				469DD69324618463006DBD30 /* AppDelegate.swift in Sources */,
 				469DD6B72461A117006DBD30 /* SceneDelegate.swift in Sources */,

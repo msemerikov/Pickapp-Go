@@ -15,7 +15,7 @@ final class LoginViewModel {
     
     var validatedPhone: AnyPublisher<Bool, Never> {
         $phone
-            .debounce(for: 0.3, scheduler: RunLoop.main)
+            .debounce(for: 0.1, scheduler: RunLoop.main)
             .removeDuplicates()
             .map { phone in
                 return phone.count == 12

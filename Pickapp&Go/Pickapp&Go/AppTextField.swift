@@ -16,11 +16,44 @@ enum StatusTextField {
 }
 
 class AppTextField: UIView {
-    let label = UILabel()
-    let textField = UITextField()
-    let errorLabel = UILabel()
+    let font = UIFont.systemFont(ofSize: 12, weight: .regular)
     var text = ""
     var error = ""
+    
+    lazy var label: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .white
+        label.font = font
+        label.text = text
+        label.textAlignment = .center
+        return label
+    }()
+    
+    lazy var textField: UITextField = {
+        let textField = UITextField()
+        textField.attributedPlaceholder = NSAttributedString(string: text,
+                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderColor])
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = textFieldCornerRadius
+        textField.leftView = UIView(frame: CGRect(x: 0,
+                                                  y: 0,
+                                                  width: 15,
+                                                  height: textField.frame.height))
+        textField.leftViewMode = .always
+        textField.placeholder = text
+        textField.textColor = .labelColor
+        return textField
+    }()
+    
+    lazy var errorLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .white
+        label.font = font
+        label.text = error
+        label.textAlignment = .left
+        return label
+    }()
+    
     
     var status: StatusTextField {
         get {
@@ -65,72 +98,44 @@ class AppTextField: UIView {
         self.init()
         self.text = title
         self.error = error
-        setupTextField()
-        setupView()
-        setupLabel()
-        setupErrorLabel()
+        addSubviews()
+        setUpConstraints()
     }
     
-    private func setupView() {
-        backgroundColor = .white
-        layer.cornerRadius = 4
-        clipsToBounds = true
-        layer.borderColor = UIColor.inactiveTextFieldBorderColor.cgColor
+    private func addSubviews() {
+        [textField, label, errorLabel]
+            .forEach {
+                addSubview($0)
+                $0.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     
-    private func setupTextField() {
-        textField.attributedPlaceholder = NSAttributedString(string: text,
-                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderColor])
-        textField.backgroundColor = .white
-        textField.layer.borderColor = UIColor.inactiveTextFieldBorderColor.cgColor
-        textField.layer.borderWidth = 1
-        textField.layer.cornerRadius = textFieldCornerRadius
-        textField.leftView = UIView(frame: CGRect(x: 0,
-                                                  y: 0,
-                                                  width: 15,
-                                                  height: textField.frame.height))
-        textField.leftViewMode = .always
-        textField.placeholder = text
-        textField.textColor = .labelColor
-        self.addSubview(textField)
+    private func setUpConstraints() {
+        let textFieldConstraints = [
+            textField.topAnchor.constraint(equalTo: self.topAnchor, constant: 9),
+            textField.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            textField.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            textField.heightAnchor.constraint(equalToConstant: textFieldHeight)
+        ]
         
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.topAnchor.constraint(equalTo: self.topAnchor, constant: 9).isActive = true
-        textField.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        textField.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        textField.heightAnchor.constraint(equalToConstant: textFieldHeight).isActive = true
-    }
-    
-    private func setupLabel() {
-        let font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        let width = text.width(withConstrainedHeight: 16, font: font)
-        label.backgroundColor = .white
-        label.font = font
-        label.text = text
-        label.textAlignment = .center
-        self.addSubview(label)
+        let labelConstraints = [
+            label.topAnchor.constraint(equalTo: self.topAnchor),
+            label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            label.widthAnchor.constraint(equalToConstant: text.width(withConstrainedHeight: 16, font: font)),
+            label.heightAnchor.constraint(equalToConstant: 16)
+        ]
         
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true
-        label.widthAnchor.constraint(equalToConstant: width).isActive = true
-        label.heightAnchor.constraint(equalToConstant: 16).isActive = true
-    }
-    
-    private func setupErrorLabel() {
-        let font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        let width = error.width(withConstrainedHeight: 16, font: font)
-        errorLabel.backgroundColor = .white
-        errorLabel.font = font
-        errorLabel.text = error
-        errorLabel.textAlignment = .left
-        self.addSubview(errorLabel)
-        
-        errorLabel.translatesAutoresizingMaskIntoConstraints = false
-        errorLabel.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 3).isActive = true
-        errorLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true
-        errorLabel.widthAnchor.constraint(equalToConstant: width).isActive = true
-        errorLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        let errorLabelConstraints = [
+            errorLabel.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 3),
+            errorLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            errorLabel.widthAnchor.constraint(equalToConstant: error.width(withConstrainedHeight: 16, font: font)),
+            errorLabel.heightAnchor.constraint(equalToConstant: 16)
+        ]
+
+        [textFieldConstraints,
+         labelConstraints,
+         errorLabelConstraints]
+            .forEach(NSLayoutConstraint.activate(_:))
     }
     
 }

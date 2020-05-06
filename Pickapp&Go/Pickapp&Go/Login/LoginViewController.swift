@@ -71,9 +71,10 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func onClickLogin() {
-        print("tap")
-//        let listViewController = ListViewController()
-//        navigationController?.pushViewController(listViewController, animated: true)
+        guard let phone = contentView.phoneTextField.textField.text else { return }
+        let viewController = ConfirmationViewController()
+        viewController.phone = phone
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     @objc private func onClickGuest() {
