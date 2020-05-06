@@ -18,4 +18,5 @@ extension UIColor {
     static let inactiveTextFieldBorderColor = UIColor(named: "InactiveTextFieldBorderColor")!
     static let textFieldBorderColor = UIColor(named: "TextFieldBorderColor")!
     static let errorTextFieldBorderColor = UIColor(named: "ErrorTextFieldBorderColor")!
+    static let appLightGrayColor = UIColor(named: "AppLightGray")!
 }

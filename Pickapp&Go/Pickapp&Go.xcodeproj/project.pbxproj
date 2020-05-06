@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		469DD69324618463006DBD30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD69224618463006DBD30 /* AppDelegate.swift */; };
-		469DD69724618463006DBD30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD69624618463006DBD30 /* ViewController.swift */; };
 		469DD69C24618465006DBD30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 469DD69B24618465006DBD30 /* Assets.xcassets */; };
 		469DD69F24618465006DBD30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 469DD69D24618465006DBD30 /* LaunchScreen.storyboard */; };
 		469DD6A824618876006DBD30 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6A724618876006DBD30 /* LoginView.swift */; };
@@ -27,12 +26,20 @@
 		469DD6C824628782006DBD30 /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6C724628782006DBD30 /* ConfirmationViewController.swift */; };
 		469DD6CA246287D8006DBD30 /* ConfirmationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6C9246287D8006DBD30 /* ConfirmationViewModel.swift */; };
 		469DD6CC2462BB3C006DBD30 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6CB2462BB3C006DBD30 /* TabBarController.swift */; };
+		469DD6CF2462C083006DBD30 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6CE2462C083006DBD30 /* MainView.swift */; };
+		469DD6D12462C093006DBD30 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6D02462C093006DBD30 /* MainViewController.swift */; };
+		469DD6D32462C0A1006DBD30 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6D22462C0A1006DBD30 /* MainViewModel.swift */; };
+		469DD6D52462C292006DBD30 /* ShopLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6D42462C292006DBD30 /* ShopLabel.swift */; };
+		469DD6D72462CB04006DBD30 /* EventsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6D62462CB04006DBD30 /* EventsCollectionView.swift */; };
+		469DD6D92462CD09006DBD30 /* EventsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6D82462CD09006DBD30 /* EventsCollectionViewCell.swift */; };
+		469DD6DB2462CD4B006DBD30 /* EventsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6DA2462CD4A006DBD30 /* EventsCellViewModel.swift */; };
+		469DD6DD2462E940006DBD30 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6DC2462E940006DBD30 /* CategoryCollectionViewCell.swift */; };
+		469DD6DF2462E953006DBD30 /* CategoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6DE2462E953006DBD30 /* CategoryCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		469DD68F24618463006DBD30 /* Pickapp&Go.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pickapp&Go.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		469DD69224618463006DBD30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		469DD69624618463006DBD30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		469DD69B24618465006DBD30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		469DD69E24618465006DBD30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		469DD6A024618465006DBD30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,6 +59,15 @@
 		469DD6C724628782006DBD30 /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 		469DD6C9246287D8006DBD30 /* ConfirmationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewModel.swift; sourceTree = "<group>"; };
 		469DD6CB2462BB3C006DBD30 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		469DD6CE2462C083006DBD30 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		469DD6D02462C093006DBD30 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		469DD6D22462C0A1006DBD30 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		469DD6D42462C292006DBD30 /* ShopLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopLabel.swift; sourceTree = "<group>"; };
+		469DD6D62462CB04006DBD30 /* EventsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCollectionView.swift; sourceTree = "<group>"; };
+		469DD6D82462CD09006DBD30 /* EventsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCollectionViewCell.swift; sourceTree = "<group>"; };
+		469DD6DA2462CD4A006DBD30 /* EventsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCellViewModel.swift; sourceTree = "<group>"; };
+		469DD6DC2462E940006DBD30 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		469DD6DE2462E953006DBD30 /* CategoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,16 +103,22 @@
 				469DD6A92461892E006DBD30 /* Extensions */,
 				469DD6A624618863006DBD30 /* Login */,
 				469DD6C42462854D006DBD30 /* Confirmation */,
+				469DD6CD2462C063006DBD30 /* Main */,
 				469DD69224618463006DBD30 /* AppDelegate.swift */,
+				469DD6CB2462BB3C006DBD30 /* TabBarController.swift */,
 				469DD6B62461A117006DBD30 /* SceneDelegate.swift */,
-				469DD69624618463006DBD30 /* ViewController.swift */,
 				469DD69B24618465006DBD30 /* Assets.xcassets */,
 				469DD6AC24618C0D006DBD30 /* ColorAssets.xcassets */,
 				469DD69D24618465006DBD30 /* LaunchScreen.storyboard */,
 				469DD6A024618465006DBD30 /* Info.plist */,
 				469DD6B424619D90006DBD30 /* Constants.swift */,
 				469DD6C024627218006DBD30 /* AppTextField.swift */,
-				469DD6CB2462BB3C006DBD30 /* TabBarController.swift */,
+				469DD6D42462C292006DBD30 /* ShopLabel.swift */,
+				469DD6D62462CB04006DBD30 /* EventsCollectionView.swift */,
+				469DD6D82462CD09006DBD30 /* EventsCollectionViewCell.swift */,
+				469DD6DA2462CD4A006DBD30 /* EventsCellViewModel.swift */,
+				469DD6DC2462E940006DBD30 /* CategoryCollectionViewCell.swift */,
+				469DD6DE2462E953006DBD30 /* CategoryCellViewModel.swift */,
 			);
 			path = "Pickapp&Go";
 			sourceTree = "<group>";
@@ -131,6 +153,16 @@
 				469DD6C9246287D8006DBD30 /* ConfirmationViewModel.swift */,
 			);
 			path = Confirmation;
+			sourceTree = "<group>";
+		};
+		469DD6CD2462C063006DBD30 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				469DD6CE2462C083006DBD30 /* MainView.swift */,
+				469DD6D02462C093006DBD30 /* MainViewController.swift */,
+				469DD6D22462C0A1006DBD30 /* MainViewModel.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,20 +237,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				469DD6A824618876006DBD30 /* LoginView.swift in Sources */,
+				469DD6CF2462C083006DBD30 /* MainView.swift in Sources */,
 				469DD6C3246276DE006DBD30 /* String.swift in Sources */,
 				469DD6AF24618CA2006DBD30 /* UIColor.swift in Sources */,
 				469DD6BF2461B18A006DBD30 /* UIView.swift in Sources */,
+				469DD6D12462C093006DBD30 /* MainViewController.swift in Sources */,
+				469DD6D52462C292006DBD30 /* ShopLabel.swift in Sources */,
 				469DD6B92461A76D006DBD30 /* UITextField.swift in Sources */,
+				469DD6D72462CB04006DBD30 /* EventsCollectionView.swift in Sources */,
+				469DD6DF2462E953006DBD30 /* CategoryCellViewModel.swift in Sources */,
 				469DD6B324619A44006DBD30 /* LoginViewModel.swift in Sources */,
 				469DD6CC2462BB3C006DBD30 /* TabBarController.swift in Sources */,
-				469DD69724618463006DBD30 /* ViewController.swift in Sources */,
 				469DD6BB2461A8E7006DBD30 /* UIButton.swift in Sources */,
 				469DD6B524619D90006DBD30 /* Constants.swift in Sources */,
+				469DD6DB2462CD4B006DBD30 /* EventsCellViewModel.swift in Sources */,
 				469DD6C824628782006DBD30 /* ConfirmationViewController.swift in Sources */,
 				469DD6C624628574006DBD30 /* ConfirmationView.swift in Sources */,
+				469DD6DD2462E940006DBD30 /* CategoryCollectionViewCell.swift in Sources */,
 				469DD6CA246287D8006DBD30 /* ConfirmationViewModel.swift in Sources */,
+				469DD6D32462C0A1006DBD30 /* MainViewModel.swift in Sources */,
 				469DD6B124619A22006DBD30 /* LoginViewController.swift in Sources */,
 				469DD69324618463006DBD30 /* AppDelegate.swift in Sources */,
+				469DD6D92462CD09006DBD30 /* EventsCollectionViewCell.swift in Sources */,
 				469DD6B72461A117006DBD30 /* SceneDelegate.swift in Sources */,
 				469DD6C124627218006DBD30 /* AppTextField.swift in Sources */,
 			);

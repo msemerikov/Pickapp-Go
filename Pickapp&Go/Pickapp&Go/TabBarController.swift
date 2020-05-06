@@ -25,7 +25,7 @@ class TabBarController: UITabBarController {
     
     func createTabBarController() {
         
-        let firstVc = LoginViewController()
+        let firstVc = MainViewController()
         firstVc.tabBarItem = UITabBarItem(title: "Домой", image: UIImage(named: "HomeTabBarIcon"), tag: 0)
         
         let secondVc = LoginViewController()
