@@ -31,12 +31,9 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addTapGestureToHideKeyboard()
-        setupEventsCollectionView()
-        setupCategoryCollectionView()
-        setupBuyerChoiceCollectionView()
-        setupNewsCollectionView()
-        setupNewProductCollectionView()
-        setupSalesCollectionView()
+        setupCollectionsView()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(shopTapped))
+        contentView.shopLabel.addGestureRecognizer(tap)
 //        setUpTargets()
 //        setUpBindings()
 //        viewModel.startTimer()
@@ -54,37 +51,27 @@ class MainViewController: UIViewController {
         contentView.scrollView.contentSize = CGSize(width: contentRect.size.width, height: contentRect.size.height + 24)
     }
     
-    private func setupEventsCollectionView() {
+    private func setupCollectionsView() {
         contentView.eventsCollectionView.register(EventsCollectionViewCell.self, forCellWithReuseIdentifier: EventsCollectionViewCell.identifier)
         contentView.eventsCollectionView.dataSource = self
         contentView.eventsCollectionView.delegate = self
-    }
     
-    private func setupCategoryCollectionView() {
         contentView.categoryCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
         contentView.categoryCollectionView.dataSource = self
         contentView.categoryCollectionView.delegate = self
-    }
     
-    private func setupBuyerChoiceCollectionView() {
         contentView.buyerChoiceCollectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
         contentView.buyerChoiceCollectionView.dataSource = self
         contentView.buyerChoiceCollectionView.delegate = self
-    }
     
-    private func setupNewsCollectionView() {
         contentView.newsCollectionView.register(EventsCollectionViewCell.self, forCellWithReuseIdentifier: EventsCollectionViewCell.identifier)
         contentView.newsCollectionView.dataSource = self
         contentView.newsCollectionView.delegate = self
-    }
     
-    private func setupNewProductCollectionView() {
         contentView.newProductCollectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
         contentView.newProductCollectionView.dataSource = self
         contentView.newProductCollectionView.delegate = self
-    }
     
-    private func setupSalesCollectionView() {
         contentView.salesCollectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
         contentView.salesCollectionView.dataSource = self
         contentView.salesCollectionView.delegate = self
@@ -146,6 +133,11 @@ class MainViewController: UIViewController {
     
     @objc private func onClickAgain() {
 //        viewModel.startTimer()
+    }
+    
+    @objc private func shopTapped() {
+        let viewController = ShopListViewController()
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
 }

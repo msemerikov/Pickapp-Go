@@ -39,6 +39,12 @@
 		469DD6E724652B56006DBD30 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6E624652B56006DBD30 /* Event.swift */; };
 		469DD6E92465403F006DBD30 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6E82465403F006DBD30 /* Category.swift */; };
 		469DD6EB246541AD006DBD30 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6EA246541AD006DBD30 /* Product.swift */; };
+		469DD6ED24654FD5006DBD30 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6EC24654FD5006DBD30 /* Shop.swift */; };
+		469DD6F024655015006DBD30 /* ShopListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6EF24655015006DBD30 /* ShopListView.swift */; };
+		469DD6F224655025006DBD30 /* ShopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6F124655025006DBD30 /* ShopListViewController.swift */; };
+		469DD6F424655033006DBD30 /* ShopListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6F324655033006DBD30 /* ShopListViewModel.swift */; };
+		469DD6F724655379006DBD30 /* ShopListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6F624655379006DBD30 /* ShopListCellViewModel.swift */; };
+		469DD6F9246553A3006DBD30 /* ShopListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD6F8246553A3006DBD30 /* ShopListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +82,12 @@
 		469DD6E624652B56006DBD30 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		469DD6E82465403F006DBD30 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		469DD6EA246541AD006DBD30 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		469DD6EC24654FD5006DBD30 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+		469DD6EF24655015006DBD30 /* ShopListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListView.swift; sourceTree = "<group>"; };
+		469DD6F124655025006DBD30 /* ShopListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListViewController.swift; sourceTree = "<group>"; };
+		469DD6F324655033006DBD30 /* ShopListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListViewModel.swift; sourceTree = "<group>"; };
+		469DD6F624655379006DBD30 /* ShopListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListCellViewModel.swift; sourceTree = "<group>"; };
+		469DD6F8246553A3006DBD30 /* ShopListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +125,7 @@
 				469DD6A624618863006DBD30 /* Login */,
 				469DD6C42462854D006DBD30 /* Confirmation */,
 				469DD6CD2462C063006DBD30 /* Main */,
+				469DD6EE24654FFC006DBD30 /* ShopList */,
 				469DD6E4246518E4006DBD30 /* Cells */,
 				469DD69224618463006DBD30 /* AppDelegate.swift */,
 				469DD6CB2462BB3C006DBD30 /* TabBarController.swift */,
@@ -189,8 +202,29 @@
 				469DD6E624652B56006DBD30 /* Event.swift */,
 				469DD6E82465403F006DBD30 /* Category.swift */,
 				469DD6EA246541AD006DBD30 /* Product.swift */,
+				469DD6EC24654FD5006DBD30 /* Shop.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		469DD6EE24654FFC006DBD30 /* ShopList */ = {
+			isa = PBXGroup;
+			children = (
+				469DD6F52465535A006DBD30 /* Cell */,
+				469DD6EF24655015006DBD30 /* ShopListView.swift */,
+				469DD6F124655025006DBD30 /* ShopListViewController.swift */,
+				469DD6F324655033006DBD30 /* ShopListViewModel.swift */,
+			);
+			path = ShopList;
+			sourceTree = "<group>";
+		};
+		469DD6F52465535A006DBD30 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				469DD6F624655379006DBD30 /* ShopListCellViewModel.swift */,
+				469DD6F8246553A3006DBD30 /* ShopListCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,13 +301,17 @@
 				469DD6A824618876006DBD30 /* LoginView.swift in Sources */,
 				469DD6CF2462C083006DBD30 /* MainView.swift in Sources */,
 				469DD6C3246276DE006DBD30 /* String.swift in Sources */,
+				469DD6F024655015006DBD30 /* ShopListView.swift in Sources */,
+				469DD6ED24654FD5006DBD30 /* Shop.swift in Sources */,
 				469DD6AF24618CA2006DBD30 /* UIColor.swift in Sources */,
 				469DD6BF2461B18A006DBD30 /* UIView.swift in Sources */,
+				469DD6F9246553A3006DBD30 /* ShopListCell.swift in Sources */,
 				469DD6D12462C093006DBD30 /* MainViewController.swift in Sources */,
 				469DD6D52462C292006DBD30 /* ShopLabel.swift in Sources */,
 				469DD6B92461A76D006DBD30 /* UITextField.swift in Sources */,
 				469DD6DF2462E953006DBD30 /* CategoryCellViewModel.swift in Sources */,
 				469DD6B324619A44006DBD30 /* LoginViewModel.swift in Sources */,
+				469DD6F224655025006DBD30 /* ShopListViewController.swift in Sources */,
 				469DD6E724652B56006DBD30 /* Event.swift in Sources */,
 				469DD6CC2462BB3C006DBD30 /* TabBarController.swift in Sources */,
 				469DD6BB2461A8E7006DBD30 /* UIButton.swift in Sources */,
@@ -285,6 +323,7 @@
 				469DD6C624628574006DBD30 /* ConfirmationView.swift in Sources */,
 				469DD6DD2462E940006DBD30 /* CategoryCollectionViewCell.swift in Sources */,
 				469DD6CA246287D8006DBD30 /* ConfirmationViewModel.swift in Sources */,
+				469DD6F424655033006DBD30 /* ShopListViewModel.swift in Sources */,
 				469DD6D32462C0A1006DBD30 /* MainViewModel.swift in Sources */,
 				469DD6B124619A22006DBD30 /* LoginViewController.swift in Sources */,
 				469DD69324618463006DBD30 /* AppDelegate.swift in Sources */,
@@ -292,6 +331,7 @@
 				469DD6E124631FFA006DBD30 /* ProductCollectionViewCell.swift in Sources */,
 				469DD6B72461A117006DBD30 /* SceneDelegate.swift in Sources */,
 				469DD6C124627218006DBD30 /* AppTextField.swift in Sources */,
+				469DD6F724655379006DBD30 /* ShopListCellViewModel.swift in Sources */,
 				469DD6E92465403F006DBD30 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
