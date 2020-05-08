@@ -1,5 +1,5 @@
 //
-//  EventsCellViewModel.swift
+//  CategoryCellViewModel.swift
 //  Pickapp&Go
 //
 //  Created by Mikhail Semerikov on 06.05.2020.
@@ -9,11 +9,11 @@
 import Combine
 import Foundation
 
-final class EventsCellViewModel {
-    @Published var eventTitle: String = "Акция"
+final class CategoryCellViewModel {
+    @Published var category: Category
     
-    init(event: String) {
-        self.eventTitle = event
+    init(category: Category) {
+        self.category = category
         setUpBindings()
     }
     

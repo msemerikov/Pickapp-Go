@@ -12,23 +12,42 @@ import Foundation
 final class MainViewModel {
     
     @Published private(set) var eventsViewModels: [EventsCellViewModel] = [
-        EventsCellViewModel(event: "Акция 1"),
-        EventsCellViewModel(event: "Акция 2"),
-        EventsCellViewModel(event: "Акция 3"),
-        EventsCellViewModel(event: "Акция 4"),
-        EventsCellViewModel(event: "Акция 5")
+        EventsCellViewModel(event: Event(title: "Витаминный фейерверк!", image: "Event1")),
+        EventsCellViewModel(event: Event(title: "Скидки NON-stop", image: "Event2")),
+        EventsCellViewModel(event: Event(title: "Рыба. Море. Витамины!", image: "Event3")),
+        EventsCellViewModel(event: Event(title: "Все, что нужно малышу", image: "Event4"))
     ]
     
     @Published private(set) var categoryViewModels: [CategoryCellViewModel] = [
-        CategoryCellViewModel(category: "Категория 1"),
-        CategoryCellViewModel(category: "Категория 2"),
-        CategoryCellViewModel(category: "Категория 3"),
-        CategoryCellViewModel(category: "Категория 4"),
-        CategoryCellViewModel(category: "Категория 5"),
-        CategoryCellViewModel(category: "Категория 6"),
-        CategoryCellViewModel(category: "Категория 7"),
-        CategoryCellViewModel(category: "Категория 8"),
-        CategoryCellViewModel(category: "Категория 9")
+        CategoryCellViewModel(category: Category(title: "Мясо, птица, колбаса", image: "Category1")),
+        CategoryCellViewModel(category: Category(title: "Фрукты и овощи", image: "Category2")),
+        CategoryCellViewModel(category: Category(title: "Чай, кофе, какао", image: "Category3")),
+        CategoryCellViewModel(category: Category(title: "Кондитерские изделия", image: "Category4")),
+        CategoryCellViewModel(category: Category(title: "Бакалея", image: "Category5"))
+    ]
+    
+    @Published private(set) var newsViewModels: [EventsCellViewModel] = [
+        EventsCellViewModel(event: Event(title: "Новости", image: "News1")),
+        EventsCellViewModel(event: Event(title: "Новости", image: "News2")),
+        EventsCellViewModel(event: Event(title: "Новости", image: "News3"))
+    ]
+    
+    @Published private(set) var buyerChoiceViewModels: [ProductCellViewModel] = [
+        ProductCellViewModel(product: Product(title: "Черешня красная", image: "Product1", description: "", price: 499)),
+        ProductCellViewModel(product: Product(title: "Бананы", image: "Product2", description: "", price: 69.90)),
+        ProductCellViewModel(product: Product(title: "Огурец Зелёный", image: "Product3", description: "стандарт короткоплодный бугорчатый", price: 99))
+    ]
+    
+    @Published private(set) var newProductViewModels: [ProductCellViewModel] = [
+        ProductCellViewModel(product: Product(title: "Черешня красная", image: "Product1", description: "", price: 499)),
+        ProductCellViewModel(product: Product(title: "Бананы", image: "Product2", description: "", price: 69.90)),
+        ProductCellViewModel(product: Product(title: "Огурец Зелёный", image: "Product3", description: "стандарт короткоплодный бугорчатый", price: 99))
+    ]
+    
+    @Published private(set) var salesViewModels: [ProductCellViewModel] = [
+        ProductCellViewModel(product: Product(title: "Черешня красная", image: "Product1", description: "", price: 499)),
+        ProductCellViewModel(product: Product(title: "Бананы", image: "Product2", description: "", price: 69.90)),
+        ProductCellViewModel(product: Product(title: "Огурец Зелёный", image: "Product3", description: "стандарт короткоплодный бугорчатый", price: 99))
     ]
     
 }

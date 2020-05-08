@@ -20,7 +20,8 @@ final class EventsCollectionViewCell: UICollectionViewCell {
     
     lazy var image: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "ShopIcon")
+        imageView.layer.cornerRadius = 12
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -71,7 +72,8 @@ final class EventsCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpViewModel() {
-        label.text = viewModel.eventTitle
+        label.text = viewModel.event.title
+        image.image = UIImage(named: viewModel.event.image)
     }
     
 }

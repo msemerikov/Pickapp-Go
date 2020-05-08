@@ -33,6 +33,10 @@ class MainViewController: UIViewController {
         view.addTapGestureToHideKeyboard()
         setupEventsCollectionView()
         setupCategoryCollectionView()
+        setupBuyerChoiceCollectionView()
+        setupNewsCollectionView()
+        setupNewProductCollectionView()
+        setupSalesCollectionView()
 //        setUpTargets()
 //        setUpBindings()
 //        viewModel.startTimer()
@@ -41,6 +45,13 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let contentRect: CGRect = contentView.scrollView.subviews.reduce(into: .zero) { rect, view in
+            rect = rect.union(view.frame)
+        }
+        contentView.scrollView.contentSize = CGSize(width: contentRect.size.width, height: contentRect.size.height + 24)
     }
     
     private func setupEventsCollectionView() {
@@ -53,6 +64,30 @@ class MainViewController: UIViewController {
         contentView.categoryCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
         contentView.categoryCollectionView.dataSource = self
         contentView.categoryCollectionView.delegate = self
+    }
+    
+    private func setupBuyerChoiceCollectionView() {
+        contentView.buyerChoiceCollectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
+        contentView.buyerChoiceCollectionView.dataSource = self
+        contentView.buyerChoiceCollectionView.delegate = self
+    }
+    
+    private func setupNewsCollectionView() {
+        contentView.newsCollectionView.register(EventsCollectionViewCell.self, forCellWithReuseIdentifier: EventsCollectionViewCell.identifier)
+        contentView.newsCollectionView.dataSource = self
+        contentView.newsCollectionView.delegate = self
+    }
+    
+    private func setupNewProductCollectionView() {
+        contentView.newProductCollectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
+        contentView.newProductCollectionView.dataSource = self
+        contentView.newProductCollectionView.delegate = self
+    }
+    
+    private func setupSalesCollectionView() {
+        contentView.salesCollectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
+        contentView.salesCollectionView.dataSource = self
+        contentView.salesCollectionView.delegate = self
     }
     
     private func setUpTargets() {
@@ -122,30 +157,66 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == contentView.eventsCollectionView {
             return viewModel.eventsViewModels.count
-        } else {
+        } else if collectionView == contentView.categoryCollectionView {
             return viewModel.categoryViewModels.count
+        } else if collectionView == contentView.newsCollectionView {
+            return viewModel.newsViewModels.count
+        } else if collectionView == contentView.buyerChoiceCollectionView {
+            return viewModel.buyerChoiceViewModels.count
+        } else if collectionView == contentView.newProductCollectionView {
+            return viewModel.newProductViewModels.count
+        } else if collectionView == contentView.salesCollectionView {
+            return viewModel.salesViewModels.count
+        } else {
+            return 0
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == contentView.eventsCollectionView {
             let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: EventsCollectionViewCell.identifier, for: indexPath)
-            
-            guard let eventCell = dequeuedCell as? EventsCollectionViewCell else {
+            guard let cell = dequeuedCell as? EventsCollectionViewCell else {
                 fatalError("Could not dequeue a cell")
             }
-            
-            eventCell.viewModel = viewModel.eventsViewModels[indexPath.item]
-            return eventCell
-        } else {
+            cell.viewModel = viewModel.eventsViewModels[indexPath.item]
+            return cell
+        } else if collectionView == contentView.categoryCollectionView {
             let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath)
-            
-            guard let eventCell = dequeuedCell as? CategoryCollectionViewCell else {
+            guard let cell = dequeuedCell as? CategoryCollectionViewCell else {
                 fatalError("Could not dequeue a cell")
             }
-            
-            eventCell.viewModel = viewModel.categoryViewModels[indexPath.item]
-            return eventCell
+            cell.viewModel = viewModel.categoryViewModels[indexPath.item]
+            return cell
+        } else if collectionView == contentView.newsCollectionView {
+            let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: EventsCollectionViewCell.identifier, for: indexPath)
+            guard let cell = dequeuedCell as? EventsCollectionViewCell else {
+                fatalError("Could not dequeue a cell")
+            }
+            cell.viewModel = viewModel.newsViewModels[indexPath.item]
+            return cell
+        } else if collectionView == contentView.buyerChoiceCollectionView {
+            let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath)
+            guard let cell = dequeuedCell as? ProductCollectionViewCell else {
+                fatalError("Could not dequeue a cell")
+            }
+            cell.viewModel = viewModel.buyerChoiceViewModels[indexPath.item]
+            return cell
+        } else if collectionView == contentView.newProductCollectionView {
+            let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath)
+            guard let cell = dequeuedCell as? ProductCollectionViewCell else {
+                fatalError("Could not dequeue a cell")
+            }
+            cell.viewModel = viewModel.newProductViewModels[indexPath.item]
+            return cell
+        }  else if collectionView == contentView.salesCollectionView {
+            let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath)
+            guard let cell = dequeuedCell as? ProductCollectionViewCell else {
+                fatalError("Could not dequeue a cell")
+            }
+            cell.viewModel = viewModel.salesViewModels[indexPath.item]
+            return cell
+        } else {
+            return UICollectionViewCell()
         }
     }
     
@@ -156,8 +227,10 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == contentView.eventsCollectionView {
+        if collectionView == contentView.eventsCollectionView || collectionView == contentView.newsCollectionView{
             return CGSize(width: Session.width - 32, height: 123)
+        } else if collectionView == contentView.buyerChoiceCollectionView || collectionView == contentView.newProductCollectionView || collectionView == contentView.salesCollectionView {
+            return CGSize(width: 160, height: 220)
         } else {
             return CGSize(width: 126, height: 180)
         }
@@ -169,4 +242,19 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     }
     
+}
+
+extension UIScrollView {
+
+    func resizeScrollViewContentSize() {
+
+        var contentRect = CGRect.zero
+
+        for view in self.subviews {
+            contentRect = contentRect.union(view.frame)
+        }
+
+        self.contentSize = contentRect.size
+    }
+
 }

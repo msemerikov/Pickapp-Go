@@ -22,6 +22,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "ShopIcon")
         imageView.layer.cornerRadius = 8
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -73,7 +74,8 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpViewModel() {
-        label.text = viewModel.categoryTitle
+        label.text = viewModel.category.title
+        image.image = UIImage(named: viewModel.category.image)
     }
     
 }
