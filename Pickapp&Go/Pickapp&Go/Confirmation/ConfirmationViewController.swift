@@ -57,7 +57,7 @@ class ConfirmationViewController: UIViewController {
         }
         
         func bindViewModelToView() {
-            viewModel.validatedPhone
+            viewModel.validatedCode
                 .receive(on: RunLoop.main)
                 .assign(to: \.isValid, on: contentView.loginButton)
                 .store(in: &bindings)

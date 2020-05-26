@@ -15,7 +15,7 @@ final class ConfirmationViewModel {
     @Published var code: String = ""
     @Published var timeLeft: Int = 60
     
-    var validatedPhone: AnyPublisher<Bool, Never> {
+    var validatedCode: AnyPublisher<Bool, Never> {
         $code
             .debounce(for: 0.1, scheduler: RunLoop.main)
             .removeDuplicates()

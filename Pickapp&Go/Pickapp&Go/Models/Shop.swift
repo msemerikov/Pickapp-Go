@@ -8,7 +8,12 @@
 
 import Foundation
 
-struct Shop {
+protocol ListCellable {
+    var title: String { get set }
+    var image: String { get set }
+}
+
+struct Shop: ListCellable {
     var title: String
     var image: String
     var address: String

@@ -9,7 +9,6 @@
 import UIKit
 
 extension UIColor {
-    static let labelColor = UIColor(named: "LabelColor")!
     static let placeholderColor = UIColor(named: "PlaceholderColor")!
     static let disableButtonTextColor = UIColor(named: "DisabledButtonTextColor")!
     static let enabledButtonTextColor = UIColor(named: "EnabledButtonTextColor")!
@@ -19,4 +18,12 @@ extension UIColor {
     static let textFieldBorderColor = UIColor(named: "TextFieldBorderColor")!
     static let errorTextFieldBorderColor = UIColor(named: "ErrorTextFieldBorderColor")!
     static let appLightGrayColor = UIColor(named: "AppLightGray")!
+    
+    static let labelColor = UIColor(named: "LabelColor")!
+    static let titleColor = UIColor(named: "TitleColor")!
+    static let backgroundColor = UIColor(named: "BackgroundColor")!
+    static let vividOrange = UIColor(named: "VividOrange")!
+    static let vividRed = UIColor(named: "VividRed")!
+    static let labelGrayColor = UIColor(named: "LabelGrayColor")!
+    static let lightRed = UIColor(named: "LightRed")!
 }

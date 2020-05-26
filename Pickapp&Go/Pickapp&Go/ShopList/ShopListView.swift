@@ -10,7 +10,7 @@ import UIKit
 
 final class ShopListView: UIView {
     
-    lazy var shopListView: UITableView = {
+    lazy var tableView: UITableView = {
         let tableView = UITableView()
         return tableView
     }()
@@ -26,7 +26,7 @@ final class ShopListView: UIView {
     }
     
     private func addSubviews() {
-        [shopListView]
+        [tableView]
             .forEach {
                 addSubview($0)
                 $0.translatesAutoresizingMaskIntoConstraints = false
@@ -36,10 +36,10 @@ final class ShopListView: UIView {
     private func setUpConstraints() {
         
         let shopListViewConstraints = [
-            shopListView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            shopListView.topAnchor.constraint(equalTo: topAnchor),
-            shopListView.heightAnchor.constraint(equalTo: heightAnchor),
-            shopListView.widthAnchor.constraint(equalToConstant: Session.width)
+            tableView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.heightAnchor.constraint(equalTo: heightAnchor),
+            tableView.widthAnchor.constraint(equalToConstant: Session.width)
         ]
         
         [shopListViewConstraints]

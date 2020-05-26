@@ -28,20 +28,28 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     
     lazy var image: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "ShopIcon")
-        imageView.layer.cornerRadius = 8
-        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
+//        imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
+//        imageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         return imageView
     }()
     
     lazy var label: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12, weight: .regular)
+        label.font = .lightSystemFontOfSize(size: 12)
         label.textAlignment = .center
         label.textColor = .labelColor
+        label.numberOfLines = 0
+//        label.heightAnchor.constraint(equalToConstant: 32).isActive = true
         return label
     }()
     
+    lazy var dividerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 0.933, green: 0.933, blue: 0.933, alpha: 1)
+        return view
+    }()
+    /*
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .regular)
@@ -49,17 +57,16 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         label.textColor = .labelColor
         return label
     }()
-    
-    lazy var cartButton: UIButton = {
-        let button = UIButton()
+    */
+    lazy var cartButton: CartButton = {
+        let button = CartButton()
 //        button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
-        button.setImage(UIImage(named: "CartIconBlack"), for: .normal)
         return button
     }()
     
     lazy var priceLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = .boldSystemFontOfSize(size: 10)
         label.textAlignment = .left
         label.textColor = .labelColor
         return label
@@ -67,10 +74,10 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor(red: 0.902, green: 0.902, blue: 0.902, alpha: 1)
-        layer.cornerRadius = 8
+        backgroundColor = .white
         addSubiews()
         setUpConstraints()
+        updateLayerProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -78,7 +85,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     private func addSubiews() {
-        let subviews = [likeButton, image, label, descriptionLabel, cartButton, priceLabel]
+        let subviews = [likeButton, image, label, /*descriptionLabel,*/ dividerView, cartButton, priceLabel]
         
         subviews.forEach {
             contentView.addSubview($0)
@@ -87,6 +94,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpConstraints() {
+        let imageTopAnchor = (frame.height - 51 - 80 - 32 - 4) / 2
         let likeButtonConstraints = [
             likeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             likeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
@@ -94,10 +102,17 @@ final class ProductCollectionViewCell: UICollectionViewCell {
             likeButton.heightAnchor.constraint(equalToConstant: 24)
         ]
         
+        let dividerViewConstraints = [
+            dividerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 9),
+            dividerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -9),
+            dividerView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -51),
+            dividerView.heightAnchor.constraint(equalToConstant: 1)
+        ]
+        
         let imageConstraints = [
-            image.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
+            image.topAnchor.constraint(equalTo: contentView.topAnchor, constant: imageTopAnchor),
             image.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            image.widthAnchor.constraint(equalToConstant: 68),
+            image.widthAnchor.constraint(equalToConstant: 80),
             image.heightAnchor.constraint(equalToConstant: 80)
         ]
         
@@ -105,45 +120,66 @@ final class ProductCollectionViewCell: UICollectionViewCell {
             label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 4),
             label.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            label.heightAnchor.constraint(equalToConstant: 24)
+            label.heightAnchor.constraint(equalToConstant: 32)
         ]
         
+        /*
         let descriptionLabelConstraints = [
             descriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             descriptionLabel.topAnchor.constraint(equalTo: label.bottomAnchor),
             descriptionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             descriptionLabel.heightAnchor.constraint(equalToConstant: 24)
         ]
+        */
         
         let cartButtonConstraints = [
-            cartButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            cartButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            cartButton.widthAnchor.constraint(equalToConstant: 24),
-            cartButton.heightAnchor.constraint(equalToConstant: 24)
+            cartButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -9),
+            cartButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -9),
+            cartButton.widthAnchor.constraint(equalToConstant: 34),
+            cartButton.heightAnchor.constraint(equalToConstant: 34)
         ]
         
         let priceLabelConstraints = [
-            priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            priceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            priceLabel.trailingAnchor.constraint(equalTo: cartButton.leadingAnchor, constant: -12),
+            priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 9),
+            priceLabel.centerYAnchor.constraint(equalTo: cartButton.centerYAnchor),
+            priceLabel.trailingAnchor.constraint(equalTo: cartButton.leadingAnchor),
             priceLabel.heightAnchor.constraint(equalToConstant: 24)
         ]
         
         [likeButtonConstraints,
+         dividerViewConstraints,
          imageConstraints,
          labelConstraints,
-         descriptionLabelConstraints,
          cartButtonConstraints,
          priceLabelConstraints]
             .forEach(NSLayoutConstraint.activate(_:))
     }
     
+    // TODO: - Add second shadow
+    private func updateLayerProperties() {
+        layer.cornerRadius = 12
+        layer.shadowColor = UIColor(red: 0.216, green: 0.329, blue: 0.667, alpha: 0.15).cgColor
+        layer.shadowOffset = CGSize(width: 2, height: 2)
+        layer.shadowRadius = 4.0
+        layer.shadowOpacity = 1.0
+    }
+    
     private func setUpViewModel() {
         let price = String(format: "%.2f", arguments: [viewModel.product.price])
+        let unit = " / \(viewModel.product.unit)"
+        
+        let index = price.firstIndex(of: ".") ?? price.endIndex
+        let newString = String(price[...index])
+        let range = (price as NSString).range(of: newString)
+        let attributes = [NSAttributedString.Key.font: UIFont.systemFontOfSize(size: 8)]
+        let firstString = NSMutableAttributedString(string: price)
+        let secondString = NSMutableAttributedString(string: unit, attributes: attributes)
+        
+        firstString.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFontOfSize(size: 14), range: range)
+        firstString.append(secondString)
         label.text = viewModel.product.title
         image.image = UIImage(named: viewModel.product.image)
-        descriptionLabel.text = viewModel.product.description
-        priceLabel.text = "\(price) руб."
+        priceLabel.attributedText = firstString
     }
     
     @objc private func likeButtonTapped() {

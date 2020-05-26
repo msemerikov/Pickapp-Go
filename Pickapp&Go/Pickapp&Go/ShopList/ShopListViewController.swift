@@ -40,9 +40,9 @@ final class ShopListViewController: UIViewController {
     }
     
     private func setUpTableView() {
-        contentView.shopListView.register(ShopListCell.self, forCellReuseIdentifier: ShopListCell.identifier)
-        contentView.shopListView.dataSource = self
-        contentView.shopListView.delegate = self
+        contentView.tableView.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
+        contentView.tableView.dataSource = self
+        contentView.tableView.delegate = self
     }
     
     private func setUpBindings() {
@@ -112,8 +112,8 @@ extension ShopListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dequeuedCell = tableView.dequeueReusableCell(withIdentifier: ShopListCell.identifier, for: indexPath)
-        guard let cell = dequeuedCell as? ShopListCell else {
+        let dequeuedCell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier, for: indexPath)
+        guard let cell = dequeuedCell as? ListCell else {
             fatalError("Could not dequeue a cell")
         }
         cell.viewModel = viewModel.shopsViewModels[indexPath.row]

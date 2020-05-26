@@ -8,8 +8,16 @@
 
 import Foundation
 
-struct Category {
+struct Category: ListCellable {
     var title: String
     var image: String
 }
 
+let vegetablesCat = Category(title: "Овощи и фрукты", image: "Category1")
+let milkCat = Category(title: "Молочные продукты", image: "Category2")
+let fruitCat = Category(title: "Фрукты", image: "Category3")
+let fishCat = Category(title: "Рыба", image: "Category4")
+let meatCat = Category(title: "Мясные продукты", image: "Category5")
+let bakeryCat = Category(title: "Кондитерские изделия", image: "Category6")
+let groceryCat = Category(title: "Бакалея", image: "Category7")
+let categoriesArray = [vegetablesCat, milkCat, fishCat, meatCat, bakeryCat, groceryCat]

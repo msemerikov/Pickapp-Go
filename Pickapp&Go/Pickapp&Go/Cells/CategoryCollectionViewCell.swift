@@ -20,26 +20,25 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     lazy var image: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "ShopIcon")
-        imageView.layer.cornerRadius = 8
-        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     lazy var label: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12, weight: .regular)
+        label.font = .systemFontOfSize(size: 14)
         label.textAlignment = .center
         label.textColor = .labelColor
+        label.numberOfLines = 2
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor(red: 0.902, green: 0.902, blue: 0.902, alpha: 1)
-        layer.cornerRadius = 8
+        backgroundColor = .white
         addSubiews()
         setUpConstraints()
+        updateLayerProperties()
     }
     
     required init?(coder: NSCoder) {
@@ -57,20 +56,29 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     private func setUpConstraints() {
         let imageConstraints = [
-            image.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
+            image.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
             image.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            image.widthAnchor.constraint(equalToConstant: 68),
-            image.heightAnchor.constraint(equalToConstant: 80)
+            image.widthAnchor.constraint(equalToConstant: 120),
+            image.heightAnchor.constraint(equalToConstant: 70)
         ]
         
         let labelConstraints = [
             label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 4),
+            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -14),
             label.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            label.heightAnchor.constraint(equalToConstant: 24)
+            label.heightAnchor.constraint(equalToConstant: 32)
         ]
         
         [imageConstraints, labelConstraints].forEach(NSLayoutConstraint.activate(_:))
+    }
+    
+    // TODO: - Add second shadow
+    private func updateLayerProperties() {
+        layer.cornerRadius = 16
+        layer.shadowColor = UIColor(red: 0.06, green: 0.21, blue: 0.596, alpha: 0.1).cgColor
+        layer.shadowOffset = CGSize(width: 4, height: 4)
+        layer.shadowRadius = 6.0
+        layer.shadowOpacity = 1.0
     }
     
     private func setUpViewModel() {

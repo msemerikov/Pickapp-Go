@@ -28,7 +28,7 @@ class TabBarController: UITabBarController {
         let firstVc = MainViewController()
         firstVc.tabBarItem = UITabBarItem(title: "Домой", image: UIImage(named: "HomeTabBarIcon"), tag: 0)
         
-        let secondVc = LoginViewController()
+        let secondVc = CategoryListViewController()
         secondVc.tabBarItem = UITabBarItem(title: "Каталог", image: UIImage(named: "CatalogTabBarIcon"), tag: 1)
         
         let thirdVc = LoginViewController()
@@ -37,7 +37,7 @@ class TabBarController: UITabBarController {
         let fourthVc = LoginViewController()
         fourthVc.tabBarItem = UITabBarItem(title: "Корзина", image: UIImage(named: "BasketTabBarIcon"), tag: 3)
         
-        let fifthVc = LoginViewController()
+        let fifthVc = AccountViewController()
         fifthVc.tabBarItem = UITabBarItem(title: "Аккаунт", image: UIImage(named: "AccountTabBarIcon"), tag: 4)
         
         let controllerArray = [firstVc, secondVc, thirdVc, fourthVc, fifthVc]
