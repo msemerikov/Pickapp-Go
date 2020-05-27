@@ -39,6 +39,12 @@ final class SubcategoryCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override var isSelected: Bool {
+        didSet {
+            label.textColor = isSelected ? UIColor.vividOrange : UIColor.labelColor
+        }
+    }
+    
     private func addSubiews() {
         let subviews = [label]
         
@@ -69,6 +75,14 @@ final class SubcategoryCollectionViewCell: UICollectionViewCell {
     
     private func setUpViewModel() {
         label.text = viewModel.subcategory.title
+    }
+    
+    func toggleSelected() {
+        if isSelected {
+            label.textColor = UIColor.vividOrange
+        } else {
+            label.textColor = UIColor.labelColor
+        }
     }
     
 }

@@ -59,9 +59,6 @@ final class CategoryView: UIView {
     
     lazy var productCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
-//        let layout = ProductCollectionViewLayout()
-//        layout.delegate = self
-//        collectionView.setCollectionViewLayout(layout, animated: true)
         collectionView.backgroundColor = .clear
         return collectionView
     }()

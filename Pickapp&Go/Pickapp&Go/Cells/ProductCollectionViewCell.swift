@@ -11,6 +11,7 @@ import UIKit
 
 final class ProductCollectionViewCell: UICollectionViewCell {
     static let identifier = "ProductCollectionViewCell"
+    private var imageTopAnchorConstraint: NSLayoutConstraint?
     
     var viewModel: ProductCellViewModel! {
         didSet {
@@ -95,6 +96,8 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     
     private func setUpConstraints() {
         let imageTopAnchor = (frame.height - 51 - 80 - 32 - 4) / 2
+        imageTopAnchorConstraint = image.topAnchor.constraint(equalTo: contentView.topAnchor, constant: imageTopAnchor)
+        imageTopAnchorConstraint?.isActive = true
         let likeButtonConstraints = [
             likeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             likeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
@@ -110,7 +113,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         ]
         
         let imageConstraints = [
-            image.topAnchor.constraint(equalTo: contentView.topAnchor, constant: imageTopAnchor),
+//            image.topAnchor.constraint(equalTo: contentView.topAnchor, constant: imageTopAnchor),
             image.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             image.widthAnchor.constraint(equalToConstant: 80),
             image.heightAnchor.constraint(equalToConstant: 80)
@@ -180,6 +183,11 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         label.text = viewModel.product.title
         image.image = UIImage(named: viewModel.product.image)
         priceLabel.attributedText = firstString
+        
+        imageTopAnchorConstraint?.isActive = false
+        let imageTopAnchor = (frame.height - 51 - 80 - 32 - 4) / 2
+        imageTopAnchorConstraint = image.topAnchor.constraint(equalTo: contentView.topAnchor, constant: imageTopAnchor)
+        imageTopAnchorConstraint?.isActive = true
     }
     
     @objc private func likeButtonTapped() {

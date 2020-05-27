@@ -10,29 +10,55 @@ import Combine
 import Foundation
 
 final class CategoryViewModel {
-    
+
     var category: Category?
+    var products: [Product] = []
+    var subcategories: [Subcategory] = []
     
-    @Published private(set) var subcategoryViewModels: [SubcategoryCellViewModel] = [
-//        ShopCellViewModel(shop: Shop(title: "ПЕРЕКРЕСТОК", image: "Shop1", address: "Долгопрудная, 74 ТРК “Облака”"))
-    ]
-    
+    @Published var selectedSubcategory: [Subcategory] = []
+    @Published private(set) var subcategoryViewModels: [SubcategoryCellViewModel] = []
     @Published private(set) var productViewModels: [ProductCellViewModel] = []
     
     func loadProduct() {
-        var products: [Product] = []
+        products.removeAll()
+        productViewModels.removeAll()
+        selectedSubcategory.removeAll()
         products = productsArray.filter { $0.category.title == category?.title }
         
         products.forEach {
             productViewModels.append(ProductCellViewModel(product: $0))
         }
         
-        var subcategories: [Subcategory] = []
         subcategories = subcategoriesArray.filter { $0.parent.title == category?.title }
         subcategories.forEach {
             subcategoryViewModels.append(SubcategoryCellViewModel(subcategory: $0))
         }
 
+    }
+    
+    func addSubcategory(_ index: Int) {
+        let subcategory = subcategories[index]
+        selectedSubcategory.append(subcategory)
+        filterBySubcategory()
+    }
+    
+    func removeSubcategory(_ index: Int) {
+        let subcategory = subcategories[index]
+        guard let removeIndex = selectedSubcategory.firstIndex(where: { $0.title == subcategory.title }) else { return }
+        selectedSubcategory.remove(at: removeIndex)
+        filterBySubcategory()
+    }
+    
+    func filterBySubcategory() {
+        products.removeAll()
+        productViewModels.removeAll()
+        selectedSubcategory.forEach { subcategory in
+            products = productsArray.filter { $0.subcategory.title == subcategory.title }
+            products.forEach {
+                productViewModels.append(ProductCellViewModel(product: $0))
+            }
+        }
+        
     }
     
 }

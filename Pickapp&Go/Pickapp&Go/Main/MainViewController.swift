@@ -160,7 +160,6 @@ extension MainViewController: UICollectionViewDelegate {
         if collectionView == contentView.categoryCollectionView {
             let category = indexPath.item
             let viewController = CategoryViewController(category: viewModel.categoryViewModels[category].category)
-//            viewController.viewModel
             navigationController?.pushViewController(viewController, animated: true)
         }
     }

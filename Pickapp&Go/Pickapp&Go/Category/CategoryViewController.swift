@@ -36,16 +36,20 @@ class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundColor
-        view.addTapGestureToHideKeyboard()
         setupCollectionsView()
         setUpTargets()
         viewModel.loadProduct()
 //        setUpBindings()
+        dismissKey()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    func reload() {
+        contentView.productCollectionView.reloadData()
     }
     
 //    override func viewDidLayoutSubviews() {
@@ -77,6 +81,7 @@ class CategoryViewController: UIViewController {
     
     private func setUpBindings() {
         func bindViewToViewModel() {
+//            contentView.subCategoryCollectionView.indexPath(for: <#T##UICollectionViewCell#>)
 //            contentView.codeTextField.textPublisher
 //                .receive(on: DispatchQueue.main)
 //                .assign(to: \.code, on: viewModel)
@@ -84,6 +89,15 @@ class CategoryViewController: UIViewController {
         }
         
         func bindViewModelToView() {
+            let viewModelsValueHandler: ([ProductCellViewModel]) -> Void = { [weak self] _ in
+                self?.contentView.productCollectionView.reloadData()
+            }
+            
+            viewModel.$productViewModels
+                .receive(on: RunLoop.main)
+                .sink(receiveValue: viewModelsValueHandler)
+                .store(in: &bindings)
+            
             bindViewToViewModel()
             bindViewModelToView()
         }
@@ -95,7 +109,25 @@ class CategoryViewController: UIViewController {
     
 }
 
-extension CategoryViewController: UICollectionViewDelegate { }
+extension CategoryViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == contentView.subCategoryCollectionView {
+            collectionView.allowsMultipleSelection = true
+            viewModel.addSubcategory(indexPath.item)
+            contentView.productCollectionView.reloadData()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        viewModel.removeSubcategory(indexPath.item)
+        if collectionView.indexPathsForSelectedItems?.count == 0 {
+            viewModel.loadProduct()
+        }
+        contentView.productCollectionView.reloadData()
+    }
+    
+}
 
 extension CategoryViewController: UICollectionViewDataSource {
     
@@ -123,6 +155,7 @@ extension CategoryViewController: UICollectionViewDataSource {
                 fatalError("Could not dequeue a cell")
             }
             cell.viewModel = viewModel.productViewModels[indexPath.item]
+            cell.layoutSubviews()
             return cell
         } else {
             return UICollectionViewCell()
