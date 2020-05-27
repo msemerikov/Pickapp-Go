@@ -21,12 +21,7 @@ final class MainView: UIView, UIScrollViewDelegate {
         imageView.image = UIImage(named: "ShopImage")
         return imageView
     }()
-    
-    lazy var shopLabel: ShopLabel = {
-        let label = ShopLabel(title: "Авоська", subtitle: "Казакова, 24")
-        return label
-    }()
-    
+
     lazy var shopCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
@@ -53,16 +48,7 @@ final class MainView: UIView, UIScrollViewDelegate {
         searchBar.searchTextField.layer.shadowOpacity = 1.0
         return searchBar
     }()
-    /*
-    lazy var eventsCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
-        layout.scrollDirection = .horizontal
-        collectionView.setCollectionViewLayout(layout, animated: true)
-        collectionView.backgroundColor = .white
-        return collectionView
-    }()
-    */
+
     lazy var categoryLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFontOfSize(size: 18)
@@ -100,9 +86,7 @@ final class MainView: UIView, UIScrollViewDelegate {
     
     lazy var allBuyerChoiceButton: UIButton = {
         let button = UIButton()
-        button.setTitle("См. все", for: UIControl.State())
-        button.setTitleColor(.labelColor, for: UIControl.State())
-        button.titleLabel?.font = .mediumSystemFontOfSize(size: 12)
+        button.setImage(UIImage(named: "Chevron"), for: .normal)
         return button
     }()
     
@@ -114,16 +98,7 @@ final class MainView: UIView, UIScrollViewDelegate {
         collectionView.backgroundColor = .clear
         return collectionView
     }()
-    /*
-    lazy var newsCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
-        layout.scrollDirection = .horizontal
-        collectionView.setCollectionViewLayout(layout, animated: true)
-        collectionView.backgroundColor = .white
-        return collectionView
-    }()
-    */
+
     lazy var newProductLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFontOfSize(size: 18)
@@ -136,9 +111,7 @@ final class MainView: UIView, UIScrollViewDelegate {
     
     lazy var allNewProductButton: UIButton = {
         let button = UIButton()
-        button.setTitle("См. все", for: UIControl.State())
-        button.setTitleColor(.labelColor, for: UIControl.State())
-        button.titleLabel?.font = .mediumSystemFontOfSize(size: 12)
+        button.setImage(UIImage(named: "Chevron"), for: .normal)
         return button
     }()
     
@@ -163,9 +136,7 @@ final class MainView: UIView, UIScrollViewDelegate {
     
     lazy var allSalesButton: UIButton = {
         let button = UIButton()
-        button.setTitle("См. все", for: UIControl.State())
-        button.setTitleColor(.labelColor, for: UIControl.State())
-        button.titleLabel?.font = .mediumSystemFontOfSize(size: 12)
+        button.setImage(UIImage(named: "Chevron"), for: .normal)
         return button
     }()
     
@@ -203,15 +174,12 @@ final class MainView: UIView, UIScrollViewDelegate {
         [shopImage,
          shopCollectionView,
          searchBar,
-//         shopLabel,
-//         eventsCollectionView,
          categoryLabel,
          allCategoryButton,
          categoryCollectionView,
          buyerChoiceLabel,
          allBuyerChoiceButton,
          buyerChoiceCollectionView,
-//         newsCollectionView,
          newProductLabel,
          allNewProductButton,
          newProductCollectionView,
@@ -233,7 +201,7 @@ final class MainView: UIView, UIScrollViewDelegate {
             shopImage.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             shopImage.topAnchor.constraint(equalTo: scrollView.topAnchor),
             shopImage.widthAnchor.constraint(equalToConstant: Session.width),
-            shopImage.heightAnchor.constraint(equalTo: shopImage.widthAnchor, multiplier: 2 / 3)
+            shopImage.heightAnchor.constraint(equalTo: shopImage.widthAnchor, multiplier: 5 / 9)
         ]
         
         let shopCollectionViewConstraints = [
@@ -249,20 +217,6 @@ final class MainView: UIView, UIScrollViewDelegate {
             searchBar.widthAnchor.constraint(equalToConstant: Session.width - 32),
             searchBar.heightAnchor.constraint(equalToConstant: 48)
         ]
-        
-//        let shopLabelConstraints = [
-//            shopLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-//            shopLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 55),
-//            shopLabel.heightAnchor.constraint(equalToConstant: 64),
-//            shopLabel.widthAnchor.constraint(equalToConstant: Session.width)
-//        ]
-//
-//        let eventsCollectionViewConstraints = [
-//            eventsCollectionView.topAnchor.constraint(equalTo: shopLabel.bottomAnchor, constant: 12),
-//            eventsCollectionView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-//            eventsCollectionView.widthAnchor.constraint(equalToConstant: Session.width),
-//            eventsCollectionView.heightAnchor.constraint(equalToConstant: 123)
-//        ]
         
         let categoryLabelConstraints = [
             categoryLabel.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 24),
@@ -294,7 +248,7 @@ final class MainView: UIView, UIScrollViewDelegate {
         
         let allBuyerChoiceButtonConstraints = [
             allBuyerChoiceButton.topAnchor.constraint(equalTo: buyerChoiceLabel.topAnchor),
-            allBuyerChoiceButton.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Session.width - 16),
+            allBuyerChoiceButton.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Session.width),
             allBuyerChoiceButton.widthAnchor.constraint(equalToConstant: allButtonWidth),
             allBuyerChoiceButton.heightAnchor.constraint(equalToConstant: labelHeight)
         ]
@@ -305,14 +259,7 @@ final class MainView: UIView, UIScrollViewDelegate {
             buyerChoiceCollectionView.widthAnchor.constraint(equalToConstant: Session.width),
             buyerChoiceCollectionView.heightAnchor.constraint(equalToConstant: 220)
         ]
-        /*
-        let newsCollectionViewConstraints = [
-            newsCollectionView.topAnchor.constraint(equalTo: buyerChoiceCollectionView.bottomAnchor, constant: 24),
-            newsCollectionView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            newsCollectionView.widthAnchor.constraint(equalToConstant: Session.width),
-            newsCollectionView.heightAnchor.constraint(equalToConstant: 123)
-        ]
-        */
+        
         let newProductLabelConstraints = [
             newProductLabel.topAnchor.constraint(equalTo: buyerChoiceCollectionView.bottomAnchor, constant: 24),
             newProductLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
@@ -322,7 +269,7 @@ final class MainView: UIView, UIScrollViewDelegate {
         
         let allNewProductButtonConstraints = [
             allNewProductButton.topAnchor.constraint(equalTo: newProductLabel.topAnchor),
-            allNewProductButton.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Session.width - 16),
+            allNewProductButton.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Session.width),
             allNewProductButton.widthAnchor.constraint(equalToConstant: allButtonWidth),
             allNewProductButton.heightAnchor.constraint(equalToConstant: labelHeight)
         ]
@@ -343,7 +290,7 @@ final class MainView: UIView, UIScrollViewDelegate {
         
         let allSalesButtonConstraints = [
             allSalesButton.topAnchor.constraint(equalTo: salesLabel.topAnchor),
-            allSalesButton.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Session.width - 16),
+            allSalesButton.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Session.width),
             allSalesButton.widthAnchor.constraint(equalToConstant: allButtonWidth),
             allSalesButton.heightAnchor.constraint(equalToConstant: labelHeight)
         ]
@@ -358,15 +305,12 @@ final class MainView: UIView, UIScrollViewDelegate {
         [shopImageConstraints,
          shopCollectionViewConstraints,
          searchBarConstraints,
-//         shopLabelConstraints,
-//         eventsCollectionViewConstraints,
          categoryLabelConstraints,
          allCategoryButtonConstraints,
          categoryCollectionViewConstraints,
          buyerChoiceLabelConstraints,
          allBuyerChoiceButtonConstraints,
          buyerChoiceCollectionViewConstraints,
-//         newsCollectionViewConstraints,
          newProductLabelConstraints,
          allNewProductButtonConstraints,
          newProductCollectionViewConstraints,

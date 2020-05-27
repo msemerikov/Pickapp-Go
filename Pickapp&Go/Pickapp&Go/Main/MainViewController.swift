@@ -82,8 +82,8 @@ class MainViewController: UIViewController {
     }
     
     private func setUpTargets() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(shopTapped))
-        contentView.shopLabel.addGestureRecognizer(tap)
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(shopTapped))
+//        contentView.shopLabel.addGestureRecognizer(tap)
         contentView.allCategoryButton.addTarget(self, action: #selector(allCategoryButtonTapped), for: .touchUpInside)
 //        contentView.loginButton.addTarget(self, action: #selector(onClickLogin), for: .touchUpInside)
 //        contentView.againButton.addTarget(self, action: #selector(onClickAgain), for: .touchUpInside)
@@ -142,10 +142,10 @@ class MainViewController: UIViewController {
 //        viewModel.startTimer()
     }
     
-    @objc private func shopTapped() {
-        let viewController = ShopListViewController()
-        navigationController?.pushViewController(viewController, animated: true)
-    }
+//    @objc private func shopTapped() {
+//        let viewController = ShopListViewController()
+//        navigationController?.pushViewController(viewController, animated: true)
+//    }
     
     @objc private func allCategoryButtonTapped() {
         let viewController = CategoryListViewController()
@@ -161,6 +161,18 @@ extension MainViewController: UICollectionViewDelegate {
             let category = indexPath.item
             let viewController = CategoryViewController(category: viewModel.categoryViewModels[category].category)
             navigationController?.pushViewController(viewController, animated: true)
+        } else if collectionView == contentView.buyerChoiceCollectionView {
+            let product = indexPath.item
+            let viewController = ProductViewController(product: viewModel.buyerChoiceViewModels[product].product)
+            navigationController?.pushViewController(viewController, animated: true)
+        } else if collectionView == contentView.newProductCollectionView {
+            let product = indexPath.item
+            let viewController = ProductViewController(product: viewModel.newProductViewModels[product].product)
+            navigationController?.pushViewController(viewController, animated: true)
+        } else if collectionView == contentView.salesCollectionView {
+            let product = indexPath.item
+            let viewController = ProductViewController(product: viewModel.salesViewModels[product].product)
+            navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
@@ -171,12 +183,8 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == contentView.shopCollectionView {
             return viewModel.shopViewModels.count
-//        } else if collectionView == contentView.eventsCollectionView {
-//            return viewModel.eventsViewModels.count
         } else if collectionView == contentView.categoryCollectionView {
             return viewModel.categoryViewModels.count
-//        } else if collectionView == contentView.newsCollectionView {
-//            return viewModel.newsViewModels.count
         } else if collectionView == contentView.buyerChoiceCollectionView {
             return viewModel.buyerChoiceViewModels.count
         } else if collectionView == contentView.newProductCollectionView {
@@ -196,13 +204,6 @@ extension MainViewController: UICollectionViewDataSource {
             }
             cell.viewModel = viewModel.shopViewModels[indexPath.item]
             return cell
-//        } else if collectionView == contentView.eventsCollectionView {
-//            let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: EventsCollectionViewCell.identifier, for: indexPath)
-//            guard let cell = dequeuedCell as? EventsCollectionViewCell else {
-//                fatalError("Could not dequeue a cell")
-//            }
-//            cell.viewModel = viewModel.eventsViewModels[indexPath.item]
-//            return cell
         } else if collectionView == contentView.categoryCollectionView {
             let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath)
             guard let cell = dequeuedCell as? CategoryCollectionViewCell else {
@@ -210,13 +211,6 @@ extension MainViewController: UICollectionViewDataSource {
             }
             cell.viewModel = viewModel.categoryViewModels[indexPath.item]
             return cell
-//        } else if collectionView == contentView.newsCollectionView {
-//            let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: EventsCollectionViewCell.identifier, for: indexPath)
-//            guard let cell = dequeuedCell as? EventsCollectionViewCell else {
-//                fatalError("Could not dequeue a cell")
-//            }
-//            cell.viewModel = viewModel.newsViewModels[indexPath.item]
-//            return cell
         } else if collectionView == contentView.buyerChoiceCollectionView {
             let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath)
             guard let cell = dequeuedCell as? ProductCollectionViewCell else {
@@ -252,8 +246,6 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == contentView.shopCollectionView {
             return CGSize(width: Session.width - 32, height: 160)
-//        } else if /*collectionView == contentView.eventsCollectionView ||*/ collectionView == contentView.newsCollectionView {
-//            return CGSize(width: Session.width - 32, height: 123)
         } else if collectionView == contentView.categoryCollectionView {
                 return CGSize(width: 140, height: 144)
         } else if collectionView == contentView.buyerChoiceCollectionView || collectionView == contentView.newProductCollectionView || collectionView == contentView.salesCollectionView {
@@ -271,35 +263,6 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         } else {
             return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         }
-    }
-    
-}
-
-extension UIScrollView {
-
-    func resizeScrollViewContentSize() {
-
-        var contentRect = CGRect.zero
-
-        for view in self.subviews {
-            contentRect = contentRect.union(view.frame)
-        }
-
-        self.contentSize = contentRect.size
-    }
-
-}
-
-extension UIViewController {
-    
-    func dismissKey() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
     
 }

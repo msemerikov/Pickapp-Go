@@ -18,6 +18,13 @@ final class ShopCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    lazy var shopLogoImage: UIImageView = {
+        let imageView = UIImageView()
+//        imageView.image = UIImage(named: "ShopLogo")
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    /*
     lazy var title: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFontOfSize(size: 30)
@@ -25,7 +32,7 @@ final class ShopCollectionViewCell: UICollectionViewCell {
         label.textColor = .titleColor
         return label
     }()
-    
+    */
     lazy var locationView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis  = NSLayoutConstraint.Axis.horizontal
@@ -46,7 +53,7 @@ final class ShopCollectionViewCell: UICollectionViewCell {
     
     lazy var locationLabel: UILabel = {
         let label = UILabel()
-        label.font = .mediumSystemFontOfSize(size: 14)
+        label.font = .systemFontOfSize(size: 14)
         label.textAlignment = .left
         label.textColor = .labelColor
         label.heightAnchor.constraint(equalToConstant: 24).isActive = true
@@ -73,7 +80,7 @@ final class ShopCollectionViewCell: UICollectionViewCell {
     }
     
     private func addSubiews() {
-        let subviews = [title, locationView, ratingImage]
+        let subviews = [shopLogoImage, locationView, ratingImage]
         
         subviews.forEach {
             contentView.addSubview($0)
@@ -84,15 +91,22 @@ final class ShopCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpConstraints() {
+        let shopLogoImageConstraints = [
+            shopLogoImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
+            shopLogoImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            shopLogoImage.heightAnchor.constraint(equalToConstant: 42)
+        ]
+        
+        /*
         let titleConstraints = [
             title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 35),
             title.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             title.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             title.heightAnchor.constraint(equalToConstant: 30)
         ]
-        
+        */
         let locationViewConstraints = [
-            locationView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 15),
+            locationView.topAnchor.constraint(equalTo: shopLogoImage.bottomAnchor, constant: 15),
             locationView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             locationView.heightAnchor.constraint(equalToConstant: 24)
         ]
@@ -104,7 +118,7 @@ final class ShopCollectionViewCell: UICollectionViewCell {
             ratingImage.heightAnchor.constraint(equalToConstant: 24)
         ]
         
-        [titleConstraints,
+        [shopLogoImageConstraints,
          locationViewConstraints,
          ratingImageConstraints
             ].forEach(NSLayoutConstraint.activate(_:))
@@ -122,7 +136,8 @@ final class ShopCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpViewModel() {
-        title.text = viewModel.shop.title
+//        title.text = viewModel.shop.title
+        shopLogoImage.image = UIImage(named: viewModel.shop.image)
         locationLabel.text = viewModel.shop.address
     }
     

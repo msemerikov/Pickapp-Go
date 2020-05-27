@@ -28,4 +28,9 @@ let peach = Product(title: "Персики", image: "Product6", description: "с
 let cabbage = Product(title: "Капуста", image: "Product7", description: "", price: 216.00, unit: "200 г", category: vegetablesCat, subcategory: vegetables)
 let greenApple = Product(title: "Яблоки зеленые", image: "Product8", description: "", price: 69.90, unit: "200 г", category: vegetablesCat, subcategory: fruits)
 let cheese = Product(title: "Сыр", image: "Product9", description: "стандарт короткоплодный бугорчатый", price: 99, unit: "200 г", category: milkCat, subcategory: cheeses)
+let kiwi = Product(title: "Киви золотое", image: "Product13", description: "Особый сорт киви отличается красивым золотистым оттенком сочной мякоти и более крупным размером. Всего в одном киви содержится дневная норма витамина С! Кроме того, этот фрукт богат витамином Е, магнием, фолиевой кислотой. Прекрасное лакомство, ингредиент для фруктовых салатов и десертов!", price: 217, unit: "кг", category: vegetablesCat, subcategory: fruits)
+
 let productsArray = [blueberry, banana, cucumber, strawberry, apple, potato, peach, cabbage, greenApple, cheese]
+let buyerChoiceArray = [kiwi, blueberry, banana, cucumber, strawberry]
+let newProductArray = [apple, potato, peach]
+let salesProductArray = [cabbage, greenApple, cheese]
