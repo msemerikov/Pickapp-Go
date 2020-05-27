@@ -40,6 +40,7 @@ final class MainView: UIView, UIScrollViewDelegate {
         searchBar.placeholder = "Поиск продуктов"
         searchBar.searchTextField.font = .mediumSystemFontOfSize(size: 14)
         searchBar.setImage(UIImage(named: "SearchIcon"), for: UISearchBar.Icon.search, state: [])
+        searchBar.searchTextField.layer.masksToBounds = false
         searchBar.searchTextField.layer.cornerRadius = 12
         searchBar.searchTextField.layer.backgroundColor = UIColor.white.cgColor
         searchBar.searchTextField.layer.shadowColor = UIColor(red: 0.216, green: 0.329, blue: 0.667, alpha: 0.12).cgColor
@@ -47,6 +48,18 @@ final class MainView: UIView, UIScrollViewDelegate {
         searchBar.searchTextField.layer.shadowRadius = 4.0
         searchBar.searchTextField.layer.shadowOpacity = 1.0
         return searchBar
+    }()
+    
+    lazy var searchBarShadow: CALayer = {
+        let layer = CALayer()
+        layer.backgroundColor = UIColor.white.cgColor
+        layer.cornerRadius = 12
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
+        layer.shadowOpacity = 1
+        layer.shadowRadius = 4
+        layer.shadowOffset = CGSize(width: -2, height: -2)
+        return layer
     }()
 
     lazy var categoryLabel: UILabel = {
@@ -154,10 +167,16 @@ final class MainView: UIView, UIScrollViewDelegate {
         addScrollView()
         addSubviews()
         setUpConstraints()
+        searchBar.searchTextField.layer.insertSublayer(searchBarShadow, at: 0)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSublayers(of layer: CALayer) {
+        super.layoutSublayers(of: layer)
+        searchBarShadow.frame = searchBar.searchTextField.bounds
     }
     
     private func addScrollView() {

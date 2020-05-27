@@ -73,6 +73,18 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    lazy var shadow: CALayer = {
+        let layer = CALayer()
+        layer.backgroundColor = UIColor.white.cgColor
+        layer.cornerRadius = 12
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8).cgColor
+        layer.shadowOpacity = 1
+        layer.shadowRadius = 4
+        layer.shadowOffset = CGSize(width: -2, height: -2)
+        return layer
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
@@ -83,6 +95,11 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSublayers(of layer: CALayer) {
+        super.layoutSublayers(of: layer)
+        shadow.frame = bounds
     }
     
     private func addSubiews() {
@@ -165,6 +182,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         layer.shadowOffset = CGSize(width: 2, height: 2)
         layer.shadowRadius = 4.0
         layer.shadowOpacity = 1.0
+        layer.insertSublayer(shadow, at: 0)
     }
     
     private func setUpViewModel() {

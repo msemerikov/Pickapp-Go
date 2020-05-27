@@ -116,15 +116,21 @@ extension CategoryViewController: UICollectionViewDelegate {
             collectionView.allowsMultipleSelection = true
             viewModel.addSubcategory(indexPath.item)
             contentView.productCollectionView.reloadData()
+        } else {
+            let product = indexPath.item
+            let viewController = ProductViewController(product: viewModel.productViewModels[product].product)
+            navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        viewModel.removeSubcategory(indexPath.item)
-        if collectionView.indexPathsForSelectedItems?.count == 0 {
-            viewModel.loadProduct()
+        if collectionView == contentView.subCategoryCollectionView {
+            viewModel.removeSubcategory(indexPath.item)
+            if collectionView.indexPathsForSelectedItems?.count == 0 {
+                viewModel.loadProduct()
+            }
+            contentView.productCollectionView.reloadData()
         }
-        contentView.productCollectionView.reloadData()
     }
     
 }
@@ -193,10 +199,23 @@ extension CategoryViewController: UICollectionViewDelegateFlowLayout {
 extension CategoryViewController: ProductCollectionViewLayoutDelegate {
     
     func height(forItemAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.item == 0 {
-            return 316
-        } else {
+        if viewModel.productViewModels.count < 4 {
             return 204
+        } else {
+            
+            if viewModel.productViewModels.count % 2 == 0 {
+                if indexPath.item == 0 || indexPath.item == viewModel.productViewModels.count - 2 {
+                    return 316
+                } else {
+                    return 204
+                }
+            } else {
+                if indexPath.item == 0 || indexPath.item == viewModel.productViewModels.count - 2 {
+                    return 316
+                } else {
+                    return 204
+                }
+            }
         }
     }
 
