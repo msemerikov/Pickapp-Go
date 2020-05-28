@@ -77,6 +77,9 @@
 		46DF5AAE247E9256003D8B26 /* ProductInfoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DF5AAD247E9256003D8B26 /* ProductInfoRowView.swift */; };
 		46DF5AB0247EA9C6003D8B26 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DF5AAF247EA9C6003D8B26 /* UIScrollView.swift */; };
 		46DF5AB2247EA9F3003D8B26 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DF5AB1247EA9F3003D8B26 /* UIViewController.swift */; };
+		46FE2E8D247F799A004812EF /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE2E8C247F799A004812EF /* FavoriteView.swift */; };
+		46FE2E8F247F79A7004812EF /* FavoriteViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE2E8E247F79A7004812EF /* FavoriteViewControler.swift */; };
+		46FE2E91247F79B1004812EF /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE2E90247F79B1004812EF /* FavoriteViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -152,6 +155,9 @@
 		46DF5AAD247E9256003D8B26 /* ProductInfoRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoRowView.swift; sourceTree = "<group>"; };
 		46DF5AAF247EA9C6003D8B26 /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
 		46DF5AB1247EA9F3003D8B26 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		46FE2E8C247F799A004812EF /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		46FE2E8E247F79A7004812EF /* FavoriteViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewControler.swift; sourceTree = "<group>"; };
+		46FE2E90247F79B1004812EF /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +196,7 @@
 				469DD6A624618863006DBD30 /* Login */,
 				469DD6C42462854D006DBD30 /* Confirmation */,
 				46C488232465894600FF3C3C /* Account */,
+				46FE2E8B247F7975004812EF /* Favorite */,
 				469DD6CD2462C063006DBD30 /* Main */,
 				46DF5AA1247E67B3003D8B26 /* Product */,
 				46DF5A8E247CDDB8003D8B26 /* Category */,
@@ -379,6 +386,16 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		46FE2E8B247F7975004812EF /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				46FE2E8C247F799A004812EF /* FavoriteView.swift */,
+				46FE2E8E247F79A7004812EF /* FavoriteViewControler.swift */,
+				46FE2E90247F79B1004812EF /* FavoriteViewModel.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -464,6 +481,7 @@
 				46DF5A92247CDDE7003D8B26 /* CategoryViewController.swift in Sources */,
 				46DF5AB0247EA9C6003D8B26 /* UIScrollView.swift in Sources */,
 				46DF5AA0247D319F003D8B26 /* Int.swift in Sources */,
+				46FE2E8F247F79A7004812EF /* FavoriteViewControler.swift in Sources */,
 				469DD6F024655015006DBD30 /* ShopListView.swift in Sources */,
 				46DF5A9E247D2F3B003D8B26 /* ProductCollectionViewLayout.swift in Sources */,
 				469DD6ED24654FD5006DBD30 /* Shop.swift in Sources */,
@@ -471,6 +489,7 @@
 				469DD6BF2461B18A006DBD30 /* UIView.swift in Sources */,
 				46DF5A8B247981BC003D8B26 /* UIFont.swift in Sources */,
 				469DD6F9246553A3006DBD30 /* ListCell.swift in Sources */,
+				46FE2E8D247F799A004812EF /* FavoriteView.swift in Sources */,
 				469DD6D12462C093006DBD30 /* MainViewController.swift in Sources */,
 				46C488202465745D00FF3C3C /* CategoryListViewController.swift in Sources */,
 				46DF5A94247CDDF3003D8B26 /* CategoryViewModel.swift in Sources */,
@@ -491,6 +510,7 @@
 				46DF5AA3247E67CF003D8B26 /* ProductView.swift in Sources */,
 				46DF5AAB247E69B5003D8B26 /* AddToCartButton.swift in Sources */,
 				469DD6EB246541AD006DBD30 /* Product.swift in Sources */,
+				46FE2E91247F79B1004812EF /* FavoriteViewModel.swift in Sources */,
 				469DD6DB2462CD4B006DBD30 /* EventsCellViewModel.swift in Sources */,
 				46DF5A9C247D19A2003D8B26 /* SubCategory.swift in Sources */,
 				469DD6C824628782006DBD30 /* ConfirmationViewController.swift in Sources */,

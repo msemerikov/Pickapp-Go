@@ -1,28 +1,22 @@
 //
-//  CategoryViewController.swift
+//  FavoriteViewControler.swift
 //  Pickapp&Go
 //
-//  Created by Mikhail Semerikov on 26.05.2020.
+//  Created by Mikhail Semerikov on 28.05.2020.
 //  Copyright © 2020 Mikhail Semerikov. All rights reserved.
 //
 
 import Combine
 import UIKit
 
-class CategoryViewController: UIViewController {
-    private lazy var contentView = CategoryView()
-    private let viewModel: CategoryViewModel
+class FavoriteViewControler: UIViewController {
+    private lazy var contentView = FavoriteView()
+    private let viewModel: FavoriteViewModel
     private var bindings = Set<AnyCancellable>()
     
-    init(viewModel: CategoryViewModel = CategoryViewModel()) {
+    init(viewModel: FavoriteViewModel = FavoriteViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-    }
-    
-    convenience init(viewModel: CategoryViewModel = CategoryViewModel(), category: Category) {
-        self.init(viewModel: viewModel)
-        viewModel.category = category
-        contentView.categoryLabel.text = category.title
     }
     
     required init?(coder: NSCoder) {
@@ -46,24 +40,11 @@ class CategoryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-    
-    func reload() {
+        viewModel.loadProduct()
         contentView.productCollectionView.reloadData()
     }
     
-//    override func viewDidLayoutSubviews() {
-//        let contentRect: CGRect = contentView.scrollView.subviews.reduce(into: .zero) { rect, view in
-//            rect = rect.union(view.frame)
-//        }
-//        contentView.scrollView.contentSize = CGSize(width: contentRect.size.width, height: contentRect.size.height + 24)
-//    }
-    
     private func setupCollectionsView() {
-        contentView.subCategoryCollectionView.register(SubcategoryCollectionViewCell.self, forCellWithReuseIdentifier: SubcategoryCollectionViewCell.identifier)
-        contentView.subCategoryCollectionView.dataSource = self
-        contentView.subCategoryCollectionView.delegate = self
-    
         contentView.productCollectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
         contentView.productCollectionView.dataSource = self
         contentView.productCollectionView.delegate = self
@@ -75,8 +56,6 @@ class CategoryViewController: UIViewController {
     
     private func setUpTargets() {
         contentView.backButton.addTarget(self, action: #selector(back), for: .touchUpInside)
-//        contentView.loginButton.addTarget(self, action: #selector(onClickLogin), for: .touchUpInside)
-//        contentView.againButton.addTarget(self, action: #selector(onClickAgain), for: .touchUpInside)
     }
     
     private func setUpBindings() {
@@ -109,68 +88,35 @@ class CategoryViewController: UIViewController {
     
 }
 
-extension CategoryViewController: UICollectionViewDelegate {
+extension FavoriteViewControler: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == contentView.subCategoryCollectionView {
-            collectionView.allowsMultipleSelection = true
-            viewModel.addSubcategory(indexPath.item)
-            contentView.productCollectionView.reloadData()
-        } else {
-            let product = indexPath.item
-            let viewController = ProductViewController(product: viewModel.productViewModels[product].product)
-            navigationController?.pushViewController(viewController, animated: true)
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        if collectionView == contentView.subCategoryCollectionView {
-            viewModel.removeSubcategory(indexPath.item)
-            if collectionView.indexPathsForSelectedItems?.count == 0 {
-                viewModel.loadProduct()
-            }
-            contentView.productCollectionView.reloadData()
-        }
+        let product = indexPath.item
+        let viewController = ProductViewController(product: viewModel.productViewModels[product].product)
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
 
-extension CategoryViewController: UICollectionViewDataSource {
+extension FavoriteViewControler: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == contentView.subCategoryCollectionView {
-            return viewModel.subcategoryViewModels.count
-        } else if collectionView == contentView.productCollectionView {
-            return viewModel.productViewModels.count
-        } else {
-            return 0
-        }
+        return viewModel.productViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == contentView.subCategoryCollectionView {
-            let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: SubcategoryCollectionViewCell.identifier, for: indexPath)
-            guard let cell = dequeuedCell as? SubcategoryCollectionViewCell else {
-                fatalError("Could not dequeue a cell")
-            }
-            cell.viewModel = viewModel.subcategoryViewModels[indexPath.item]
-            return cell
-        } else if collectionView == contentView.productCollectionView {
-            let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath)
-            guard let cell = dequeuedCell as? ProductCollectionViewCell else {
-                fatalError("Could not dequeue a cell")
-            }
-            cell.viewModel = viewModel.productViewModels[indexPath.item]
-            cell.layoutSubviews()
-            return cell
-        } else {
-            return UICollectionViewCell()
+        let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath)
+        guard let cell = dequeuedCell as? ProductCollectionViewCell else {
+            fatalError("Could not dequeue a cell")
         }
+        cell.viewModel = viewModel.productViewModels[indexPath.item]
+        cell.layoutSubviews()
+        return cell
     }
     
 }
-
-extension CategoryViewController: UICollectionViewDelegateFlowLayout {
+/*
+extension FavoriteViewControler: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -195,8 +141,8 @@ extension CategoryViewController: UICollectionViewDelegateFlowLayout {
     }
     
 }
-
-extension CategoryViewController: ProductCollectionViewLayoutDelegate {
+*/
+extension FavoriteViewControler: ProductCollectionViewLayoutDelegate {
     
     func height(forItemAt indexPath: IndexPath) -> CGFloat {
         if viewModel.productViewModels.count < 4 {

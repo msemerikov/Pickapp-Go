@@ -73,6 +73,7 @@ class ProductViewController: UIViewController {
         let secondString = NSMutableAttributedString(string: unit, attributes: attributes)
         firstString.append(secondString)
         
+        contentView.likeButton.isSelected = product.isFavorite
         contentView.productImage.image = UIImage(named: product.image)
         contentView.titleLabel.text = product.title
         contentView.priceLabel.attributedText = firstString
@@ -93,6 +94,7 @@ class ProductViewController: UIViewController {
     private func setUpTargets() {
         contentView.backButton.addTarget(self, action: #selector(back), for: .touchUpInside)
         contentView.likeButton.addTarget(self, action: #selector(like), for: .touchUpInside)
+        contentView.addToCartButton.addTarget(self, action: #selector(like), for: .touchUpInside)
 //        contentView.loginButton.addTarget(self, action: #selector(onClickLogin), for: .touchUpInside)
 //        contentView.againButton.addTarget(self, action: #selector(onClickAgain), for: .touchUpInside)
     }
@@ -124,6 +126,7 @@ class ProductViewController: UIViewController {
     
     @objc func like() {
         contentView.likeButton.isSelected = !contentView.likeButton.isSelected
+        viewModel.product?.isFavorite = contentView.likeButton.isSelected
     }
     
 }

@@ -31,7 +31,7 @@ class TabBarController: UITabBarController {
         let secondVc = CategoryListViewController()
         secondVc.tabBarItem = UITabBarItem(title: "Каталог", image: UIImage(named: "CatalogTabBarIcon"), tag: 1)
         
-        let thirdVc = LoginViewController()
+        let thirdVc = FavoriteViewControler()
         thirdVc.tabBarItem = UITabBarItem(title: "Избранное", image: UIImage(named: "FavoriteTabBarIcon"), tag: 2)
         
         let fourthVc = LoginViewController()

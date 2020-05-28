@@ -30,7 +30,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundColor
-//        view.addTapGestureToHideKeyboard()
         setupCollectionsView()
         setUpTargets()
 //        setUpBindings()
@@ -42,6 +41,7 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        reloadCollectionView()
     }
     
     override func viewDidLayoutSubviews() {
@@ -52,10 +52,6 @@ class MainViewController: UIViewController {
     }
     
     private func setupCollectionsView() {
-//        contentView.eventsCollectionView.register(EventsCollectionViewCell.self, forCellWithReuseIdentifier: EventsCollectionViewCell.identifier)
-//        contentView.eventsCollectionView.dataSource = self
-//        contentView.eventsCollectionView.delegate = self
-        
         contentView.shopCollectionView.register(ShopCollectionViewCell.self, forCellWithReuseIdentifier: ShopCollectionViewCell.identifier)
         contentView.shopCollectionView.dataSource = self
         contentView.shopCollectionView.delegate = self
@@ -68,10 +64,6 @@ class MainViewController: UIViewController {
         contentView.buyerChoiceCollectionView.dataSource = self
         contentView.buyerChoiceCollectionView.delegate = self
     
-//        contentView.newsCollectionView.register(EventsCollectionViewCell.self, forCellWithReuseIdentifier: EventsCollectionViewCell.identifier)
-//        contentView.newsCollectionView.dataSource = self
-//        contentView.newsCollectionView.delegate = self
-    
         contentView.newProductCollectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
         contentView.newProductCollectionView.dataSource = self
         contentView.newProductCollectionView.delegate = self
@@ -81,12 +73,15 @@ class MainViewController: UIViewController {
         contentView.salesCollectionView.delegate = self
     }
     
+    private func reloadCollectionView() {
+        contentView.categoryCollectionView.reloadData()
+        contentView.buyerChoiceCollectionView.reloadData()
+        contentView.newProductCollectionView.reloadData()
+        contentView.salesCollectionView.reloadData()
+    }
+    
     private func setUpTargets() {
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(shopTapped))
-//        contentView.shopLabel.addGestureRecognizer(tap)
         contentView.allCategoryButton.addTarget(self, action: #selector(allCategoryButtonTapped), for: .touchUpInside)
-//        contentView.loginButton.addTarget(self, action: #selector(onClickLogin), for: .touchUpInside)
-//        contentView.againButton.addTarget(self, action: #selector(onClickAgain), for: .touchUpInside)
     }
     
     private func setUpBindings() {
@@ -129,23 +124,6 @@ class MainViewController: UIViewController {
         bindViewToViewModel()
         bindViewModelToView()
     }
-    
-    @objc private func onClickLogin() {
-//        let viewController = TabBarController()
-//        navigationController?.dismiss(animated: true, completion: {
-//            viewController.modalPresentationStyle = .fullScreen
-//            self.present(viewController, animated: true, completion: nil)
-//        })
-    }
-    
-    @objc private func onClickAgain() {
-//        viewModel.startTimer()
-    }
-    
-//    @objc private func shopTapped() {
-//        let viewController = ShopListViewController()
-//        navigationController?.pushViewController(viewController, animated: true)
-//    }
     
     @objc private func allCategoryButtonTapped() {
         let viewController = CategoryListViewController()

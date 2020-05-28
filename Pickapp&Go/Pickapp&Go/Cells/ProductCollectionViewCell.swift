@@ -115,11 +115,12 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         let imageTopAnchor = (frame.height - 51 - 80 - 32 - 4) / 2
         imageTopAnchorConstraint = image.topAnchor.constraint(equalTo: contentView.topAnchor, constant: imageTopAnchor)
         imageTopAnchorConstraint?.isActive = true
+        
         let likeButtonConstraints = [
-            likeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            likeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            likeButton.widthAnchor.constraint(equalToConstant: 24),
-            likeButton.heightAnchor.constraint(equalToConstant: 24)
+            likeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            likeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+            likeButton.widthAnchor.constraint(equalToConstant: 48),
+            likeButton.heightAnchor.constraint(equalToConstant: 48)
         ]
         
         let dividerViewConstraints = [
@@ -201,6 +202,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         label.text = viewModel.product.title
         image.image = UIImage(named: viewModel.product.image)
         priceLabel.attributedText = firstString
+        likeButton.isSelected = viewModel.product.isFavorite
         
         imageTopAnchorConstraint?.isActive = false
         let imageTopAnchor = (frame.height - 51 - 80 - 32 - 4) / 2
@@ -210,6 +212,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     
     @objc private func likeButtonTapped() {
         likeButton.isSelected = !likeButton.isSelected
+        viewModel.product.isFavorite = likeButton.isSelected
     }
     
 }
