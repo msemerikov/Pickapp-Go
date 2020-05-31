@@ -132,6 +132,14 @@ class MainViewController: UIViewController {
     
 }
 
+extension MainViewController: ItemsInCartDelegate {
+    
+    func increaseBadge() {
+        self.tabBarController?.increaseBadge(indexOfTab: 3, num: totalItemsInCart.description)
+    }
+    
+}
+
 extension MainViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -195,6 +203,7 @@ extension MainViewController: UICollectionViewDataSource {
                 fatalError("Could not dequeue a cell")
             }
             cell.viewModel = viewModel.buyerChoiceViewModels[indexPath.item]
+            cell.delegate = self
             return cell
         } else if collectionView == contentView.newProductCollectionView {
             let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath)
@@ -202,6 +211,7 @@ extension MainViewController: UICollectionViewDataSource {
                 fatalError("Could not dequeue a cell")
             }
             cell.viewModel = viewModel.newProductViewModels[indexPath.item]
+            cell.delegate = self
             return cell
         }  else if collectionView == contentView.salesCollectionView {
             let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath)
@@ -209,6 +219,7 @@ extension MainViewController: UICollectionViewDataSource {
                 fatalError("Could not dequeue a cell")
             }
             cell.viewModel = viewModel.salesViewModels[indexPath.item]
+            cell.delegate = self
             return cell
         } else {
             return UICollectionViewCell()

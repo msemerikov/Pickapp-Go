@@ -62,9 +62,9 @@ class ProductViewController: UIViewController {
     }
     
     private func loadData(_ product: Product) {
-        let descriptionHeight = product.description.height(withConstrainedWidth: Session.width - 32, font: .lightSystemFontOfSize(size: 11))
-        contentView.descriptionHeight = descriptionHeight
-        contentView.descriptionHeightConstraint?.isActive = true
+//        let descriptionHeight = product.description.height(withConstrainedWidth: Session.width - 32, font: .lightSystemFontOfSize(size: 11))
+//        contentView.descriptionHeight = descriptionHeight
+//        contentView.descriptionHeightConstraint?.isActive = true
         let price = String(format: "%.0f", arguments: [product.price])
         let unit = " руб/\(product.unit)"
         
@@ -94,7 +94,7 @@ class ProductViewController: UIViewController {
     private func setUpTargets() {
         contentView.backButton.addTarget(self, action: #selector(back), for: .touchUpInside)
         contentView.likeButton.addTarget(self, action: #selector(like), for: .touchUpInside)
-        contentView.addToCartButton.addTarget(self, action: #selector(like), for: .touchUpInside)
+        contentView.addToCartButton.addTarget(self, action: #selector(addToCart), for: .touchUpInside)
 //        contentView.loginButton.addTarget(self, action: #selector(onClickLogin), for: .touchUpInside)
 //        contentView.againButton.addTarget(self, action: #selector(onClickAgain), for: .touchUpInside)
     }
@@ -120,13 +120,20 @@ class ProductViewController: UIViewController {
         }
     }
     
-    @objc func back() {
+    @objc private func back() {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func like() {
+    @objc private func like() {
         contentView.likeButton.isSelected = !contentView.likeButton.isSelected
         viewModel.product?.isFavorite = contentView.likeButton.isSelected
+    }
+    
+    @objc private func addToCart() {
+        guard let product = viewModel.product else { return }
+        cartArray.append(CartItem(product: product, count: 1))
+        totalItemsInCart += 1
+        self.tabBarController?.increaseBadge(indexOfTab: 3, num: totalItemsInCart.description)
     }
     
 }
@@ -170,6 +177,14 @@ extension ProductViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+    }
+    
+}
+
+extension ProductViewController: ItemsInCartDelegate {
+    
+    func increaseBadge() {
+        self.tabBarController?.increaseBadge(indexOfTab: 3, num: totalItemsInCart.description)
     }
     
 }

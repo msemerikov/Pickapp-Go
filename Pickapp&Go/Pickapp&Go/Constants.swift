@@ -9,8 +9,8 @@
 import UIKit
 
 var buttonCornerRadius: CGFloat = 4
-var textFieldCornerRadius: CGFloat = 3.5
-var textFieldHeight: CGFloat = 54
+var textFieldCornerRadius: CGFloat = 12
+var textFieldHeight: CGFloat = 56
 
 class Session {
     static let instance = Session()

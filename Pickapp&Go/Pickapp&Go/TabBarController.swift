@@ -34,8 +34,9 @@ class TabBarController: UITabBarController {
         let thirdVc = FavoriteViewControler()
         thirdVc.tabBarItem = UITabBarItem(title: "Избранное", image: UIImage(named: "FavoriteTabBarIcon"), tag: 2)
         
-        let fourthVc = LoginViewController()
+        let fourthVc = CartViewController()
         fourthVc.tabBarItem = UITabBarItem(title: "Корзина", image: UIImage(named: "BasketTabBarIcon"), tag: 3)
+        fourthVc.tabBarItem.badgeValue = String(totalItemsInCart)
         
         let fifthVc = AccountViewController()
         fifthVc.tabBarItem = UITabBarItem(title: "Аккаунт", image: UIImage(named: "AccountTabBarIcon"), tag: 4)

@@ -110,38 +110,13 @@ extension FavoriteViewControler: UICollectionViewDataSource {
             fatalError("Could not dequeue a cell")
         }
         cell.viewModel = viewModel.productViewModels[indexPath.item]
+        cell.delegate = self
         cell.layoutSubviews()
         return cell
     }
     
 }
-/*
-extension FavoriteViewControler: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == contentView.subCategoryCollectionView {
-            return CGSize(width: 97, height: 32)
-        } else {
-            return CGSize(width: 0, height: 0)
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 16
-    }
-    
-}
-*/
+
 extension FavoriteViewControler: ProductCollectionViewLayoutDelegate {
     
     func height(forItemAt indexPath: IndexPath) -> CGFloat {
@@ -158,6 +133,14 @@ extension FavoriteViewControler: ProductCollectionViewLayoutDelegate {
 
     func width(forItemAt indexPath: IndexPath) -> CGFloat {
         return (Session.width - 48) / 2
+    }
+    
+}
+
+extension FavoriteViewControler: ItemsInCartDelegate {
+    
+    func increaseBadge() {
+        self.tabBarController?.increaseBadge(indexOfTab: 3, num: totalItemsInCart.description)
     }
     
 }

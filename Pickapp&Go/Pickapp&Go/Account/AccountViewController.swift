@@ -30,7 +30,6 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         view.addTapGestureToHideKeyboard()
         setUpTargets()
         setUpBindings()
@@ -38,8 +37,7 @@ class AccountViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
-        navigationItem.title = "Аккаунт"
+        navigationController?.setNavigationBarHidden(true, animated: animated)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "LogoutIcon"), style: .plain, target: self, action: #selector(logoutTapped))
     }
     
@@ -62,10 +60,10 @@ class AccountViewController: UIViewController {
                 .assign(to: \.name, on: viewModel)
                 .store(in: &bindings)
             
-            contentView.lastnameTextField.textPublisher
-                .receive(on: DispatchQueue.main)
-                .assign(to: \.lastname, on: viewModel)
-                .store(in: &bindings)
+//            contentView.lastnameTextField.textPublisher
+//                .receive(on: DispatchQueue.main)
+//                .assign(to: \.lastname, on: viewModel)
+//                .store(in: &bindings)
             
             contentView.birthdateTextField.textPublisher
                 .receive(on: DispatchQueue.main)
@@ -94,10 +92,10 @@ class AccountViewController: UIViewController {
                 .assign(to: \.status, on: contentView.nameTextField)
                 .store(in: &bindings)
             
-            viewModel.statusLastnameTextField
-                .receive(on: RunLoop.main)
-                .assign(to: \.status, on: contentView.lastnameTextField)
-                .store(in: &bindings)
+//            viewModel.statusLastnameTextField
+//                .receive(on: RunLoop.main)
+//                .assign(to: \.status, on: contentView.lastnameTextField)
+//                .store(in: &bindings)
             
             viewModel.statusBirthdateTextField
                 .receive(on: RunLoop.main)

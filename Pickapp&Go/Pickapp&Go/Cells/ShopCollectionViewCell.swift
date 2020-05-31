@@ -20,7 +20,6 @@ final class ShopCollectionViewCell: UICollectionViewCell {
     
     lazy var shopLogoImage: UIImageView = {
         let imageView = UIImageView()
-//        imageView.image = UIImage(named: "ShopLogo")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -60,12 +59,6 @@ final class ShopCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var ratingImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "Rating")
-        return imageView
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
@@ -80,7 +73,7 @@ final class ShopCollectionViewCell: UICollectionViewCell {
     }
     
     private func addSubiews() {
-        let subviews = [shopLogoImage, locationView, ratingImage]
+        let subviews = [shopLogoImage, locationView]
         
         subviews.forEach {
             contentView.addSubview($0)
@@ -111,23 +104,13 @@ final class ShopCollectionViewCell: UICollectionViewCell {
             locationView.heightAnchor.constraint(equalToConstant: 24)
         ]
         
-        let ratingImageConstraints = [
-            ratingImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            ratingImage.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 8),
-            ratingImage.widthAnchor.constraint(equalToConstant: 141),
-            ratingImage.heightAnchor.constraint(equalToConstant: 24)
-        ]
-        
         [shopLogoImageConstraints,
          locationViewConstraints,
-         ratingImageConstraints
             ].forEach(NSLayoutConstraint.activate(_:))
     }
     
     private func updateLayerProperties() {
         layer.cornerRadius = 18
-//        layer.borderWidth = 1.0
-//        layer.borderColor = UIColor.clear.cgColor
         layer.backgroundColor = UIColor.white.cgColor
         layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
         layer.shadowOffset = CGSize(width: 0, height: 0)
@@ -136,7 +119,6 @@ final class ShopCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpViewModel() {
-//        title.text = viewModel.shop.title
         shopLogoImage.image = UIImage(named: viewModel.shop.image)
         locationLabel.text = viewModel.shop.address
     }

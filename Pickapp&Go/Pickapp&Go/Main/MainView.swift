@@ -212,7 +212,7 @@ final class MainView: UIView, UIScrollViewDelegate {
     }
     
     private func setUpConstraints() {
-        let allButtonWidth: CGFloat = 52
+//        let allButtonWidth: CGFloat = 52
         let labelHeight: CGFloat = 24
         let labelWidth: CGFloat = 201
         
@@ -268,8 +268,8 @@ final class MainView: UIView, UIScrollViewDelegate {
         let allBuyerChoiceButtonConstraints = [
             allBuyerChoiceButton.topAnchor.constraint(equalTo: buyerChoiceLabel.topAnchor),
             allBuyerChoiceButton.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Session.width),
-            allBuyerChoiceButton.widthAnchor.constraint(equalToConstant: allButtonWidth),
-            allBuyerChoiceButton.heightAnchor.constraint(equalToConstant: labelHeight)
+            allBuyerChoiceButton.widthAnchor.constraint(equalToConstant: 48),
+            allBuyerChoiceButton.heightAnchor.constraint(equalToConstant: 48)
         ]
         
         let buyerChoiceCollectionViewConstraints = [
@@ -289,8 +289,8 @@ final class MainView: UIView, UIScrollViewDelegate {
         let allNewProductButtonConstraints = [
             allNewProductButton.topAnchor.constraint(equalTo: newProductLabel.topAnchor),
             allNewProductButton.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Session.width),
-            allNewProductButton.widthAnchor.constraint(equalToConstant: allButtonWidth),
-            allNewProductButton.heightAnchor.constraint(equalToConstant: labelHeight)
+            allNewProductButton.widthAnchor.constraint(equalToConstant: 48),
+            allNewProductButton.heightAnchor.constraint(equalToConstant: 48)
         ]
         
         let newProductCollectionViewConstraints = [
@@ -310,8 +310,8 @@ final class MainView: UIView, UIScrollViewDelegate {
         let allSalesButtonConstraints = [
             allSalesButton.topAnchor.constraint(equalTo: salesLabel.topAnchor),
             allSalesButton.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Session.width),
-            allSalesButton.widthAnchor.constraint(equalToConstant: allButtonWidth),
-            allSalesButton.heightAnchor.constraint(equalToConstant: labelHeight)
+            allSalesButton.widthAnchor.constraint(equalToConstant: 48),
+            allSalesButton.heightAnchor.constraint(equalToConstant: 48)
         ]
         
         let salesCollectionViewConstraints = [

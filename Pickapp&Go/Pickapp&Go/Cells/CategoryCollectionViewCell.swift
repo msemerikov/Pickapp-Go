@@ -80,9 +80,9 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         ]
         
         let labelConstraints = [
-            label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -14),
-            label.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             label.heightAnchor.constraint(equalToConstant: 32)
         ]
         

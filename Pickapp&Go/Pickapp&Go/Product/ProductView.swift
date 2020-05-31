@@ -10,8 +10,8 @@ import UIKit
 
 final class ProductView: UIView, UIScrollViewDelegate {
     
-    var descriptionHeight: CGFloat?
-    var descriptionHeightConstraint: NSLayoutConstraint?
+//    var descriptionHeight: CGFloat?
+//    var descriptionHeightConstraint: NSLayoutConstraint?
     
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()

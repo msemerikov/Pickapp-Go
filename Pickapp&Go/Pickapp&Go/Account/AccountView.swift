@@ -16,14 +16,25 @@ final class AccountView: UIView, UIScrollViewDelegate {
         return scrollView
     }()
     
-    lazy var myDataLabel: UILabel = {
+    lazy var backButton: BackButton = {
+        let button = BackButton()
+        return button
+    }()
+    
+    lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.font = .boldSystemFontOfSize(size: 18)
         label.numberOfLines = 1
-        label.text = "Мои данные"
-        label.textAlignment = .left
+        label.text = "Профиль"
+        label.textAlignment = .center
         label.textColor = .labelColor
         return label
+    }()
+    
+    lazy var exitButton: BackButton = {
+        let button = BackButton()
+        button.setImage(UIImage(named: "Logout"), for: .normal)
+        return button
     }()
     
     lazy var nameTextField: AppTextField = {
@@ -32,11 +43,11 @@ final class AccountView: UIView, UIScrollViewDelegate {
         return textField
     }()
     
-    lazy var lastnameTextField: AppTextField = {
-        let textField = AppTextField(title: "Фамилия", error: "Проверьте фамилию")
-        textField.textField.keyboardType = .default
-        return textField
-    }()
+//    lazy var lastnameTextField: AppTextField = {
+//        let textField = AppTextField(title: "Фамилия", error: "Проверьте фамилию")
+//        textField.textField.keyboardType = .default
+//        return textField
+//    }()
     
     lazy var birthdateTextField: AppTextField = {
         let textField = AppTextField(title: "Дата рождения", error: "Проверьте дату рождения")
@@ -56,19 +67,19 @@ final class AccountView: UIView, UIScrollViewDelegate {
         return textField
     }()
     
-    lazy var eventsLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .medium)
-        label.numberOfLines = 1
-        label.text = "Реклама и акции"
-        label.textAlignment = .left
-        label.textColor = .labelColor
-        return label
-    }()
+//    lazy var eventsLabel: UILabel = {
+//        let label = UILabel()
+//        label.font = .systemFont(ofSize: 16, weight: .medium)
+//        label.numberOfLines = 1
+//        label.text = "Реклама и акции"
+//        label.textAlignment = .left
+//        label.textColor = .labelColor
+//        return label
+//    }()
     
     lazy var storyLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.font = .systemFontOfSize(size: 16)
         label.numberOfLines = 1
         label.text = "История заказов"
         label.textAlignment = .left
@@ -80,7 +91,7 @@ final class AccountView: UIView, UIScrollViewDelegate {
     
     lazy var supportLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.font = .systemFontOfSize(size: 16)
         label.numberOfLines = 1
         label.text = "Поддержка"
         label.textAlignment = .left
@@ -92,7 +103,7 @@ final class AccountView: UIView, UIScrollViewDelegate {
     
     lazy var notificationsLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.font = .boldSystemFontOfSize(size: 18)
         label.numberOfLines = 1
         label.text = "Уведомления"
         label.textAlignment = .left
@@ -102,7 +113,7 @@ final class AccountView: UIView, UIScrollViewDelegate {
     
     lazy var pushLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.font = .systemFontOfSize(size: 16)
         label.numberOfLines = 1
         label.text = "Push-уведомления"
         label.textAlignment = .left
@@ -119,7 +130,7 @@ final class AccountView: UIView, UIScrollViewDelegate {
     
     lazy var smsLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.font = .systemFontOfSize(size: 16)
         label.numberOfLines = 1
         label.text = "SMS рассылка"
         label.textAlignment = .left
@@ -136,7 +147,7 @@ final class AccountView: UIView, UIScrollViewDelegate {
     
     lazy var emailLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.font = .systemFontOfSize(size: 16)
         label.numberOfLines = 1
         label.text = "Email рассылка"
         label.textAlignment = .left
@@ -153,6 +164,7 @@ final class AccountView: UIView, UIScrollViewDelegate {
     
     init() {
         super.init(frame: .zero)
+        backgroundColor = .backgroundColor
         addScrollView()
         addSubviews()
         setUpConstraints()
@@ -168,13 +180,15 @@ final class AccountView: UIView, UIScrollViewDelegate {
     }
     
     private func addSubviews() {
-        [myDataLabel,
+        [backButton,
+         titleLabel,
+         exitButton,
          nameTextField,
-         lastnameTextField,
+//         lastnameTextField,
          birthdateTextField,
          phoneTextField,
          emailTextField,
-         eventsLabel,
+//         eventsLabel,
          storyLabel,
          storyDivider,
          supportLabel,
@@ -203,29 +217,43 @@ final class AccountView: UIView, UIScrollViewDelegate {
             scrollView.widthAnchor.constraint(equalToConstant: Session.width)
         ]
         
-        let myDataLabelConstraints = [
-            myDataLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            myDataLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 24),
-            myDataLabel.heightAnchor.constraint(equalToConstant: 24),
-            myDataLabel.widthAnchor.constraint(equalToConstant: Session.width - 32)
+        let backButtonConstraints = [
+            backButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 12),
+            backButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            backButton.widthAnchor.constraint(equalToConstant: 40),
+            backButton.heightAnchor.constraint(equalToConstant: 40)
+        ]
+        
+        let titleLabelConstraints = [
+            titleLabel.centerYAnchor.constraint(equalTo: backButton.centerYAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Session.width - 20),
+            titleLabel.heightAnchor.constraint(equalToConstant: 24)
+        ]
+        
+        let exitButtonConstraints = [
+            exitButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 12),
+            exitButton.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Session.width - 20),
+            exitButton.widthAnchor.constraint(equalToConstant: 40),
+            exitButton.heightAnchor.constraint(equalToConstant: 40)
         ]
         
         let nameTextFieldConstraints = [
-            nameTextField.topAnchor.constraint(equalTo: myDataLabel.bottomAnchor, constant: 13),
+            nameTextField.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 32),
             nameTextField.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             nameTextField.widthAnchor.constraint(equalToConstant: Session.width - 34),
             nameTextField.heightAnchor.constraint(equalToConstant: 82)
         ]
-        
+        /*
         let lastnameTextFieldConstraints = [
             lastnameTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor),
             lastnameTextField.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             lastnameTextField.widthAnchor.constraint(equalToConstant: Session.width - 34),
             lastnameTextField.heightAnchor.constraint(equalToConstant: 82)
         ]
-        
+        */
         let birthdateTextFieldConstraints = [
-            birthdateTextField.topAnchor.constraint(equalTo: lastnameTextField.bottomAnchor),
+            birthdateTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor),
             birthdateTextField.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             birthdateTextField.widthAnchor.constraint(equalToConstant: Session.width - 34),
             birthdateTextField.heightAnchor.constraint(equalToConstant: 82)
@@ -244,17 +272,17 @@ final class AccountView: UIView, UIScrollViewDelegate {
             emailTextField.widthAnchor.constraint(equalToConstant: Session.width - 34),
             emailTextField.heightAnchor.constraint(equalToConstant: 82)
         ]
-        
+        /*
         let eventsLabelConstraints = [
             eventsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             eventsLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 24),
             eventsLabel.heightAnchor.constraint(equalToConstant: 24),
             eventsLabel.widthAnchor.constraint(equalToConstant: Session.width - 32)
         ]
-        
+        */
         let storyLabelConstraints = [
             storyLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            storyLabel.topAnchor.constraint(equalTo: eventsLabel.bottomAnchor, constant: 24),
+            storyLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 24),
             storyLabel.heightAnchor.constraint(equalToConstant: 24),
             storyLabel.widthAnchor.constraint(equalToConstant: Session.width - 32)
         ]
@@ -351,13 +379,15 @@ final class AccountView: UIView, UIScrollViewDelegate {
         ]
         
         [scrollViewConstraints,
-         myDataLabelConstraints,
+         backButtonConstraints,
+         titleLabelConstraints,
+         exitButtonConstraints,
          nameTextFieldConstraints,
-         lastnameTextFieldConstraints,
+//         lastnameTextFieldConstraints,
          birthdateTextFieldConstraints,
          phoneTextFieldConstraints,
          emailTextFieldConstraints,
-         eventsLabelConstraints,
+//         eventsLabelConstraints,
          storyLabelConstraints,
          storyDividerConstraints,
          supportLabelConstraints,

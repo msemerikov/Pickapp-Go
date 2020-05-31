@@ -9,9 +9,14 @@
 import Combine
 import UIKit
 
+protocol ItemsInCartDelegate: AnyObject {
+    func increaseBadge()
+}
+
 final class ProductCollectionViewCell: UICollectionViewCell {
     static let identifier = "ProductCollectionViewCell"
     private var imageTopAnchorConstraint: NSLayoutConstraint?
+    weak var delegate: ItemsInCartDelegate?
     
     var viewModel: ProductCellViewModel! {
         didSet {
@@ -61,7 +66,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     */
     lazy var cartButton: CartButton = {
         let button = CartButton()
-//        button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(cartButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -131,16 +136,15 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         ]
         
         let imageConstraints = [
-//            image.topAnchor.constraint(equalTo: contentView.topAnchor, constant: imageTopAnchor),
             image.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             image.widthAnchor.constraint(equalToConstant: 80),
             image.heightAnchor.constraint(equalToConstant: 80)
         ]
         
         let labelConstraints = [
-            label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 4),
-            label.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             label.heightAnchor.constraint(equalToConstant: 32)
         ]
         
@@ -215,4 +219,17 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         viewModel.product.isFavorite = likeButton.isSelected
     }
     
+    @objc private func cartButtonTapped() {
+        cartArray.append(CartItem(product: viewModel.product, count: 1))
+        totalItemsInCart += 1
+        delegate?.increaseBadge()
+    }
+    
+}
+
+extension UITabBarController {
+    func increaseBadge(indexOfTab: Int, num: String) {
+        let tabItem = tabBar.items![indexOfTab]
+        tabItem.badgeValue = num
+    }
 }
