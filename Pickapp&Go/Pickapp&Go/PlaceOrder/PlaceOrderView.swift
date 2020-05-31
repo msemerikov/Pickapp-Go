@@ -45,6 +45,7 @@ final class PlaceOrderView: UIView, UIScrollViewDelegate {
         let label = UILabel()
         label.font = .lightSystemFontOfSize(size: 11)
         label.numberOfLines = 1
+        label.text = "Виктория - Долгопрудная, 74 ТРК «Облака»"
         label.textAlignment = .left
         label.textColor = .labelColor
         return label

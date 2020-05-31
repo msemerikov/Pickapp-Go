@@ -82,6 +82,9 @@ class MainViewController: UIViewController {
     
     private func setUpTargets() {
         contentView.allCategoryButton.addTarget(self, action: #selector(allCategoryButtonTapped), for: .touchUpInside)
+        contentView.allBuyerChoiceButton.addTarget(self, action: #selector(buyerChoiceButtonTapped), for: .touchUpInside)
+        contentView.allNewProductButton.addTarget(self, action: #selector(newProductButtonTapped), for: .touchUpInside)
+        contentView.allSalesButton.addTarget(self, action: #selector(salesButtonTapped), for: .touchUpInside)
     }
     
     private func setUpBindings() {
@@ -127,6 +130,21 @@ class MainViewController: UIViewController {
     
     @objc private func allCategoryButtonTapped() {
         let viewController = CategoryListViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc private func buyerChoiceButtonTapped() {
+        let viewController = ProductListViewController(title: "Выбор покупателей", products: buyerChoiceArray)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc private func newProductButtonTapped() {
+        let viewController = ProductListViewController(title: "Новинки недели", products: newProductArray)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc private func salesButtonTapped() {
+        let viewController = ProductListViewController(title: "Товары со скидками", products: salesProductArray)
         navigationController?.pushViewController(viewController, animated: true)
     }
     

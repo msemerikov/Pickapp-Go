@@ -266,7 +266,7 @@ final class MainView: UIView, UIScrollViewDelegate {
         ]
         
         let allBuyerChoiceButtonConstraints = [
-            allBuyerChoiceButton.topAnchor.constraint(equalTo: buyerChoiceLabel.topAnchor),
+            allBuyerChoiceButton.centerYAnchor.constraint(equalTo: buyerChoiceLabel.centerYAnchor),
             allBuyerChoiceButton.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Session.width),
             allBuyerChoiceButton.widthAnchor.constraint(equalToConstant: 48),
             allBuyerChoiceButton.heightAnchor.constraint(equalToConstant: 48)
@@ -287,7 +287,7 @@ final class MainView: UIView, UIScrollViewDelegate {
         ]
         
         let allNewProductButtonConstraints = [
-            allNewProductButton.topAnchor.constraint(equalTo: newProductLabel.topAnchor),
+            allNewProductButton.centerYAnchor.constraint(equalTo: newProductLabel.centerYAnchor),
             allNewProductButton.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Session.width),
             allNewProductButton.widthAnchor.constraint(equalToConstant: 48),
             allNewProductButton.heightAnchor.constraint(equalToConstant: 48)
@@ -308,7 +308,7 @@ final class MainView: UIView, UIScrollViewDelegate {
         ]
         
         let allSalesButtonConstraints = [
-            allSalesButton.topAnchor.constraint(equalTo: salesLabel.topAnchor),
+            allSalesButton.centerYAnchor.constraint(equalTo: salesLabel.centerYAnchor),
             allSalesButton.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Session.width),
             allSalesButton.widthAnchor.constraint(equalToConstant: 48),
             allSalesButton.heightAnchor.constraint(equalToConstant: 48)
