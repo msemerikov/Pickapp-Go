@@ -80,6 +80,7 @@ final class AccountView: UIView, UIScrollViewDelegate {
     lazy var storyLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFontOfSize(size: 16)
+        label.isUserInteractionEnabled = true
         label.numberOfLines = 1
         label.text = "История заказов"
         label.textAlignment = .left

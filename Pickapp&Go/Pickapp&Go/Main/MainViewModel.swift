@@ -12,7 +12,7 @@ import Foundation
 final class MainViewModel {
     
     @Published private(set) var shopViewModels: [ShopCellViewModel] = [
-        ShopCellViewModel(shop: Shop(title: "Виктория", image: "ShopLogo", address: "Долгопрудная, 74 ТРК “Облака”"))
+        ShopCellViewModel(shop: victoriaShop)
     ]
     @Published private(set) var categoryViewModels: [CategoryCellViewModel] = []
     @Published private(set) var buyerChoiceViewModels: [ProductCellViewModel] = []

@@ -55,7 +55,7 @@ final class PlaceOrderView: UIView, UIScrollViewDelegate {
         let label = UILabel()
         label.font = .systemFontOfSize(size: 16)
         label.numberOfLines = 1
-        label.text = "В случае если товар отсутсвует:"
+        label.text = "В случае если товар отсутствует:"
         label.textAlignment = .left
         label.textColor = .labelColor
         return label

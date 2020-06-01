@@ -30,7 +30,6 @@ class PlaceOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundColor
-//        setupCollectionsView()
         setUpTargets()
         setUpBindings()
         dismissKey()
@@ -52,6 +51,7 @@ class PlaceOrderViewController: UIViewController {
     
     private func setUpTargets() {
         contentView.backButton.addTarget(self, action: #selector(back), for: .touchUpInside)
+        contentView.payButton.addTarget(self, action: #selector(pay), for: .touchUpInside)
         contentView.applePaySwitch.addTarget(self, action: #selector(switchStateDidChange(_:)), for: .valueChanged)
         contentView.cardSwitch.addTarget(self, action: #selector(switchStateDidChange(_:)), for: .valueChanged)
         contentView.cashSwitch.addTarget(self, action: #selector(switchStateDidChange(_:)), for: .valueChanged)
@@ -94,6 +94,14 @@ class PlaceOrderViewController: UIViewController {
     
     @objc func back() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func pay() {
+        let viewController = OrderEndViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+        cartArray.removeAll()
+        totalItemsInCart = 0
+        self.tabBarController?.hideBadge(indexOfTab: 3)
     }
     
 }

@@ -30,9 +30,10 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addTapGestureToHideKeyboard()
+//        view.addTapGestureToHideKeyboard()
         setUpTargets()
         setUpBindings()
+        dismissKey()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,8 +50,10 @@ class AccountViewController: UIViewController {
     }
     
     private func setUpTargets() {
-//        contentView.loginButton.addTarget(self, action: #selector(onClickLogin), for: .touchUpInside)
+        contentView.exitButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
 //        contentView.againButton.addTarget(self, action: #selector(onClickAgain), for: .touchUpInside)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleAttachmentTap(_:)))
+        contentView.storyLabel.addGestureRecognizer(tap)
     }
     
     private func setUpBindings() {
@@ -117,12 +120,9 @@ class AccountViewController: UIViewController {
         bindViewModelToView()
     }
     
-    @objc private func onClickLogin() {
-        
-    }
-    
-    @objc private func onClickAgain() {
-        
+    @objc func handleAttachmentTap(_ sender: UITapGestureRecognizer) {
+        let viewController = OrderListViewController()
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     @objc private func logoutTapped() {

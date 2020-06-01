@@ -36,7 +36,7 @@ class TabBarController: UITabBarController {
         
         let fourthVc = CartViewController()
         fourthVc.tabBarItem = UITabBarItem(title: "Корзина", image: UIImage(named: "BasketTabBarIcon"), tag: 3)
-        fourthVc.tabBarItem.badgeValue = String(totalItemsInCart)
+        fourthVc.tabBarItem.badgeValue = totalItemsInCart.description
         
         let fifthVc = AccountViewController()
         fifthVc.tabBarItem = UITabBarItem(title: "Аккаунт", image: UIImage(named: "AccountTabBarIcon"), tag: 4)

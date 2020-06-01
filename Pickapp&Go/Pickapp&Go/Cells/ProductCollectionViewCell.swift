@@ -232,4 +232,9 @@ extension UITabBarController {
         let tabItem = tabBar.items![indexOfTab]
         tabItem.badgeValue = num
     }
+    
+    func hideBadge(indexOfTab: Int) {
+        let tabItem = tabBar.items![indexOfTab]
+        tabItem.badgeValue = nil
+    }
 }
