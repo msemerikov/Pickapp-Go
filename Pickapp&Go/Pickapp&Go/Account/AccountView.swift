@@ -93,6 +93,7 @@ final class AccountView: UIView, UIScrollViewDelegate {
     lazy var supportLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFontOfSize(size: 16)
+        label.isUserInteractionEnabled = true
         label.numberOfLines = 1
         label.text = "Поддержка"
         label.textAlignment = .left

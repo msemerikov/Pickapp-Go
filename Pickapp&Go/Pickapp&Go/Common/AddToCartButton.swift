@@ -37,7 +37,7 @@ class AddToCartButton: UIButton {
         super.init(frame: frame)
         backgroundColor = nil
         setTitle("В корзину", for: .normal)
-        setTitle("Отправить", for: .highlighted)
+//        setTitle("Отправить", for: .highlighted)
         titleLabel?.font = .boldSystemFontOfSize(size: 14)
         layer.cornerRadius = 12
         layer.masksToBounds = false

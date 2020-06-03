@@ -117,6 +117,17 @@ extension OrderListViewController: UITableViewDelegate {
         return headerView
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let order = indexPath.section
+        let viewController = OrderViewController(order: viewModel.ordersViewModels[order].order)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+        
+        func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    //        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+    //        cell.isSelected = false
+        }
+    
 }
 
 // MARK: - UITableViewDataSource
@@ -137,17 +148,6 @@ extension OrderListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 72
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let product = indexPath.section
-//        let viewController = ProductViewController(product: viewModel.productInCartViewModels[product].item.product)
-//        navigationController?.pushViewController(viewController, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//        guard let cell = tableView.cellForRow(at: indexPath) else { return }
-//        cell.isSelected = false
     }
 
 }

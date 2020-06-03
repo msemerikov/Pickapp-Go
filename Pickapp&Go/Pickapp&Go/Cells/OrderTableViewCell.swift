@@ -23,18 +23,6 @@ final class OrderTableViewCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    
-    lazy var innerShadow1: CALayer = {
-        let innerShadow = CALayer()
-        shopLogoImage.layer.addSublayer(innerShadow)
-        return innerShadow
-    }()
-    
-    lazy var innerShadow2: CALayer = {
-        let innerShadow = CALayer()
-        shopLogoImage.layer.addSublayer(innerShadow)
-        return innerShadow
-    }()
       
     lazy var orderLabel: UILabel = {
         let label = UILabel()

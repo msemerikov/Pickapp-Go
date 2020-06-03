@@ -10,7 +10,6 @@ import Combine
 import UIKit
 
 class AccountViewController: UIViewController {
-    var phone = ""
     private lazy var contentView = AccountView()
     private let viewModel: AccountViewModel
     private var bindings = Set<AnyCancellable>()
@@ -30,7 +29,6 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.addTapGestureToHideKeyboard()
         setUpTargets()
         setUpBindings()
         dismissKey()
@@ -51,9 +49,10 @@ class AccountViewController: UIViewController {
     
     private func setUpTargets() {
         contentView.exitButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
-//        contentView.againButton.addTarget(self, action: #selector(onClickAgain), for: .touchUpInside)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleAttachmentTap(_:)))
-        contentView.storyLabel.addGestureRecognizer(tap)
+        let tapStoryLabel = UITapGestureRecognizer(target: self, action: #selector(handleAttachmentTap(_:)))
+        let tapSupportLabel = UITapGestureRecognizer(target: self, action: #selector(handleAttachmentTap(_:)))
+        contentView.storyLabel.addGestureRecognizer(tapStoryLabel)
+        contentView.supportLabel.addGestureRecognizer(tapSupportLabel)
     }
     
     private func setUpBindings() {
@@ -121,8 +120,13 @@ class AccountViewController: UIViewController {
     }
     
     @objc func handleAttachmentTap(_ sender: UITapGestureRecognizer) {
-        let viewController = OrderListViewController()
-        navigationController?.pushViewController(viewController, animated: true)
+        if sender.view == contentView.storyLabel {
+            let viewController = OrderListViewController()
+            navigationController?.pushViewController(viewController, animated: true)
+        } else if sender.view == contentView.supportLabel {
+            let viewController = FeedbackViewController()
+            navigationController?.pushViewController(viewController, animated: true)
+        }
     }
     
     @objc private func logoutTapped() {

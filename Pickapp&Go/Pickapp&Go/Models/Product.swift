@@ -47,21 +47,4 @@ let buyerChoiceArray = [kiwi, blueberry, banana, cucumber, strawberry]
 let newProductArray = [apple, potato, peach]
 let salesProductArray = [cabbage, greenApple, cheese]
 let recommendedProductArray = [cabbage, greenApple, cheese, kiwi]
-var cartArray = [CartItem(product: kiwi, count: 2)]
-
-class CartItem {
-    
-    var product: Product
-    var count: Double
-    var amount: Double {
-        return product.price * count
-    }
-    
-    init(product: Product, count: Double) {
-        self.product = product
-        self.count = count
-    }
-
-}
-
-var totalItemsInCart = 2
+var cartArray = [cartItem1]

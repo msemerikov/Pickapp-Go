@@ -220,7 +220,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     @objc private func cartButtonTapped() {
-        cartArray.append(CartItem(product: viewModel.product, count: 1))
+        cartArray.append(CartItem(product: viewModel.product, count: 1, price: viewModel.product.price))
         totalItemsInCart += 1
         delegate?.increaseBadge()
     }

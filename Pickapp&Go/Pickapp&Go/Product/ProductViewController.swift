@@ -131,7 +131,7 @@ class ProductViewController: UIViewController {
     
     @objc private func addToCart() {
         guard let product = viewModel.product else { return }
-        cartArray.append(CartItem(product: product, count: 1))
+        cartArray.append(CartItem(product: product, count: 1, price: product.price))
         totalItemsInCart += 1
         self.tabBarController?.increaseBadge(indexOfTab: 3, num: totalItemsInCart.description)
     }

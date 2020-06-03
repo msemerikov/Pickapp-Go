@@ -54,3 +54,33 @@ extension UITextField {
     }
     
 }
+
+extension UITextView {
+    
+    var isInactive: Bool {
+        get {
+            return false
+        }
+        set {
+            layer.borderColor = newValue ? UIColor.textFieldBorderColor.cgColor : UIColor.inactiveTextFieldBorderColor.cgColor
+        }
+    }
+    
+    var isError: Bool {
+        get {
+            return false
+        }
+        set {
+            layer.borderColor = newValue ? UIColor.errorTextFieldBorderColor.cgColor : UIColor.textFieldBorderColor.cgColor
+        }
+    }
+    
+    var textPublisher: AnyPublisher<String, Never> {
+        NotificationCenter.default
+            .publisher(for: UITextView.textDidChangeNotification, object: self)
+            .compactMap { $0.object as? UITextView }
+            .map { $0.text ?? "" }
+            .eraseToAnyPublisher()
+    }
+    
+}
