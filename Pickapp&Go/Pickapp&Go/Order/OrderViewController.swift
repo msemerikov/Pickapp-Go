@@ -70,12 +70,9 @@ class OrderViewController: UIViewController {
     }
     
     private func loadData(_ order: Order) {
-    //        let descriptionHeight = product.description.height(withConstrainedWidth: Session.width - 32, font: .lightSystemFontOfSize(size: 11))
-    //        contentView.descriptionHeight = descriptionHeight
-    //        contentView.descriptionHeightConstraint?.isActive = true
         guard let order = viewModel.order else { return }
         contentView.totalValueLabel.text = "\(String(format: "%.2f", arguments: [order.price])) ₽"
-        contentView.shopLogoImage.image = UIImage(named: order.shop.image)
+        contentView.shopLogoImage.image = UIImage(named: order.shop.logo)
         contentView.numberLabel.text = "№ \(order.id)"
         contentView.dateLabel.text = order.date
         contentView.statusLabel.text = order.status
@@ -90,33 +87,7 @@ class OrderViewController: UIViewController {
         default:
             contentView.statusImage.image = nil
         }
-        
-        
-//            let price = String(format: "%.0f", arguments: [product.price])
-//            let unit = " руб/\(product.unit)"
-//            
-//            let attributes = [NSAttributedString.Key.font: UIFont.lightSystemFontOfSize(size: 14)]
-//            let firstString = NSMutableAttributedString(string: price)
-//            let secondString = NSMutableAttributedString(string: unit, attributes: attributes)
-//            firstString.append(secondString)
-//            
-//            contentView.likeButton.isSelected = product.isFavorite
-//            contentView.productImage.image = UIImage(named: product.image)
-//            contentView.titleLabel.text = product.title
-//            contentView.priceLabel.attributedText = firstString
-//            contentView.proteinValueLabel.text = "3.2"
-//            contentView.fatsValueLabel.text = "0.5"
-//            contentView.carbohydratesValueLabel.text = "16.2"
-//            contentView.caloriesValueLabel.text = "62"
-//            contentView.descriptionValueLabel.text = product.description
-//            contentView.brandRow.rightLabel.text = "Zespri"
-//            contentView.originRow.rightLabel.text = "Чили"
-//            contentView.typeRow.rightLabel.text = "Веганский/постный продукт"
-//            contentView.tempRow.rightLabel.text = "+0.5С"
-//            contentView.conditionRow.rightLabel.text = "В холодильнике"
-//            contentView.categoryRow.rightLabel.text = product.subcategory.title
-//            contentView.relatedCollectionView.reloadData()
-        }
+    }
     
     private func setUpTargets() {
         contentView.backButton.addTarget(self, action: #selector(back), for: .touchUpInside)

@@ -37,7 +37,6 @@ class AddToCartButton: UIButton {
         super.init(frame: frame)
         backgroundColor = nil
         setTitle("В корзину", for: .normal)
-//        setTitle("Отправить", for: .highlighted)
         titleLabel?.font = .boldSystemFontOfSize(size: 14)
         layer.cornerRadius = 12
         layer.masksToBounds = false
@@ -49,6 +48,7 @@ class AddToCartButton: UIButton {
         layer.insertSublayer(shadow, at: 0)
         layer.insertSublayer(gradient, above: shadow)
         layer.masksToBounds = false
+        update(isEnabled: self.isEnabled)
     }
     
     required init?(coder: NSCoder) {
@@ -59,6 +59,13 @@ class AddToCartButton: UIButton {
         super.layoutSublayers(of: layer)
         shadow.frame = bounds
         gradient.frame = bounds
+    }
+    
+    func update(isEnabled: Bool) {
+        self.isEnabled = isEnabled
+        self.alpha = isEnabled
+            ? 1
+            : 0.4
     }
     
 }

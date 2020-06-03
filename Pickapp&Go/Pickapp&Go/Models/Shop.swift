@@ -17,6 +17,7 @@ struct Shop: ListCellable {
     var title: String
     var image: String
     var address: String
+    var logo: String
 }
 
-var victoriaShop = Shop(title: "Виктория", image: "ShopLogo", address: "Долгопрудная, 74 ТРК “Облака”")
+var victoriaShop = Shop(title: "Виктория", image: "ShopLogo", address: "Долгопрудная, 74 ТРК “Облака”", logo: "ViktoriaLogo")

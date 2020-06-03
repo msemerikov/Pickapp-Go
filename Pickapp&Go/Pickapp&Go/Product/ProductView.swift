@@ -10,9 +10,6 @@ import UIKit
 
 final class ProductView: UIView, UIScrollViewDelegate {
     
-//    var descriptionHeight: CGFloat?
-//    var descriptionHeightConstraint: NSLayoutConstraint?
-    
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.delegate = self
@@ -38,6 +35,15 @@ final class ProductView: UIView, UIScrollViewDelegate {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFontOfSize(size: 20)
+        label.numberOfLines = 1
+        label.textAlignment = .left
+        label.textColor = .labelColor
+        return label
+    }()
+    
+    lazy var subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .lightSystemFontOfSize(size: 14)
         label.numberOfLines = 1
         label.textAlignment = .left
         label.textColor = .labelColor
@@ -248,6 +254,7 @@ final class ProductView: UIView, UIScrollViewDelegate {
          likeButton,
          productImage,
          titleLabel,
+         subtitleLabel,
          priceLabel,
          addToCartButton,
          nutritionalLabel,
@@ -294,28 +301,35 @@ final class ProductView: UIView, UIScrollViewDelegate {
         ]
         
         let productImageConstraints = [
-            productImage.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 6),
-            productImage.leadingAnchor.constraint(equalTo: backButton.trailingAnchor, constant: 4),
-            productImage.trailingAnchor.constraint(equalTo: likeButton.leadingAnchor, constant: -4),
+            productImage.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 20),
+            productImage.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            productImage.widthAnchor.constraint(equalToConstant: 220),
             productImage.heightAnchor.constraint(equalToConstant: 160)
         ]
         
         let titleLabelConstraints = [
-            titleLabel.topAnchor.constraint(equalTo: productImage.bottomAnchor, constant: 64),
+            titleLabel.topAnchor.constraint(equalTo: productImage.bottomAnchor, constant: 40),
             titleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
             titleLabel.widthAnchor.constraint(equalToConstant: (Session.width / 2) - 16 ),
-            titleLabel.heightAnchor.constraint(equalToConstant: labelHeight)
+            titleLabel.heightAnchor.constraint(equalToConstant: 24)
+        ]
+        
+        let subtitleLabelConstraints = [
+            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            subtitleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            subtitleLabel.widthAnchor.constraint(equalToConstant: (Session.width / 2) - 16),
+            subtitleLabel.heightAnchor.constraint(equalToConstant: 16)
         ]
         
         let priceLabelConstraints = [
             priceLabel.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Session.width - 16),
-            priceLabel.topAnchor.constraint(equalTo: productImage.bottomAnchor, constant: 64),
+            priceLabel.bottomAnchor.constraint(equalTo: subtitleLabel.bottomAnchor),
             priceLabel.widthAnchor.constraint(equalToConstant: (Session.width / 2) - 16),
             priceLabel.heightAnchor.constraint(equalToConstant: labelHeight)
         ]
         
         let addToCartButtonConstraints = [
-            addToCartButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 24),
+            addToCartButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 24),
             addToCartButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             addToCartButton.widthAnchor.constraint(equalToConstant: 201),
             addToCartButton.heightAnchor.constraint(equalToConstant: 40)
@@ -464,6 +478,7 @@ final class ProductView: UIView, UIScrollViewDelegate {
          likeButtonConstraints,
          productImageConstraints,
          titleLabelConstraints,
+         subtitleLabelConstraints,
          priceLabelConstraints,
          addToCartButtonConstraints,
          nutritionalLabelConstraints,

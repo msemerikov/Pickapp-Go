@@ -125,6 +125,7 @@ final class AccountView: UIView, UIScrollViewDelegate {
     
     lazy var pushSwitch: UISwitch = {
         let uiSwitch = UISwitch()
+        uiSwitch.onTintColor = .strongGreen
         return uiSwitch
     }()
     
@@ -142,6 +143,7 @@ final class AccountView: UIView, UIScrollViewDelegate {
     
     lazy var smsSwitch: UISwitch = {
         let uiSwitch = UISwitch()
+        uiSwitch.onTintColor = .strongGreen
         return uiSwitch
     }()
     
@@ -159,6 +161,7 @@ final class AccountView: UIView, UIScrollViewDelegate {
     
     lazy var emailSwitch: UISwitch = {
         let uiSwitch = UISwitch()
+        uiSwitch.onTintColor = .strongGreen
         return uiSwitch
     }()
     

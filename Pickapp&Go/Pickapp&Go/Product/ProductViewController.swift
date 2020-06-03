@@ -76,6 +76,7 @@ class ProductViewController: UIViewController {
         contentView.likeButton.isSelected = product.isFavorite
         contentView.productImage.image = UIImage(named: product.image)
         contentView.titleLabel.text = product.title
+        contentView.subtitleLabel.text = product.subtitle
         contentView.priceLabel.attributedText = firstString
         contentView.proteinValueLabel.text = "3.2"
         contentView.fatsValueLabel.text = "0.5"

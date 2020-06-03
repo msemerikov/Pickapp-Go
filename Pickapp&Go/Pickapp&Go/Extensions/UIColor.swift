@@ -26,4 +26,5 @@ extension UIColor {
     static let vividRed = UIColor(named: "VividRed")!
     static let labelGrayColor = UIColor(named: "LabelGrayColor")!
     static let lightRed = UIColor(named: "LightRed")!
+    static let strongGreen = UIColor(named: "StrongGreen")
 }

@@ -35,8 +35,6 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     lazy var image: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-//        imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
-//        imageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         return imageView
     }()
     
@@ -45,8 +43,16 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         label.font = .lightSystemFontOfSize(size: 12)
         label.textAlignment = .center
         label.textColor = .labelColor
-        label.numberOfLines = 0
-//        label.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        label.numberOfLines = 1
+        return label
+    }()
+    
+    lazy var subtitle: UILabel = {
+        let label = UILabel()
+        label.font = .lightSystemFontOfSize(size: 12)
+        label.textAlignment = .center
+        label.textColor = .labelColor
+        label.numberOfLines = 1
         return label
     }()
     
@@ -55,15 +61,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         view.backgroundColor = UIColor(red: 0.933, green: 0.933, blue: 0.933, alpha: 1)
         return view
     }()
-    /*
-    lazy var descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 12, weight: .regular)
-        label.textAlignment = .center
-        label.textColor = .labelColor
-        return label
-    }()
-    */
+
     lazy var cartButton: CartButton = {
         let button = CartButton()
         button.addTarget(self, action: #selector(cartButtonTapped), for: .touchUpInside)
@@ -108,7 +106,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     private func addSubiews() {
-        let subviews = [likeButton, image, label, /*descriptionLabel,*/ dividerView, cartButton, priceLabel]
+        let subviews = [likeButton, image, label, subtitle, dividerView, cartButton, priceLabel]
         
         subviews.forEach {
             contentView.addSubview($0)
@@ -117,7 +115,12 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpConstraints() {
-        let imageTopAnchor = (frame.height - 51 - 80 - 32 - 4) / 2
+        var imageTopAnchor = 0.f
+        if frame.height == 204 {
+            imageTopAnchor = 16
+        } else if frame.height == 316 {
+            imageTopAnchor = 68
+        }
         imageTopAnchorConstraint = image.topAnchor.constraint(equalTo: contentView.topAnchor, constant: imageTopAnchor)
         imageTopAnchorConstraint?.isActive = true
         
@@ -129,37 +132,35 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         ]
         
         let dividerViewConstraints = [
-            dividerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 9),
-            dividerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -9),
-            dividerView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -51),
+            dividerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            dividerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            dividerView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50),
             dividerView.heightAnchor.constraint(equalToConstant: 1)
         ]
         
         let imageConstraints = [
             image.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            image.widthAnchor.constraint(equalToConstant: 80),
-            image.heightAnchor.constraint(equalToConstant: 80)
+            image.widthAnchor.constraint(equalToConstant: 124),
+            image.heightAnchor.constraint(equalToConstant: 88)
         ]
         
         let labelConstraints = [
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 4),
+            label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 8),
             label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            label.heightAnchor.constraint(equalToConstant: 32)
+            label.heightAnchor.constraint(equalToConstant: 16)
         ]
         
-        /*
-        let descriptionLabelConstraints = [
-            descriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            descriptionLabel.topAnchor.constraint(equalTo: label.bottomAnchor),
-            descriptionLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            descriptionLabel.heightAnchor.constraint(equalToConstant: 24)
+        let subtitleConstraints = [
+            subtitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            subtitle.topAnchor.constraint(equalTo: label.bottomAnchor),
+            subtitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            subtitle.heightAnchor.constraint(equalToConstant: 16)
         ]
-        */
         
         let cartButtonConstraints = [
-            cartButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -9),
-            cartButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -9),
+            cartButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            cartButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             cartButton.widthAnchor.constraint(equalToConstant: 34),
             cartButton.heightAnchor.constraint(equalToConstant: 34)
         ]
@@ -175,6 +176,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
          dividerViewConstraints,
          imageConstraints,
          labelConstraints,
+         subtitleConstraints,
          cartButtonConstraints,
          priceLabelConstraints]
             .forEach(NSLayoutConstraint.activate(_:))
@@ -204,6 +206,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         firstString.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFontOfSize(size: 14), range: range)
         firstString.append(secondString)
         label.text = viewModel.product.title
+        subtitle.text = viewModel.product.subtitle
         image.image = UIImage(named: viewModel.product.image)
         priceLabel.attributedText = firstString
         likeButton.isSelected = viewModel.product.isFavorite

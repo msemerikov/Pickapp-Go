@@ -138,7 +138,7 @@ final class OrderTableViewCell: UITableViewCell {
     
     private func setUpViewModel() {
         let price = String(format: "%.2f", arguments: [viewModel.order.price])
-        shopLogoImage.image = UIImage(named: viewModel.order.shop.image)
+        shopLogoImage.image = UIImage(named: viewModel.order.shop.logo)
         orderLabel.text = "№\(viewModel.order.id) от \(viewModel.order.date)"
         statusLabel.text = viewModel.order.status
         priceLabel.text = "\(price) ₽"

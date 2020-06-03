@@ -73,6 +73,7 @@ final class PlaceOrderView: UIView, UIScrollViewDelegate {
     
     lazy var changeToAnalogSwitch: UISwitch = {
         let uiSwitch = UISwitch()
+        uiSwitch.onTintColor = .strongGreen
         return uiSwitch
     }()
     
@@ -90,6 +91,7 @@ final class PlaceOrderView: UIView, UIScrollViewDelegate {
     
     lazy var callToChangeSwitch: UISwitch = {
         let uiSwitch = UISwitch()
+        uiSwitch.onTintColor = .strongGreen
         return uiSwitch
     }()
     
@@ -107,6 +109,7 @@ final class PlaceOrderView: UIView, UIScrollViewDelegate {
     
     lazy var deleteItemSwitch: UISwitch = {
         let uiSwitch = UISwitch()
+        uiSwitch.onTintColor = .strongGreen
         return uiSwitch
     }()
     
@@ -149,6 +152,7 @@ final class PlaceOrderView: UIView, UIScrollViewDelegate {
     
     lazy var applePaySwitch: UISwitch = {
         let uiSwitch = UISwitch()
+        uiSwitch.onTintColor = .strongGreen
         return uiSwitch
     }()
     
@@ -166,6 +170,7 @@ final class PlaceOrderView: UIView, UIScrollViewDelegate {
     
     lazy var cardSwitch: UISwitch = {
         let uiSwitch = UISwitch()
+        uiSwitch.onTintColor = .strongGreen
         return uiSwitch
     }()
     
@@ -183,6 +188,7 @@ final class PlaceOrderView: UIView, UIScrollViewDelegate {
     
     lazy var cashSwitch: UISwitch = {
         let uiSwitch = UISwitch()
+        uiSwitch.onTintColor = .strongGreen
         return uiSwitch
     }()
     

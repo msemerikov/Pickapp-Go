@@ -120,15 +120,7 @@ extension FavoriteViewControler: UICollectionViewDataSource {
 extension FavoriteViewControler: ProductCollectionViewLayoutDelegate {
     
     func height(forItemAt indexPath: IndexPath) -> CGFloat {
-        if viewModel.productViewModels.count < 4 {
-            return 204
-        } else {
-            if indexPath.item == 0 || indexPath.item == viewModel.productViewModels.count - 2 {
-                return 316
-            } else {
-                return 204
-            }
-        }
+        return 204
     }
 
     func width(forItemAt indexPath: IndexPath) -> CGFloat {
