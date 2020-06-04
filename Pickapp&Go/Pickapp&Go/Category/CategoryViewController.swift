@@ -19,10 +19,10 @@ class CategoryViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    convenience init(viewModel: CategoryViewModel = CategoryViewModel(), category: Category) {
+    convenience init(viewModel: CategoryViewModel = CategoryViewModel(), category: String) {
         self.init(viewModel: viewModel)
         viewModel.category = category
-        contentView.categoryLabel.text = category.title
+        contentView.categoryLabel.text = category
     }
     
     required init?(coder: NSCoder) {

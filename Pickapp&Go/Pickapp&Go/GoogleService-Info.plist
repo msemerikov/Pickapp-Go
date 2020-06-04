@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>946713791399-0mh3je0nq39m2uch0hqnu5h3lh0fbqm6.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.946713791399-0mh3je0nq39m2uch0hqnu5h3lh0fbqm6</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAub2i7Ql4YFMttY3vEve7IlFiZBNnaYl8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>946713791399</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>MikhailSemerikov.Pickapp-Go</string>
+	<key>PROJECT_ID</key>
+	<string>pickappgo</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pickappgo.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:946713791399:ios:cedab7cdab074a41508482</string>
+	<key>DATABASE_URL</key>
+	<string>https://pickappgo.firebaseio.com</string>
+</dict>
+</plist>

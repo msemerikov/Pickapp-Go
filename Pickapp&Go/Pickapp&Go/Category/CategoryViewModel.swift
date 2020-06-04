@@ -11,7 +11,8 @@ import Foundation
 
 final class CategoryViewModel {
 
-    var category: Category?
+//    var category: Category?
+    var category: String = ""
     var products: [Product] = []
     var subcategories: [Subcategory] = []
     
@@ -23,13 +24,13 @@ final class CategoryViewModel {
         products.removeAll()
         productViewModels.removeAll()
         selectedSubcategory.removeAll()
-        products = productsArray.filter { $0.category.title == category?.title }
+        products = productsArray.filter { $0.category.title == category }
         
         products.forEach {
             productViewModels.append(ProductCellViewModel(product: $0))
         }
         
-        subcategories = subcategoriesArray.filter { $0.parent.title == category?.title }
+        subcategories = subcategoriesArray.filter { $0.parent.title == category }
         subcategories.forEach {
             subcategoryViewModels.append(SubcategoryCellViewModel(subcategory: $0))
         }

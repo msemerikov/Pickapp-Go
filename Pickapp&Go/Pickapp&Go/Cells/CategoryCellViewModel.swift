@@ -7,18 +7,33 @@
 //
 
 import Combine
-import Foundation
+//import Firebase
+import UIKit
 
 final class CategoryCellViewModel {
-    @Published var category: Category
+//    @Published var category: Category
+//    @Published var urlImage: URL?
+    @Published var title: String
+    @Published var image: UIImage
     
-    init(category: Category) {
-        self.category = category
-        setUpBindings()
+    init(title: String, image: UIImage) {
+//        self.category = category
+        self.title = title
+        self.image = image
+//        setUpBindings()
     }
     
     private func setUpBindings() {
-//        playerName = [player.firstName, player.lastName].joined(separator: " ")
-//        team = player.team.abbreviation
+        
     }
 }
+
+/*
+struct CategoryCellViewModel {
+
+    let category: Category
+//    let title: String
+//    let image: UIImage
+    
+}
+*/

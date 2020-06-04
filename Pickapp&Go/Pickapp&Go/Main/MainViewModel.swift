@@ -7,10 +7,14 @@
 //
 
 import Combine
-import Foundation
+import Firebase
+import UIKit
 
 final class MainViewModel {
     
+    let db = Firestore.firestore()
+    let storage = Storage.storage()
+
     @Published private(set) var shopViewModels: [ShopCellViewModel] = [
         ShopCellViewModel(shop: victoriaShop)
     ]
@@ -18,11 +22,9 @@ final class MainViewModel {
     @Published private(set) var buyerChoiceViewModels: [ProductCellViewModel] = []
     @Published private(set) var newProductViewModels: [ProductCellViewModel] = []
     @Published private(set) var salesViewModels: [ProductCellViewModel] = []
+
     
     func loadCategory() {
-        categoriesArray.forEach {
-            categoryViewModels.append(CategoryCellViewModel(category: $0))
-        }
         
         buyerChoiceArray.forEach {
             buyerChoiceViewModels.append(ProductCellViewModel(product: $0))
@@ -34,6 +36,30 @@ final class MainViewModel {
         
         salesProductArray.forEach {
             salesViewModels.append(ProductCellViewModel(product: $0))
+        }
+        
+        db.collection("categories").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    guard let title = document.data()["title"] as? String,
+                        let image = document.data()["image"] as? String else { return }
+                    
+                    let category = Category(title: title, image: image)
+                    let gsReference = self.storage.reference(forURL: image)
+                    
+                    gsReference.downloadURL { url, error in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            if let imageData: NSData = NSData(contentsOf: url!) {
+                                self.categoryViewModels.append(CategoryCellViewModel(title: category.title, image: UIImage(data: imageData as Data)!))
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     

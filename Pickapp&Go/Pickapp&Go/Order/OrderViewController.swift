@@ -103,9 +103,9 @@ class OrderViewController: UIViewController {
         }
         
         func bindViewModelToView() {
-            let viewModelsValueHandler: ([CartCellViewModel]) -> Void = { [weak self] _ in
-                self?.contentView.productTableView.reloadData()
-            }
+//            let viewModelsValueHandler: ([CartCellViewModel]) -> Void = { [weak self] _ in
+//                self?.contentView.productTableView.reloadData()
+//            }
             
 //            viewModel.$productInCartViewModels
 //                .receive(on: RunLoop.main)

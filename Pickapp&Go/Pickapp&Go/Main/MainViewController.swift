@@ -32,8 +32,7 @@ class MainViewController: UIViewController {
         view.backgroundColor = .backgroundColor
         setupCollectionsView()
         setUpTargets()
-//        setUpBindings()
-//        viewModel.startTimer()
+        setUpBindings()
         viewModel.loadCategory()
         dismissKey()
     }
@@ -96,6 +95,32 @@ class MainViewController: UIViewController {
         }
         
         func bindViewModelToView() {
+            let viewModelsValueHandler: ([CategoryCellViewModel]) -> Void = { [weak self] _ in
+                self?.contentView.categoryCollectionView.reloadData()
+            }
+            
+            viewModel.$categoryViewModels
+                .receive(on: RunLoop.main)
+                .sink(receiveValue: viewModelsValueHandler)
+                .store(in: &bindings)
+            
+//            let stateValueHandler: (ListViewModelState) -> Void = { [weak self] state in
+//                switch state {
+//                case .loading:
+//                    self?.contentView.startLoading()
+//                case .finishedLoading:
+//                    self?.contentView.finishLoading()
+//                case .error(let error):
+//                    self?.contentView.finishLoading()
+//                    self?.showError(error)
+//                }
+//            }
+            
+//            viewModel.$state
+//                .receive(on: RunLoop.main)
+//                .sink(receiveValue: stateValueHandler)
+//                .store(in: &bindings)
+
 //            viewModel.validatedPhone
 //                .receive(on: RunLoop.main)
 //                .assign(to: \.isValid, on: contentView.loginButton)
@@ -163,7 +188,8 @@ extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == contentView.categoryCollectionView {
             let category = indexPath.item
-            let viewController = CategoryViewController(category: viewModel.categoryViewModels[category].category)
+//            let viewController = CategoryViewController(category: viewModel.categoryViewModels[category].category)
+            let viewController = CategoryViewController(category: viewModel.categoryViewModels[category].title)
             navigationController?.pushViewController(viewController, animated: true)
         } else if collectionView == contentView.buyerChoiceCollectionView {
             let product = indexPath.item
@@ -214,6 +240,7 @@ extension MainViewController: UICollectionViewDataSource {
                 fatalError("Could not dequeue a cell")
             }
             cell.viewModel = viewModel.categoryViewModels[indexPath.item]
+//            cell.configure(with: viewModel.categoryViewModels[indexPath.item])
             return cell
         } else if collectionView == contentView.buyerChoiceCollectionView {
             let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath)

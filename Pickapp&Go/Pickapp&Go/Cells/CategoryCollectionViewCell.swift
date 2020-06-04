@@ -17,6 +17,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
             setUpViewModel()
         }
     }
+//    private var bindings = Set<AnyCancellable>()
     
     lazy var image: UIImageView = {
         let imageView = UIImageView()
@@ -99,9 +100,28 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         layer.insertSublayer(shadow, at: 0)
     }
     
+//    func configure(with viewModel: CategoryCellViewModel) {
+//        label.text = viewModel.title
+//        image.image = viewModel.image
+//    }
+    
+    
     private func setUpViewModel() {
-        label.text = viewModel.category.title
-        image.image = UIImage(named: viewModel.category.image)
+        label.text = viewModel.title
+        image.image = viewModel.image
+
+//        viewModel.$urlImage
+//            .receive(on: RunLoop.main)
+//            .sink { value in
+//                guard let url = value else { return }
+//                self.image.downloaded(from: url)
+//            }
+//        .store(in: &bindings)
     }
     
+//    override func prepareForReuse() {
+//        label.text = ""
+//        image.image = nil
+//    }
+     
 }

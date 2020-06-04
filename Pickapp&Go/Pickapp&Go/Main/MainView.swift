@@ -16,6 +16,15 @@ final class MainView: UIView, UIScrollViewDelegate {
         return scrollView
     }()
     
+    lazy var activityIndicationView: UIActivityIndicatorView = {
+        let activityIndicationView = UIActivityIndicatorView(style: .medium)
+        activityIndicationView.color = .white
+        activityIndicationView.backgroundColor = .darkGray
+        activityIndicationView.layer.cornerRadius = 5.0
+        activityIndicationView.hidesWhenStopped = true
+        return activityIndicationView
+    }()
+    
     lazy var shopImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "ShopImage")
@@ -47,6 +56,7 @@ final class MainView: UIView, UIScrollViewDelegate {
         searchBar.searchTextField.layer.shadowOffset = CGSize(width: 2, height: 2)
         searchBar.searchTextField.layer.shadowRadius = 4.0
         searchBar.searchTextField.layer.shadowOpacity = 1.0
+        searchBar.layer.masksToBounds = false
         return searchBar
     }()
     
@@ -194,7 +204,8 @@ final class MainView: UIView, UIScrollViewDelegate {
     }
     
     private func addSubviews() {
-        [shopImage,
+        [activityIndicationView,
+         shopImage,
          shopCollectionView,
          searchBar,
          categoryLabel,
@@ -216,9 +227,15 @@ final class MainView: UIView, UIScrollViewDelegate {
     }
     
     private func setUpConstraints() {
-//        let allButtonWidth: CGFloat = 52
         let labelHeight: CGFloat = 24
         let labelWidth: CGFloat = 201
+        
+        let activityIndicatorViewConstraints = [
+            activityIndicationView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            activityIndicationView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            activityIndicationView.heightAnchor.constraint(equalToConstant: 50),
+            activityIndicationView.widthAnchor.constraint(equalToConstant: 50)
+        ]
         
         let shopImageConstraints = [
             shopImage.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
@@ -325,7 +342,8 @@ final class MainView: UIView, UIScrollViewDelegate {
             salesCollectionView.heightAnchor.constraint(equalToConstant: 220)
         ]
         
-        [shopImageConstraints,
+        [activityIndicatorViewConstraints,
+         shopImageConstraints,
          shopCollectionViewConstraints,
          searchBarConstraints,
          categoryLabelConstraints,
@@ -343,5 +361,20 @@ final class MainView: UIView, UIScrollViewDelegate {
             .forEach(NSLayoutConstraint.activate(_:))
         
     }
+    /*
+    func startLoading() {
+//        tableView.isUserInteractionEnabled = false
+//        searchTextField.isUserInteractionEnabled = false
+        
+        activityIndicationView.isHidden = false
+        activityIndicationView.startAnimating()
+    }
     
+    func finishLoading() {
+//        tableView.isUserInteractionEnabled = true
+//        searchTextField.isUserInteractionEnabled = true
+        
+        activityIndicationView.stopAnimating()
+    }
+    */
 }

@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4624C87924878F3500349F66 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4624C87824878F3500349F66 /* GoogleService-Info.plist */; };
+		4624C87B2487C51800349F66 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624C87A2487C51800349F66 /* UIImageView.swift */; };
+		4624C87E2488AB2700349F66 /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624C87D2488AB2700349F66 /* CategoryService.swift */; };
 		469DD69324618463006DBD30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD69224618463006DBD30 /* AppDelegate.swift */; };
 		469DD69C24618465006DBD30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 469DD69B24618465006DBD30 /* Assets.xcassets */; };
 		469DD69F24618465006DBD30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 469DD69D24618465006DBD30 /* LaunchScreen.storyboard */; };
@@ -109,9 +112,14 @@
 		46FE2E8D247F799A004812EF /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE2E8C247F799A004812EF /* FavoriteView.swift */; };
 		46FE2E8F247F79A7004812EF /* FavoriteViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE2E8E247F79A7004812EF /* FavoriteViewControler.swift */; };
 		46FE2E91247F79B1004812EF /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FE2E90247F79B1004812EF /* FavoriteViewModel.swift */; };
+		C422899DF4F3AF67750D2BDF /* Pods_Pickapp_Go.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72890199FDEF7F7CF74AF2C2 /* Pods_Pickapp_Go.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3224B6A2BC329B63956292D5 /* Pods-Pickapp&Go.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pickapp&Go.debug.xcconfig"; path = "Target Support Files/Pods-Pickapp&Go/Pods-Pickapp&Go.debug.xcconfig"; sourceTree = "<group>"; };
+		4624C87824878F3500349F66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4624C87A2487C51800349F66 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		4624C87D2488AB2700349F66 /* CategoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
 		469DD68F24618463006DBD30 /* Pickapp&Go.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pickapp&Go.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		469DD69224618463006DBD30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		469DD69B24618465006DBD30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -216,6 +224,8 @@
 		46FE2E8C247F799A004812EF /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		46FE2E8E247F79A7004812EF /* FavoriteViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewControler.swift; sourceTree = "<group>"; };
 		46FE2E90247F79B1004812EF /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
+		72890199FDEF7F7CF74AF2C2 /* Pods_Pickapp_Go.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pickapp_Go.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8E6C555A9B690B776C48DD0 /* Pods-Pickapp&Go.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pickapp&Go.release.xcconfig"; path = "Target Support Files/Pods-Pickapp&Go/Pods-Pickapp&Go.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,17 +233,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C422899DF4F3AF67750D2BDF /* Pods_Pickapp_Go.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4624C87C2488AB0900349F66 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				4624C87D2488AB2700349F66 /* CategoryService.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		469DD68624618463006DBD30 = {
 			isa = PBXGroup;
 			children = (
 				469DD69124618463006DBD30 /* Pickapp&Go */,
 				469DD69024618463006DBD30 /* Products */,
+				A15924328DC16D5BFD1E752E /* Pods */,
+				75B45F35D73B73D83BD55823 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -248,6 +269,7 @@
 		469DD69124618463006DBD30 /* Pickapp&Go */ = {
 			isa = PBXGroup;
 			children = (
+				4624C87C2488AB0900349F66 /* API */,
 				469DD6E524652B2F006DBD30 /* Models */,
 				46DF5AAC247E91A0003D8B26 /* Common */,
 				469DD6A92461892E006DBD30 /* Extensions */,
@@ -274,6 +296,7 @@
 				46DF5A892479813D003D8B26 /* Resources */,
 				469DD69D24618465006DBD30 /* LaunchScreen.storyboard */,
 				469DD6A024618465006DBD30 /* Info.plist */,
+				4624C87824878F3500349F66 /* GoogleService-Info.plist */,
 				469DD6B424619D90006DBD30 /* Constants.swift */,
 			);
 			path = "Pickapp&Go";
@@ -301,6 +324,7 @@
 				46DF5A8A247981BC003D8B26 /* UIFont.swift */,
 				46DF5AAF247EA9C6003D8B26 /* UIScrollView.swift */,
 				46DF5AB1247EA9F3003D8B26 /* UIViewController.swift */,
+				4624C87A2487C51800349F66 /* UIImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -539,6 +563,23 @@
 			path = Favorite;
 			sourceTree = "<group>";
 		};
+		75B45F35D73B73D83BD55823 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				72890199FDEF7F7CF74AF2C2 /* Pods_Pickapp_Go.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A15924328DC16D5BFD1E752E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3224B6A2BC329B63956292D5 /* Pods-Pickapp&Go.debug.xcconfig */,
+				A8E6C555A9B690B776C48DD0 /* Pods-Pickapp&Go.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -546,9 +587,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 469DD6A324618465006DBD30 /* Build configuration list for PBXNativeTarget "Pickapp&Go" */;
 			buildPhases = (
+				F43E20277973A919FF8B7C7B /* [CP] Check Pods Manifest.lock */,
 				469DD68B24618463006DBD30 /* Sources */,
 				469DD68C24618463006DBD30 /* Frameworks */,
 				469DD68D24618463006DBD30 /* Resources */,
+				01E1C71F1B6D63ADD5B46712 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -599,6 +642,7 @@
 			files = (
 				46DF5A8524798130003D8B26 /* Comfortaa-SemiBold.ttf in Resources */,
 				46DF5A8424798130003D8B26 /* Comfortaa-Regular.ttf in Resources */,
+				4624C87924878F3500349F66 /* GoogleService-Info.plist in Resources */,
 				46DF5A8824798130003D8B26 /* Comfortaa-Medium.ttf in Resources */,
 				46DF5A8624798130003D8B26 /* Comfortaa-Bold.ttf in Resources */,
 				469DD69F24618465006DBD30 /* LaunchScreen.storyboard in Resources */,
@@ -609,6 +653,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01E1C71F1B6D63ADD5B46712 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pickapp&Go/Pods-Pickapp&Go-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pickapp&Go/Pods-Pickapp&Go-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pickapp&Go/Pods-Pickapp&Go-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F43E20277973A919FF8B7C7B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Pickapp&Go-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		469DD68B24618463006DBD30 /* Sources */ = {
@@ -646,6 +732,7 @@
 				46C488202465745D00FF3C3C /* CategoryListViewController.swift in Sources */,
 				46DF5A94247CDDF3003D8B26 /* CategoryViewModel.swift in Sources */,
 				469DD6B92461A76D006DBD30 /* UITextField.swift in Sources */,
+				4624C87B2487C51800349F66 /* UIImageView.swift in Sources */,
 				46DF5A90247CDDD7003D8B26 /* CategoryView.swift in Sources */,
 				469DD6DF2462E953006DBD30 /* CategoryCellViewModel.swift in Sources */,
 				46C488292465897A00FF3C3C /* AccountViewModel.swift in Sources */,
@@ -677,6 +764,7 @@
 				46A50EB02485281C0012727F /* OrderView.swift in Sources */,
 				469DD6C824628782006DBD30 /* ConfirmationViewController.swift in Sources */,
 				46C488252465895C00FF3C3C /* AccountView.swift in Sources */,
+				4624C87E2488AB2700349F66 /* CategoryService.swift in Sources */,
 				469DD6C624628574006DBD30 /* ConfirmationView.swift in Sources */,
 				46A50E8A24837FAA0012727F /* ProductListViewController.swift in Sources */,
 				46A50EA02483B16F0012727F /* Order.swift in Sources */,
@@ -842,6 +930,7 @@
 		};
 		469DD6A424618465006DBD30 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3224B6A2BC329B63956292D5 /* Pods-Pickapp&Go.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -860,6 +949,7 @@
 		};
 		469DD6A524618465006DBD30 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8E6C555A9B690B776C48DD0 /* Pods-Pickapp&Go.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
