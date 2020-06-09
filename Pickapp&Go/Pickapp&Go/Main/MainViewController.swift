@@ -42,6 +42,10 @@ class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         reloadCollectionView()
+        
+        if totalItemsInCart == 0 {
+            self.tabBarController?.hideBadge(indexOfTab: 3)
+        }
     }
     
     override func viewDidLayoutSubviews() {

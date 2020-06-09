@@ -28,6 +28,7 @@ final class MainView: UIView, UIScrollViewDelegate {
         layout.scrollDirection = .horizontal
         collectionView.setCollectionViewLayout(layout, animated: true)
         collectionView.backgroundColor = .clear
+        collectionView.layer.masksToBounds = false
         return collectionView
     }()
     
@@ -36,10 +37,10 @@ final class MainView: UIView, UIScrollViewDelegate {
         searchBar.backgroundColor = .backgroundColor
         searchBar.backgroundImage = UIImage()
         searchBar.barTintColor = .backgroundColor
-        searchBar.searchTextField.backgroundColor = .white
+        searchBar.layer.masksToBounds = false
         searchBar.placeholder = "Поиск продуктов"
+        searchBar.searchTextField.backgroundColor = .white
         searchBar.searchTextField.font = .mediumSystemFontOfSize(size: 14)
-        searchBar.setImage(UIImage(named: "SearchIcon"), for: UISearchBar.Icon.search, state: [])
         searchBar.searchTextField.layer.masksToBounds = false
         searchBar.searchTextField.layer.cornerRadius = 12
         searchBar.searchTextField.layer.backgroundColor = UIColor.white.cgColor
@@ -47,6 +48,7 @@ final class MainView: UIView, UIScrollViewDelegate {
         searchBar.searchTextField.layer.shadowOffset = CGSize(width: 2, height: 2)
         searchBar.searchTextField.layer.shadowRadius = 4.0
         searchBar.searchTextField.layer.shadowOpacity = 1.0
+        searchBar.setImage(UIImage(named: "SearchIcon"), for: UISearchBar.Icon.search, state: [])
         return searchBar
     }()
     

@@ -12,6 +12,7 @@ final class CategoryView: UIView {
     
     lazy var backButton: BackButton = {
         let button = BackButton()
+        button.layer.masksToBounds = false
         return button
     }()
     
@@ -20,17 +21,31 @@ final class CategoryView: UIView {
         searchBar.backgroundImage = UIImage()
         searchBar.backgroundColor = .backgroundColor
         searchBar.barTintColor = .backgroundColor
-        searchBar.searchTextField.backgroundColor = .white
+        searchBar.layer.masksToBounds = false
         searchBar.placeholder = "Поиск продуктов"
+        searchBar.searchTextField.backgroundColor = .white
         searchBar.searchTextField.font = .mediumSystemFontOfSize(size: 14)
-        searchBar.setImage(UIImage(named: "SearchIcon"), for: UISearchBar.Icon.search, state: [])
+//        searchBar.searchTextField.layer.masksToBounds = false
         searchBar.searchTextField.layer.cornerRadius = 12
         searchBar.searchTextField.layer.backgroundColor = UIColor.white.cgColor
         searchBar.searchTextField.layer.shadowColor = UIColor(red: 0.216, green: 0.329, blue: 0.667, alpha: 0.12).cgColor
         searchBar.searchTextField.layer.shadowOffset = CGSize(width: 2, height: 2)
         searchBar.searchTextField.layer.shadowRadius = 4.0
         searchBar.searchTextField.layer.shadowOpacity = 1.0
+        searchBar.setImage(UIImage(named: "SearchIcon"), for: UISearchBar.Icon.search, state: [])
         return searchBar
+    }()
+    
+    lazy var searchBarShadow: CALayer = {
+        let layer = CALayer()
+        layer.backgroundColor = UIColor.white.cgColor
+        layer.cornerRadius = 12
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
+        layer.shadowOpacity = 1
+        layer.shadowRadius = 4
+        layer.shadowOffset = CGSize(width: -2, height: -2)
+        return layer
     }()
     
     lazy var categoryLabel: UILabel = {
@@ -54,6 +69,7 @@ final class CategoryView: UIView {
         layout.scrollDirection = .horizontal
         collectionView.setCollectionViewLayout(layout, animated: true)
         collectionView.backgroundColor = .clear
+        collectionView.layer.masksToBounds = false
         return collectionView
     }()
     
@@ -71,6 +87,11 @@ final class CategoryView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSublayers(of layer: CALayer) {
+        super.layoutSublayers(of: layer)
+        searchBarShadow.frame = searchBar.searchTextField.bounds
     }
     
     private func addSubviews() {
