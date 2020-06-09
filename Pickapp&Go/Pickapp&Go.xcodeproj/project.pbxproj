@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4624C87924878F3500349F66 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4624C87824878F3500349F66 /* GoogleService-Info.plist */; };
 		4624C87B2487C51800349F66 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624C87A2487C51800349F66 /* UIImageView.swift */; };
-		4624C87E2488AB2700349F66 /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4624C87D2488AB2700349F66 /* CategoryService.swift */; };
 		469DD69324618463006DBD30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD69224618463006DBD30 /* AppDelegate.swift */; };
 		469DD69C24618465006DBD30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 469DD69B24618465006DBD30 /* Assets.xcassets */; };
 		469DD69F24618465006DBD30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 469DD69D24618465006DBD30 /* LaunchScreen.storyboard */; };
@@ -119,7 +118,6 @@
 		3224B6A2BC329B63956292D5 /* Pods-Pickapp&Go.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pickapp&Go.debug.xcconfig"; path = "Target Support Files/Pods-Pickapp&Go/Pods-Pickapp&Go.debug.xcconfig"; sourceTree = "<group>"; };
 		4624C87824878F3500349F66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4624C87A2487C51800349F66 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
-		4624C87D2488AB2700349F66 /* CategoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
 		469DD68F24618463006DBD30 /* Pickapp&Go.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pickapp&Go.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		469DD69224618463006DBD30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		469DD69B24618465006DBD30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -240,14 +238,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4624C87C2488AB0900349F66 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				4624C87D2488AB2700349F66 /* CategoryService.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
 		469DD68624618463006DBD30 = {
 			isa = PBXGroup;
 			children = (
@@ -269,7 +259,6 @@
 		469DD69124618463006DBD30 /* Pickapp&Go */ = {
 			isa = PBXGroup;
 			children = (
-				4624C87C2488AB0900349F66 /* API */,
 				469DD6E524652B2F006DBD30 /* Models */,
 				46DF5AAC247E91A0003D8B26 /* Common */,
 				469DD6A92461892E006DBD30 /* Extensions */,
@@ -764,7 +753,6 @@
 				46A50EB02485281C0012727F /* OrderView.swift in Sources */,
 				469DD6C824628782006DBD30 /* ConfirmationViewController.swift in Sources */,
 				46C488252465895C00FF3C3C /* AccountView.swift in Sources */,
-				4624C87E2488AB2700349F66 /* CategoryService.swift in Sources */,
 				469DD6C624628574006DBD30 /* ConfirmationView.swift in Sources */,
 				46A50E8A24837FAA0012727F /* ProductListViewController.swift in Sources */,
 				46A50EA02483B16F0012727F /* Order.swift in Sources */,

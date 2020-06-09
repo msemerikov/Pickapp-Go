@@ -46,7 +46,7 @@ final class MainViewModel {
                     guard let title = document.data()["title"] as? String,
                         let image = document.data()["image"] as? String else { return }
                     
-                    let category = Category(title: title, image: image)
+                    let category = Category(id: document.documentID, title: title, image: image)
                     let gsReference = self.storage.reference(forURL: image)
                     
                     gsReference.downloadURL { url, error in
@@ -54,7 +54,7 @@ final class MainViewModel {
                             print(error)
                         } else {
                             if let imageData: NSData = NSData(contentsOf: url!) {
-                                self.categoryViewModels.append(CategoryCellViewModel(title: category.title, image: UIImage(data: imageData as Data)!))
+                                self.categoryViewModels.append(CategoryCellViewModel(category: category, image: UIImage(data: imageData as Data)!))
                             }
                         }
                     }

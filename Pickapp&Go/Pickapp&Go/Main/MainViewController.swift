@@ -116,37 +116,6 @@ class MainViewController: UIViewController {
 //                }
 //            }
             
-//            viewModel.$state
-//                .receive(on: RunLoop.main)
-//                .sink(receiveValue: stateValueHandler)
-//                .store(in: &bindings)
-
-//            viewModel.validatedPhone
-//                .receive(on: RunLoop.main)
-//                .assign(to: \.isValid, on: contentView.loginButton)
-//                .store(in: &bindings)
-//
-//            viewModel.statusTextField
-//                .receive(on: RunLoop.main)
-//                .assign(to: \.status, on: contentView.codeTextField)
-//                .store(in: &bindings)
-//
-//            viewModel.isTimeLeft
-//                .receive(on: RunLoop.main)
-//                .assign(to: \.isValid, on: contentView.againButton)
-//                .store(in: &bindings)
-//
-//            viewModel.counter
-//                .receive(on: RunLoop.main)
-//                .sink(receiveValue: {
-//                    switch $0 {
-//                    case 0:
-//                        self.contentView.label.text = "На номер \(self.phone) отправлен код. Введите его в поле ниже. \nНе получили код? Нажмите кнопку “Отправить еще раз”"
-//                    default:
-//                        self.contentView.label.text = "На номер \(self.phone) отправлен код. Введите его в поле ниже. \nНе получили код? Нажмите кнопку “Отправить еще раз” через \($0) секунды"
-//                    }
-//                } )
-//                .store(in: &bindings)
         }
         
         bindViewToViewModel()
@@ -189,7 +158,7 @@ extension MainViewController: UICollectionViewDelegate {
         if collectionView == contentView.categoryCollectionView {
             let category = indexPath.item
 //            let viewController = CategoryViewController(category: viewModel.categoryViewModels[category].category)
-            let viewController = CategoryViewController(category: viewModel.categoryViewModels[category].title)
+            let viewController = CategoryViewController(category: viewModel.categoryViewModels[category].category)
             navigationController?.pushViewController(viewController, animated: true)
         } else if collectionView == contentView.buyerChoiceCollectionView {
             let product = indexPath.item

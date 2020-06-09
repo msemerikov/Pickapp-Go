@@ -54,6 +54,7 @@ final class CategoryView: UIView {
         layout.scrollDirection = .horizontal
         collectionView.setCollectionViewLayout(layout, animated: true)
         collectionView.backgroundColor = .clear
+        collectionView.layer.masksToBounds = false
         return collectionView
     }()
     

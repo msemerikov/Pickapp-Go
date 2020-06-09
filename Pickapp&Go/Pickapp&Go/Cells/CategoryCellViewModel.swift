@@ -11,14 +11,14 @@ import Combine
 import UIKit
 
 final class CategoryCellViewModel {
-//    @Published var category: Category
+    @Published var category: Category
 //    @Published var urlImage: URL?
     @Published var title: String
     @Published var image: UIImage
     
-    init(title: String, image: UIImage) {
-//        self.category = category
-        self.title = title
+    init(category: Category, image: UIImage) {
+        self.category = category
+        self.title = category.title
         self.image = image
 //        setUpBindings()
     }

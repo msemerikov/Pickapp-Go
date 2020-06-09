@@ -19,10 +19,10 @@ class CategoryViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    convenience init(viewModel: CategoryViewModel = CategoryViewModel(), category: String) {
+    convenience init(viewModel: CategoryViewModel = CategoryViewModel(), category: Category) {
         self.init(viewModel: viewModel)
         viewModel.category = category
-        contentView.categoryLabel.text = category
+        contentView.categoryLabel.text = category.title
     }
     
     required init?(coder: NSCoder) {
@@ -39,7 +39,7 @@ class CategoryViewController: UIViewController {
         setupCollectionsView()
         setUpTargets()
         viewModel.loadProduct()
-//        setUpBindings()
+        setUpBindings()
         dismissKey()
     }
     
@@ -89,18 +89,18 @@ class CategoryViewController: UIViewController {
         }
         
         func bindViewModelToView() {
-            let viewModelsValueHandler: ([ProductCellViewModel]) -> Void = { [weak self] _ in
-                self?.contentView.productCollectionView.reloadData()
+            let viewModelsValueHandlerSubcategory: ([SubcategoryCellViewModel]) -> Void = { [weak self] _ in
+                self?.contentView.subCategoryCollectionView.reloadData()
             }
             
-            viewModel.$productViewModels
+            viewModel.$subcategoryViewModels
                 .receive(on: RunLoop.main)
-                .sink(receiveValue: viewModelsValueHandler)
+                .sink(receiveValue: viewModelsValueHandlerSubcategory)
                 .store(in: &bindings)
-            
-            bindViewToViewModel()
-            bindViewModelToView()
         }
+        
+        bindViewToViewModel()
+        bindViewModelToView()
     }
     
     @objc func back() {
