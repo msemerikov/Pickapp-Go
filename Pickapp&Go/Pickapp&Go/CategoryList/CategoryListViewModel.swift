@@ -12,11 +12,11 @@ import Foundation
 final class CategoryListViewModel {
     
     @Published private(set) var categoriesViewModels: [ListCellViewModel] = [
-        ListCellViewModel(item: Category(title: "Мясо, птица, колбаса", image: "Category1")),
-        ListCellViewModel(item: Category(title: "Фрукты и овощи", image: "Category2")),
-        ListCellViewModel(item: Category(title: "Чай, кофе, какао", image: "Category3")),
-        ListCellViewModel(item: Category(title: "Кондитерские изделия", image: "Category4")),
-        ListCellViewModel(item: Category(title: "Бакалея", image: "Category5"))
+//        ListCellViewModel(item: Category(title: "Мясо, птица, колбаса", image: "Category1")),
+//        ListCellViewModel(item: Category(title: "Фрукты и овощи", image: "Category2")),
+//        ListCellViewModel(item: Category(title: "Чай, кофе, какао", image: "Category3")),
+//        ListCellViewModel(item: Category(title: "Кондитерские изделия", image: "Category4")),
+//        ListCellViewModel(item: Category(title: "Бакалея", image: "Category5"))
     ]
 
 }

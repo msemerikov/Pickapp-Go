@@ -168,6 +168,15 @@ final class MainView: UIView, UIScrollViewDelegate {
         return collectionView
     }()
     
+    lazy var activityIndicationView: UIActivityIndicatorView = {
+        let activityIndicationView = UIActivityIndicatorView(style: .medium)
+        activityIndicationView.color = .white
+        activityIndicationView.backgroundColor = .darkGray
+        activityIndicationView.layer.cornerRadius = 5.0
+        activityIndicationView.hidesWhenStopped = true
+        return activityIndicationView
+    }()
+    
     init() {
         super.init(frame: .zero)
         addScrollView()
@@ -210,7 +219,8 @@ final class MainView: UIView, UIScrollViewDelegate {
          newProductCollectionView,
          salesLabel,
          allSalesButton,
-         salesCollectionView]
+         salesCollectionView,
+         activityIndicationView]
             .forEach {
                 scrollView.addSubview($0)
                 $0.translatesAutoresizingMaskIntoConstraints = false
@@ -327,6 +337,13 @@ final class MainView: UIView, UIScrollViewDelegate {
             salesCollectionView.heightAnchor.constraint(equalToConstant: 220)
         ]
         
+        let activityIndicatorViewConstraints = [
+            activityIndicationView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            activityIndicationView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            activityIndicationView.heightAnchor.constraint(equalToConstant: 50),
+            activityIndicationView.widthAnchor.constraint(equalToConstant: 50.0)
+        ]
+        
         [shopImageConstraints,
          shopCollectionViewConstraints,
          searchBarConstraints,
@@ -341,9 +358,25 @@ final class MainView: UIView, UIScrollViewDelegate {
          newProductCollectionViewConstraints,
          salesLabelConstraints,
          allSalesButtonConstraints,
-         salesCollectionViewConstraints]
+         salesCollectionViewConstraints,
+         activityIndicatorViewConstraints]
             .forEach(NSLayoutConstraint.activate(_:))
         
+    }
+    
+    func startLoading() {
+//        tableView.isUserInteractionEnabled = false
+//        searchTextField.isUserInteractionEnabled = false
+        
+        activityIndicationView.isHidden = false
+        activityIndicationView.startAnimating()
+    }
+    
+    func finishLoading() {
+//        tableView.isUserInteractionEnabled = true
+//        searchTextField.isUserInteractionEnabled = true
+        
+        activityIndicationView.stopAnimating()
     }
     
 }

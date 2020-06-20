@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4645A640249E0B11006232F9 /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4645A63F249E0B11006232F9 /* CategoryService.swift */; };
 		469DD69324618463006DBD30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DD69224618463006DBD30 /* AppDelegate.swift */; };
 		469DD69C24618465006DBD30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 469DD69B24618465006DBD30 /* Assets.xcassets */; };
 		469DD69F24618465006DBD30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 469DD69D24618465006DBD30 /* LaunchScreen.storyboard */; };
@@ -112,6 +113,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4645A63F249E0B11006232F9 /* CategoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
 		469DD68F24618463006DBD30 /* Pickapp&Go.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pickapp&Go.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		469DD69224618463006DBD30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		469DD69B24618465006DBD30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -229,6 +231,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4645A63E249E0AF7006232F9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				4645A63F249E0B11006232F9 /* CategoryService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		469DD68624618463006DBD30 = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +258,7 @@
 		469DD69124618463006DBD30 /* Pickapp&Go */ = {
 			isa = PBXGroup;
 			children = (
+				4645A63E249E0AF7006232F9 /* Service */,
 				469DD6E524652B2F006DBD30 /* Models */,
 				46DF5AAC247E91A0003D8B26 /* Common */,
 				469DD6A92461892E006DBD30 /* Extensions */,
@@ -694,6 +705,7 @@
 				46A50E9A2483ACE10012727F /* OrderListViewModel.swift in Sources */,
 				469DD69324618463006DBD30 /* AppDelegate.swift in Sources */,
 				46A50E962483ACCD0012727F /* OrderListView.swift in Sources */,
+				4645A640249E0B11006232F9 /* CategoryService.swift in Sources */,
 				46A50EAD248522AC0012727F /* CartItem.swift in Sources */,
 				469DD6D92462CD09006DBD30 /* EventsCollectionViewCell.swift in Sources */,
 				46C4881E2465740F00FF3C3C /* CategoryListView.swift in Sources */,

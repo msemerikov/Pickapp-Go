@@ -32,7 +32,7 @@ class MainViewController: UIViewController {
         view.backgroundColor = .backgroundColor
         setupCollectionsView()
         setUpTargets()
-//        setUpBindings()
+        setUpBindings()
 //        viewModel.startTimer()
         viewModel.loadCategory()
         dismissKey()
@@ -100,36 +100,46 @@ class MainViewController: UIViewController {
         }
         
         func bindViewModelToView() {
-//            viewModel.validatedPhone
-//                .receive(on: RunLoop.main)
-//                .assign(to: \.isValid, on: contentView.loginButton)
-//                .store(in: &bindings)
-//
-//            viewModel.statusTextField
-//                .receive(on: RunLoop.main)
-//                .assign(to: \.status, on: contentView.codeTextField)
-//                .store(in: &bindings)
-//
-//            viewModel.isTimeLeft
-//                .receive(on: RunLoop.main)
-//                .assign(to: \.isValid, on: contentView.againButton)
-//                .store(in: &bindings)
-//
-//            viewModel.counter
-//                .receive(on: RunLoop.main)
-//                .sink(receiveValue: {
-//                    switch $0 {
-//                    case 0:
-//                        self.contentView.label.text = "На номер \(self.phone) отправлен код. Введите его в поле ниже. \nНе получили код? Нажмите кнопку “Отправить еще раз”"
-//                    default:
-//                        self.contentView.label.text = "На номер \(self.phone) отправлен код. Введите его в поле ниже. \nНе получили код? Нажмите кнопку “Отправить еще раз” через \($0) секунды"
-//                    }
-//                } )
-//                .store(in: &bindings)
+            
+            let viewModelsValueHandler: ([CategoryCellViewModel]) -> Void = { [weak self] _ in
+                self?.contentView.categoryCollectionView.reloadData()
+            }
+            
+            viewModel.$categoryViewModels
+                .receive(on: RunLoop.main)
+                .sink(receiveValue: viewModelsValueHandler)
+                .store(in: &bindings)
+            
+            let stateValueHandler: (ListViewModelState) -> Void = { [weak self] state in
+                switch state {
+                case .loading:
+                    self?.contentView.startLoading()
+                case .finishedLoading:
+                    self?.contentView.finishLoading()
+                case .error(let error):
+                    self?.contentView.finishLoading()
+                    self?.showError(error)
+                }
+            }
+            
+            viewModel.$state
+                .receive(on: RunLoop.main)
+                .sink(receiveValue: stateValueHandler)
+                .store(in: &bindings)
+            
         }
         
         bindViewToViewModel()
         bindViewModelToView()
+    }
+    
+    private func showError(_ error: Error) {
+        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default) { [unowned self] _ in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(alertAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc private func allCategoryButtonTapped() {

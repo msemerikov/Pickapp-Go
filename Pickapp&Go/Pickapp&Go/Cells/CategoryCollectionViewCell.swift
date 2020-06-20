@@ -101,7 +101,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     private func setUpViewModel() {
         label.text = viewModel.category.title
-        image.image = UIImage(named: viewModel.category.image)
+        image.image = UIImage(named: viewModel.category.image ?? "NoImage")
     }
     
 }
