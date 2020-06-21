@@ -21,9 +21,9 @@ final class CartViewModel {
         totalValue = 0
         recommendedViewModels.removeAll()
         productInCartViewModels.removeAll()
-        recommendedProductArray.forEach {
-            recommendedViewModels.append(ProductCellViewModel(product: $0))
-        }
+//        recommendedProductArray.forEach {
+//            recommendedViewModels.append(ProductCellViewModel(product: $0))
+//        }
         
         cartArray.forEach {
             productInCartViewModels.append(CartCellViewModel(item: $0))

@@ -21,8 +21,8 @@ class CategoryViewController: UIViewController {
     
     convenience init(viewModel: CategoryViewModel = CategoryViewModel(), category: Category) {
         self.init(viewModel: viewModel)
-        viewModel.category = category
         contentView.categoryLabel.text = category.title
+        viewModel.loadCategories(with: category.id)
     }
     
     required init?(coder: NSCoder) {
@@ -38,8 +38,7 @@ class CategoryViewController: UIViewController {
         view.backgroundColor = .backgroundColor
         setupCollectionsView()
         setUpTargets()
-        viewModel.loadProduct()
-//        setUpBindings()
+        setUpBindings()
         dismissKey()
     }
     
@@ -51,13 +50,6 @@ class CategoryViewController: UIViewController {
     func reload() {
         contentView.productCollectionView.reloadData()
     }
-    
-//    override func viewDidLayoutSubviews() {
-//        let contentRect: CGRect = contentView.scrollView.subviews.reduce(into: .zero) { rect, view in
-//            rect = rect.union(view.frame)
-//        }
-//        contentView.scrollView.contentSize = CGSize(width: contentRect.size.width, height: contentRect.size.height + 24)
-//    }
     
     private func setupCollectionsView() {
         contentView.subCategoryCollectionView.register(SubcategoryCollectionViewCell.self, forCellWithReuseIdentifier: SubcategoryCollectionViewCell.identifier)
@@ -75,32 +67,62 @@ class CategoryViewController: UIViewController {
     
     private func setUpTargets() {
         contentView.backButton.addTarget(self, action: #selector(back), for: .touchUpInside)
-//        contentView.loginButton.addTarget(self, action: #selector(onClickLogin), for: .touchUpInside)
-//        contentView.againButton.addTarget(self, action: #selector(onClickAgain), for: .touchUpInside)
     }
     
     private func setUpBindings() {
         func bindViewToViewModel() {
-//            contentView.subCategoryCollectionView.indexPath(for: <#T##UICollectionViewCell#>)
-//            contentView.codeTextField.textPublisher
-//                .receive(on: DispatchQueue.main)
-//                .assign(to: \.code, on: viewModel)
-//                .store(in: &bindings)
+
         }
         
         func bindViewModelToView() {
-            let viewModelsValueHandler: ([ProductCellViewModel]) -> Void = { [weak self] _ in
+            
+            let viewModelsValueHandler: ([SubcategoryCellViewModel]) -> Void = { [weak self] _ in
+                self?.contentView.subCategoryCollectionView.reloadData()
+            }
+            
+            viewModel.$subcategoryViewModels
+                .receive(on: RunLoop.main)
+                .sink(receiveValue: viewModelsValueHandler)
+                .store(in: &bindings)
+            
+            let viewModelsValueHandlerProduct: ([ProductCellViewModel]) -> Void = { [weak self] _ in
                 self?.contentView.productCollectionView.reloadData()
             }
             
             viewModel.$productViewModels
                 .receive(on: RunLoop.main)
-                .sink(receiveValue: viewModelsValueHandler)
+                .sink(receiveValue: viewModelsValueHandlerProduct)
                 .store(in: &bindings)
             
+            let stateValueHandler: (ListViewModelState) -> Void = { [weak self] state in
+                switch state {
+                case .loading:
+                    self?.contentView.startLoading()
+                case .finishedLoading:
+                    self?.contentView.finishLoading()
+                case .error(let error):
+                    self?.contentView.finishLoading()
+                    self?.showError(error)
+                }
+            }
+
+            viewModel.$state
+                .receive(on: RunLoop.main)
+                .sink(receiveValue: stateValueHandler)
+                .store(in: &bindings)
+            
+            }
             bindViewToViewModel()
             bindViewModelToView()
+    }
+    
+    private func showError(_ error: Error) {
+        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default) { [unowned self] _ in
+            self.dismiss(animated: true, completion: nil)
         }
+        alertController.addAction(alertAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc func back() {
@@ -127,7 +149,7 @@ extension CategoryViewController: UICollectionViewDelegate {
         if collectionView == contentView.subCategoryCollectionView {
             viewModel.removeSubcategory(indexPath.item)
             if collectionView.indexPathsForSelectedItems?.count == 0 {
-                viewModel.loadProduct()
+                viewModel.noFilterCategory()
             }
             contentView.productCollectionView.reloadData()
         }

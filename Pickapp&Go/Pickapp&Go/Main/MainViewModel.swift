@@ -57,12 +57,8 @@ final class MainViewModel {
             .sink(receiveCompletion: searchTermCompletionHandler, receiveValue: searchTermValueHandler)
             .store(in: &bindings)
     }
-    
+    /*
     func loadCategory() {
-        categoriesArray.forEach {
-            categoryViewModels.append(CategoryCellViewModel(category: $0))
-        }
-        
         buyerChoiceArray.forEach {
             buyerChoiceViewModels.append(ProductCellViewModel(product: $0))
         }
@@ -75,5 +71,5 @@ final class MainViewModel {
             salesViewModels.append(ProductCellViewModel(product: $0))
         }
     }
-    
+    */
 }

@@ -120,7 +120,7 @@ final class CartTableViewCell: UITableViewCell {
     
     private func setUpViewModel() {
         let price = String(format: "%.0f", arguments: [viewModel.item.amount])
-        productImage.image = UIImage(named: viewModel.item.product.image)
+        productImage.image = UIImage(named: viewModel.item.product.image ?? "NoImage")
         productNameLabel.text = viewModel.item.product.title
         priceLabel.text = "\(price) ₽"
     }

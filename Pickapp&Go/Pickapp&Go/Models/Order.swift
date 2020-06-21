@@ -28,9 +28,9 @@ class Order {
     }
 }
 
-var order1 = Order(id: 12311, date: "12.06.2020", status: "Заказ получен", price: 2244.03, shop: victoriaShop, products: [cartItem1, cartItem2, cartItem3])
-var order2 = Order(id: 12312, date: "31.05.2020", status: "Заказ получен", price: 2244.03, shop: victoriaShop, products: [cartItem1, cartItem2, cartItem3])
-var order3 = Order(id: 12313, date: "30.04.2020", status: "Заказ отменен", price: 2244.03, shop: victoriaShop, products: [cartItem1, cartItem2, cartItem3])
-var order4 = Order(id: 12314, date: "25.05.2020", status: "Оформляется", price: 2244.03, shop: victoriaShop, products: [cartItem1, cartItem2, cartItem3])
-var order5 = Order(id: 12315, date: "16.05.2020", status: "Заказ получен", price: 2244.03, shop: victoriaShop, products: [cartItem1, cartItem2, cartItem3])
-let ordersArray = [order1, order2, order3, order4, order5]
+//var order1 = Order(id: 12311, date: "12.06.2020", status: "Заказ получен", price: 2244.03, shop: victoriaShop, products: [cartItem1, cartItem2, cartItem3])
+//var order2 = Order(id: 12312, date: "31.05.2020", status: "Заказ получен", price: 2244.03, shop: victoriaShop, products: [cartItem1, cartItem2, cartItem3])
+//var order3 = Order(id: 12313, date: "30.04.2020", status: "Заказ отменен", price: 2244.03, shop: victoriaShop, products: [cartItem1, cartItem2, cartItem3])
+//var order4 = Order(id: 12314, date: "25.05.2020", status: "Оформляется", price: 2244.03, shop: victoriaShop, products: [cartItem1, cartItem2, cartItem3])
+//var order5 = Order(id: 12315, date: "16.05.2020", status: "Заказ получен", price: 2244.03, shop: victoriaShop, products: [cartItem1, cartItem2, cartItem3])
+let ordersArray: [Order] = []

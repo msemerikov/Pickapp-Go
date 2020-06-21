@@ -228,7 +228,6 @@ final class MainView: UIView, UIScrollViewDelegate {
     }
     
     private func setUpConstraints() {
-//        let allButtonWidth: CGFloat = 52
         let labelHeight: CGFloat = 24
         let labelWidth: CGFloat = 201
         
@@ -365,17 +364,11 @@ final class MainView: UIView, UIScrollViewDelegate {
     }
     
     func startLoading() {
-//        tableView.isUserInteractionEnabled = false
-//        searchTextField.isUserInteractionEnabled = false
-        
         activityIndicationView.isHidden = false
         activityIndicationView.startAnimating()
     }
     
     func finishLoading() {
-//        tableView.isUserInteractionEnabled = true
-//        searchTextField.isUserInteractionEnabled = true
-        
         activityIndicationView.stopAnimating()
     }
     

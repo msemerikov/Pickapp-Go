@@ -26,10 +26,11 @@ class CartItem {
 }
 
 var totalItemsInCart = 0
-
+/*
 var cartItem1 = CartItem(product: kiwi, count: 2, price: 217)
 var cartItem2 = CartItem(product: banana, count: 1, price: 69.90)
 var cartItem3 = CartItem(product: peach, count: 3, price: 99)
 var cartItem4 = CartItem(product: strawberry, count: 1, price: 419)
 var cartItem5 = CartItem(product: cucumber, count: 1, price: 99)
 var cartItem6 = CartItem(product: apple, count: 1, price: 100)
+*/

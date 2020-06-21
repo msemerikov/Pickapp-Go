@@ -24,9 +24,9 @@ final class ProductViewModel {
     @Published private(set) var relatedProductsViewModels: [ProductCellViewModel] = []
     
     func load() {
-        buyerChoiceArray.forEach {
-            relatedProductsViewModels.append(ProductCellViewModel(product: $0))
-        }
+//        buyerChoiceArray.forEach {
+//            relatedProductsViewModels.append(ProductCellViewModel(product: $0))
+//        }
     }
     
 }

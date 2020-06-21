@@ -65,19 +65,20 @@ class ProductViewController: UIViewController {
 //        let descriptionHeight = product.description.height(withConstrainedWidth: Session.width - 32, font: .lightSystemFontOfSize(size: 11))
 //        contentView.descriptionHeight = descriptionHeight
 //        contentView.descriptionHeightConstraint?.isActive = true
-        let price = String(format: "%.0f", arguments: [product.price])
-        let unit = " руб/\(product.unit)"
-        
-        let attributes = [NSAttributedString.Key.font: UIFont.lightSystemFontOfSize(size: 14)]
-        let firstString = NSMutableAttributedString(string: price)
-        let secondString = NSMutableAttributedString(string: unit, attributes: attributes)
-        firstString.append(secondString)
-        
-        contentView.likeButton.isSelected = product.isFavorite
-        contentView.productImage.image = UIImage(named: product.image)
+//        let price = String(format: "%.0f", arguments: [product.price])
+//        let unit = " руб/\(product.unit)"
+//
+//        let attributes = [NSAttributedString.Key.font: UIFont.lightSystemFontOfSize(size: 14)]
+//        let firstString = NSMutableAttributedString(string: price)
+//        let secondString = NSMutableAttributedString(string: unit, attributes: attributes)
+//        firstString.append(secondString)
+//
+//        contentView.likeButton.isSelected = product.isFavorite
+        contentView.productImage.image = UIImage(named: product.image ?? "NoImage")
         contentView.titleLabel.text = product.title
-        contentView.subtitleLabel.text = product.subtitle
-        contentView.priceLabel.attributedText = firstString
+//        contentView.subtitleLabel.text = product.subtitle
+//        contentView.priceLabel.attributedText = firstString
+        contentView.priceLabel.text = product.price
         contentView.proteinValueLabel.text = "3.2"
         contentView.fatsValueLabel.text = "0.5"
         contentView.carbohydratesValueLabel.text = "16.2"
@@ -88,7 +89,7 @@ class ProductViewController: UIViewController {
         contentView.typeRow.rightLabel.text = "Веганский/постный продукт"
         contentView.tempRow.rightLabel.text = "+0.5С"
         contentView.conditionRow.rightLabel.text = "В холодильнике"
-        contentView.categoryRow.rightLabel.text = product.subcategory.title
+//        contentView.categoryRow.rightLabel.text = product.subcategory.title
         contentView.relatedCollectionView.reloadData()
     }
     
@@ -127,12 +128,12 @@ class ProductViewController: UIViewController {
     
     @objc private func like() {
         contentView.likeButton.isSelected = !contentView.likeButton.isSelected
-        viewModel.product?.isFavorite = contentView.likeButton.isSelected
+//        viewModel.product?.isFavorite = contentView.likeButton.isSelected
     }
     
     @objc private func addToCart() {
-        guard let product = viewModel.product else { return }
-        cartArray.append(CartItem(product: product, count: 1, price: product.price))
+//        guard let product = viewModel.product else { return }
+//        cartArray.append(CartItem(product: product, count: 1, price: product.price))
         totalItemsInCart += 1
         self.tabBarController?.increaseBadge(indexOfTab: 3, num: totalItemsInCart.description)
     }

@@ -18,7 +18,7 @@ final class FavoriteViewModel {
     func loadProduct() {
         products.removeAll()
         productViewModels.removeAll()
-        products = productsArray.filter { $0.isFavorite }
+//        products = productsArray.filter { $0.isFavorite }
         
         products.forEach {
             productViewModels.append(ProductCellViewModel(product: $0))

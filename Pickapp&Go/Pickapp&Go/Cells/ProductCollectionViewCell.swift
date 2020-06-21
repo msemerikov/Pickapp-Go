@@ -193,23 +193,25 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpViewModel() {
-        let price = String(format: "%.2f", arguments: [viewModel.product.price])
-        let unit = " / \(viewModel.product.unit)"
+//        let price = String(format: "%.2f", arguments: [viewModel.product.price])
+        let price = viewModel.product.price
+//        let unit = " / \(viewModel.product.unit)"
         
-        let index = price.firstIndex(of: ".") ?? price.endIndex
-        let newString = String(price[...index])
-        let range = (price as NSString).range(of: newString)
-        let attributes = [NSAttributedString.Key.font: UIFont.systemFontOfSize(size: 8)]
-        let firstString = NSMutableAttributedString(string: price)
-        let secondString = NSMutableAttributedString(string: unit, attributes: attributes)
+//        let index = price.firstIndex(of: ".") ?? price.endIndex
+//        let newString = String(price[...index])
+//        let range = (price as NSString).range(of: newString)
+//        let attributes = [NSAttributedString.Key.font: UIFont.systemFontOfSize(size: 8)]
+//        let firstString = NSMutableAttributedString(string: price)
+//        let secondString = NSMutableAttributedString(string: unit, attributes: attributes)
         
-        firstString.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFontOfSize(size: 14), range: range)
-        firstString.append(secondString)
+//        firstString.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFontOfSize(size: 14), range: range)
+//        firstString.append(secondString)
         label.text = viewModel.product.title
-        subtitle.text = viewModel.product.subtitle
-        image.image = UIImage(named: viewModel.product.image)
-        priceLabel.attributedText = firstString
-        likeButton.isSelected = viewModel.product.isFavorite
+//        subtitle.text = viewModel.product.subtitle
+        image.image = UIImage(named: viewModel.product.image ?? "NoImage")
+//        priceLabel.attributedText = firstString
+        priceLabel.text = price
+//        likeButton.isSelected = viewModel.product.isFavorite
         
         imageTopAnchorConstraint?.isActive = false
         let imageTopAnchor = (frame.height - 51 - 80 - 32 - 4) / 2
@@ -219,11 +221,11 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     
     @objc private func likeButtonTapped() {
         likeButton.isSelected = !likeButton.isSelected
-        viewModel.product.isFavorite = likeButton.isSelected
+//        viewModel.product.isFavorite = likeButton.isSelected
     }
     
     @objc private func cartButtonTapped() {
-        cartArray.append(CartItem(product: viewModel.product, count: 1, price: viewModel.product.price))
+//        cartArray.append(CartItem(product: viewModel.product, count: 1, price: viewModel.product.price))
         totalItemsInCart += 1
         delegate?.increaseBadge()
     }

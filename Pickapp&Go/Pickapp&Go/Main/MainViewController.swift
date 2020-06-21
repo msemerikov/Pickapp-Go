@@ -33,8 +33,6 @@ class MainViewController: UIViewController {
         setupCollectionsView()
         setUpTargets()
         setUpBindings()
-//        viewModel.startTimer()
-        viewModel.loadCategory()
         dismissKey()
     }
     

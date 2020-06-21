@@ -10,9 +10,9 @@ import Combine
 import Foundation
 
 final class SubcategoryCellViewModel {
-    @Published var subcategory: Subcategory
+    @Published var subcategory: Category
     
-    init(subcategory: Subcategory) {
+    init(subcategory: Category) {
         self.subcategory = subcategory
         setUpBindings()
     }

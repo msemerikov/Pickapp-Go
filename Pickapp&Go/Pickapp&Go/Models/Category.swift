@@ -26,8 +26,33 @@ extension Category {
         case active
         case position
     }
+    
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        id = try container.decode(String.self, forKey: .id)
+//        parentId = try container.decode(String.self, forKey: .parentId)
+//        title = try container.decode(String.self, forKey: .title)
+//        image = try container.decode(String.self, forKey: .image)
+//        active = try container.decode(String.self, forKey: .active)
+//        position = try container.decode(String.self, forKey: .position)
+//    }
 }
 
+struct CategoryData {
+    let subcategories: [Category]
+}
+
+extension CategoryData: Decodable {
+    private enum CodingKeys: String, CodingKey {
+        case subcategories
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        subcategories = try container.decode([Category].self, forKey: .subcategories)
+    }
+}
+ 
 let vegetablesCat = Category(id: "1", parentId: "0", title: "Овощи и фрукты", image: "Category1", position: "1")
 let milkCat = Category(id: "2", parentId: "0", title: "Молочные продукты", image: "Category2", position: "2")
 let fruitCat = Category(id: "3", parentId: "0", title: "Фрукты", image: "Category3", position: "3")

@@ -8,30 +8,52 @@
 
 import Foundation
 
-class Product {
-    var title: String
-    var subtitle: String
-    var image: String
-    var description: String
-    var price: Double
-    var unit: String
-    var category: Category
-    var subcategory: Subcategory
-    var isFavorite: Bool
-    
-    init(title: String, subtitle: String, image: String, description: String, price: Double, unit: String, category: Category, subcategory: Subcategory, isFavorite: Bool) {
-        self.title = title
-        self.subtitle = subtitle
-        self.image = image
-        self.description = description
-        self.price = price
-        self.unit = unit
-        self.category = category
-        self.subcategory = subcategory
-        self.isFavorite = isFavorite
+class Product: Codable {
+    var id: String?
+    var categoryId: String?
+    var brandId: String?
+    var brandTitle: String?
+    var title: String?
+    var description: String?
+    var ingredients: String?
+    var characteristics: String?
+    var url: String?
+    var image: String?
+    var price: String?
+    var active: String?
+}
+
+extension Product {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case categoryId = "category_id"
+        case brandId = "brand_id"
+        case title
+        case description
+        case ingredients
+        case characteristics
+        case url
+        case image = "img_name"
+        case price
+        case active
     }
 }
 
+struct ProductData {
+    let goods: [Product]
+}
+
+extension ProductData: Decodable {
+    private enum CodingKeys: String, CodingKey {
+        case goods
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        goods = try container.decode([Product].self, forKey: .goods)
+    }
+}
+/*
 var blueberry = Product(title: "Голубика", subtitle: "«Artfruit»", image: "Product1", description: "", price: 216.00, unit: "200 г", category: vegetablesCat, subcategory: berries, isFavorite: false)
 var banana = Product(title: "Бананы", subtitle: "Кавендиш", image: "Product2", description: "", price: 69.90, unit: "1 кг", category: vegetablesCat, subcategory: fruits, isFavorite: false)
 var cucumber = Product(title: "Огурец", subtitle: "Зелёный богатырь", image: "Product3", description: "стандарт короткоплодный бугорчатый", price: 99, unit: "1 кг", category: vegetablesCat, subcategory: vegetables, isFavorite: false)
@@ -49,4 +71,12 @@ let buyerChoiceArray = [kiwi, blueberry, banana, cucumber, strawberry]
 let newProductArray = [apple, potato, peach]
 let salesProductArray = [cabbage, greenApple, cheese]
 let recommendedProductArray = [cabbage, greenApple, cheese, kiwi]
+var cartArray: [CartItem] = []
+*/
+let productsArray: [Product] = []
+let buyerChoiceArray: [Product] = []
+let newProductArray: [Product] = []
+let salesProductArray: [Product] = []
+let recommendedProductArray: [Product] = []
+
 var cartArray: [CartItem] = []

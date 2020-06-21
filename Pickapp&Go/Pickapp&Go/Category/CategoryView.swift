@@ -25,7 +25,6 @@ final class CategoryView: UIView {
         searchBar.placeholder = "Поиск продуктов"
         searchBar.searchTextField.backgroundColor = .white
         searchBar.searchTextField.font = .mediumSystemFontOfSize(size: 14)
-//        searchBar.searchTextField.layer.masksToBounds = false
         searchBar.searchTextField.layer.cornerRadius = 12
         searchBar.searchTextField.layer.backgroundColor = UIColor.white.cgColor
         searchBar.searchTextField.layer.shadowColor = UIColor(red: 0.216, green: 0.329, blue: 0.667, alpha: 0.12).cgColor
@@ -79,6 +78,15 @@ final class CategoryView: UIView {
         return collectionView
     }()
     
+    lazy var activityIndicationView: UIActivityIndicatorView = {
+        let activityIndicationView = UIActivityIndicatorView(style: .medium)
+        activityIndicationView.color = .white
+        activityIndicationView.backgroundColor = .darkGray
+        activityIndicationView.layer.cornerRadius = 5.0
+        activityIndicationView.hidesWhenStopped = true
+        return activityIndicationView
+    }()
+    
     init() {
         super.init(frame: .zero)
         addSubviews()
@@ -100,7 +108,8 @@ final class CategoryView: UIView {
          categoryLabel,
          dividerView,
          subCategoryCollectionView,
-         productCollectionView]
+         productCollectionView,
+         activityIndicationView]
             .forEach {
                 addSubview($0)
                 $0.translatesAutoresizingMaskIntoConstraints = false
@@ -152,14 +161,30 @@ final class CategoryView: UIView {
             productCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ]
         
+        let activityIndicatorViewConstraints = [
+            activityIndicationView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            activityIndicationView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            activityIndicationView.heightAnchor.constraint(equalToConstant: 50),
+            activityIndicationView.widthAnchor.constraint(equalToConstant: 50.0)
+        ]
+        
         [backButtonConstraints,
          searchBarConstraints,
          categoryLabelConstraints,
          dividerViewConstraints,
          subCategoryCollectionViewConstraints,
-         productCollectionViewConstraints]
+         productCollectionViewConstraints,
+         activityIndicatorViewConstraints]
             .forEach(NSLayoutConstraint.activate(_:))
         
     }
     
+    func startLoading() {
+        activityIndicationView.isHidden = false
+        activityIndicationView.startAnimating()
+    }
+    
+    func finishLoading() {
+        activityIndicationView.stopAnimating()
+    }
 }
